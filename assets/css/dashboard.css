@@ -1,0 +1,45 @@
+:root {
+    background-color: #C3E8BD;
+}
+
+.navbar>.container-fluid {
+    display: block;
+}
+
+.mi-h1 {
+    color: white;
+    display: flex;
+    margin-left: 20%;
+    align-items: center;
+    font-weight: bold;
+}
+
+.mi-navbar {
+    gap: 5%;
+    font-size: large;
+}
+
+.mi-buton-menu {
+    margin-top: 1rem;
+    color: white;
+}
+
+.menu-principal {
+    background-color: #040403;
+}
+
+.nav-underline .nav-link.active {
+    color: #9DDBAD;
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav {
+    --bs-nav-link-hover-color: #9DDBAD;
+}
+
+.mi-hr {
+    color: white;
+}

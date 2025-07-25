@@ -1,0 +1,12 @@
+RewriteEngine On
+RewriteCond $1 !^(index\.php|assets|images|js|css|uploads|favicon.png)
+RewriteEngine On
+
+# Permitir cualquier acceso a assets
+RewriteCond %{REQUEST_URI} ^/CodeIgniter/assets/
+RewriteRule .* - [L]
+
+# Si el archivo/directorio no existe, redirigir a index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]
