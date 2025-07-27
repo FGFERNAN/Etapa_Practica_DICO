@@ -9,7 +9,7 @@
 .mi-h1 {
     color: white;
     display: flex;
-    margin-left: 20%;
+    margin-left: 17%;
     align-items: center;
     font-weight: bold;
 }
@@ -41,5 +41,43 @@
 }
 
 .mi-hr {
-    color: white;
+    background-color: #8EB897;
+    border: none;
+    height: 0.2rem;
+    opacity: 1;
+    border-radius: 1rem;
 }
+
+.offcanvas {
+    --bs-offcanvas-bg: #040403;
+}
+
+.mi-h5 {
+    color: white;
+    margin-bottom: 5%;
+}
+
+.profile-pic-container {
+    display: inline;
+    position: absolute;
+    margin-left: 88%;
+    margin-top: 1%;
+}
+
+.profile-pic {
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-pic img {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
