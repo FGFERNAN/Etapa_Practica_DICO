@@ -57,11 +57,18 @@
     margin-bottom: 5%;
 }
 
+.mi-title-h5 {
+    color: white;
+    font-weight: bold;
+}
+
 .profile-pic-container {
-    display: inline;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     position: absolute;
-    margin-left: 88%;
-    margin-top: 1%;
+    margin-left: 92%;
+    margin-top: 2%;
 }
 
 .profile-pic {
@@ -81,3 +88,70 @@
     border-radius: 50%;
 }
 
+.mi-link {
+    color: white;
+}
+
+.mi-link:hover {
+    color: #9DDBAD;
+}
+
+.dropdown-menu-dark {
+    --bs-dropdown-color: white;
+    --bs-dropdown-bg: #040403;
+    --bs-dropdown-link-active-bg: #5B7553;
+}
+
+.dropdown-menu-light {
+    --bs-dropdown-color: #dee2e6;
+    --bs-dropdown-bg: #C3E8BD;
+    --bs-dropdown-border-color: var(--bs-border-color-translucent);
+    --bs-dropdown-link-color: #040403;
+    --bs-dropdown-link-hover-color: #040403;
+    --bs-dropdown-divider-bg: var(--bs-border-color-translucent);
+    --bs-dropdown-link-hover-bg: #9DDBAD;
+    --bs-dropdown-link-active-color: white;
+    --bs-dropdown-link-active-bg: #5B7553;
+    --bs-dropdown-link-disabled-color: #adb5bd;
+    --bs-dropdown-header-color: #5B7553;
+}
+
+@media (max-width: 576px) {
+    .profile-pic-container {
+        margin-left: 75%;
+    }
+
+    .profile-pic {
+        width: 2.5rem;
+        height: 2.5rem; 
+    }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+    .profile-pic-container {
+        margin-left: 80%;
+    }
+
+    .profile-pic {
+        width: 3rem;
+        height: 3rem; 
+    }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+    .profile-pic-container {
+        margin-left: 85%;
+    }
+}
+
+@media (min-width: 993px) and (max-width: 1199.98px) {
+    .profile-pic-container {
+        margin-left: 90%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .profile-pic-container {
+        margin-left: 92%;
+    }
+}
