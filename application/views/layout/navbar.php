@@ -29,12 +29,13 @@
             </div>
         </div>
         <h1 class="mi-h1 d-none d-md-flex">SGSP</h1>
+        <?php $segmento = $this->uri->segment(1); ?>
         <ul class="nav justify-content-center nav-underline mi-navbar d-none d-md-flex">
             <li class="nav-item">
-                <a class="nav-link active mi-nav-link" aria-current="page" href="#">Inicio</a>
+                <a class="nav-link <?= $segmento == '' ? 'active' : '' ?>"  href="<?= base_url() ?>">Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Productos</a>
+                <a class="nav-link <?= $segmento == 'productos' ? 'active' : '' ?>" href="<?= base_url('productos') ?>">Productos</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Categorias </a>
@@ -90,7 +91,6 @@
                         <a class="nav-link" href="#"><i class="fa-solid fa-chart-pie me-3"></i>Reportes</a>
                     </li>
                 </ul>
-
             </div>
         </div>
     </div>

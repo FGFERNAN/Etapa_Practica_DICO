@@ -1,0 +1,93 @@
+body {
+    background-color: #C3E8BD;
+}
+
+.mi-container {
+    margin-top: 19%;
+}
+
+.mi-header {
+    margin-left: 15%;
+}
+
+.mi-btn {
+    background-color: #C3E8BD;
+    color: black;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+.mi-btn:hover {
+    background-color: #5B7553;
+    color: white;
+}
+
+.mi-h2 {
+    border-bottom: 3px solid #040403;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.table {
+    --bs-table-color-type: initial;
+    --bs-table-bg-type: initial;
+    --bs-table-color-state: initial;
+    --bs-table-bg-state: initial;
+    --bs-table-color: var(--bs-emphasis-color);
+    --bs-table-bg: #C3E8BD;
+    --bs-table-border-color: var(--bs-border-color);
+    --bs-table-accent-bg: transparent;
+    --bs-table-striped-color: var(--bs-emphasis-color);
+    --bs-table-striped-bg: #8EB897;
+    --bs-table-active-color: var(--bs-emphasis-color);
+    --bs-table-active-bg: rgba(var(--bs-emphasis-color-rgb), 0.1);
+    --bs-table-hover-color: var(--bs-emphasis-color);
+    --bs-table-hover-bg: rgba(var(--bs-emphasis-color-rgb), 0.075);
+    width: 65%;
+    margin-bottom: 1rem;
+    vertical-align: top;
+    border-color: var(--bs-table-border-color);
+}
+
+.mi-table {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-editar {
+    background-color: #C3E8BD;
+    color: #040403;
+}
+
+.btn-secondary {
+    --bs-btn-border-color: #C3E8BD;
+    --bs-btn-hover-border-color: #a9c9a4;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #95b090;
+    --bs-btn-active-border-color: #95b090;
+}
+
+.btn-editar:hover {
+    background-color: #a9c9a4;
+    color: white;
+}
+
+.btn-eliminar {
+    background-color: #5B7553;
+    color: white;
+}
+
+.btn-danger {
+    --bs-btn-border-color: #5B7553;
+    --bs-btn-hover-border-color: rgb(116, 151, 124);
+        --bs-btn-active-color: black;
+    --bs-btn-active-bg: rgb(103, 134, 110);
+    --bs-btn-active-border-color: rgb(103, 134, 110);
+}
+
+.btn-eliminar:hover {
+    background-color: rgb(116, 151, 124);
+    color: black;
+}

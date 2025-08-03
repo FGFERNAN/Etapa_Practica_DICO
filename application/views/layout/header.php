@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- My Style CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/css/dashboard.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/productos.css') ?>">
 </head>
 
 <body>
