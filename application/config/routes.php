@@ -51,5 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'dashboard';
 $route['productos'] = 'productos/index';
+$route['productos/crear'] = 'productos/crear';
+$route['productos/editar'] = 'productos/editar';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
