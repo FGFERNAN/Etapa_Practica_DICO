@@ -65,12 +65,12 @@ body {
 }
 
 .btn-editar {
-    background-color: #C3E8BD;
+    background-color: #9DDBAD;
     color: #040403;
 }
 
 .btn-secondary {
-    --bs-btn-border-color: #C3E8BD;
+    --bs-btn-border-color: black;
     --bs-btn-hover-border-color: #a9c9a4;
     --bs-btn-active-color: #fff;
     --bs-btn-active-bg: #95b090;

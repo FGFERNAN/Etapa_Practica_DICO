@@ -2,31 +2,31 @@
 <?php $this->load->view('layout/navbar'); ?>
 
 <div class="container-fluid form-container">
-    <form class="row g-3">
+    <form action="<?= base_url('productos/actualizar/'.$producto->id) ?>" method="post" class="row g-3">
         <legend class="legend">Editar Producto</legend>
         <div class="col-md-6">
             <label for="nombre" class="form-label mi-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre">
+            <input type="text" name="nombre" value="<?= $producto->nombre ?>" class="form-control" id="nombre" required>
         </div>
         <div class="col-md-6">
             <label for="precio" class="form-label mi-label">Precio</label>
-            <input type="number" step="0.01" min="0" placeholder="0.00" class="form-control" id="precio">
+            <input type="number" name="precio" value="<?= $producto->precio ?>" step="0.01" min="0" placeholder="0.00" class="form-control" id="precio" required>
         </div>
         <div class="col-12">
             <label for="descripcion" class="form-label mi-label">Descripción</label>
-            <textarea class="form-control" id="descripcion" rows="3"></textarea>
+            <textarea class="form-control" name="descripcion" id="descripcion" rows="3"><?= $producto->descripcion ?></textarea>
         </div>
         <div class="col-6">
             <label for="stock" class="form-label mi-label">Stock</label>
-            <input type="number" name="stock" min="0" step="1" placeholder="0" class="form-control" id="stock">
+            <input type="number" name="stock" value="<?= $producto->stock ?>" min="0" step="1" placeholder="0" class="form-control" id="stock" required>
         </div>
         <div class="col-6">
             <label for="imagen" class="form-label mi-label">Imagen</label>
-            <input class="form-control" type="file" id="imagen">
+            <input class="form-control" name="imagen" value="<?= $producto->imagen ?>" type="file" id="imagen">
         </div>
         <div class="col-md-4">
             <label for="categoria" class="form-label mi-label">Categoría</label>
-            <select class="form-select" aria-label="Categoria" id="categoria">
+            <select class="form-select" name="categoriasID" aria-label="Categoria" id="categoria">
                 <option selected disabled>Seleccionar</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
@@ -35,7 +35,7 @@
         </div>
         <div class="col-md-4">
             <label for="proveedor" class="form-label mi-label">Proveedor</label>
-            <select id="proveedor" class="form-select">
+            <select id="proveedor" name="proveedoresID" class="form-select">
                 <option selected disabled>Seleccionar</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
@@ -44,11 +44,11 @@
         </div>
         <div class="col-md-4">
             <label for="estado" class="form-label mi-label">Estado</label>
-            <select id="estado" class="form-select">
-                <option selected disabled>Seleccionar</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <select id="estado" name="estadoID" class="form-select">
+                <option value="" disabled>Seleccionar</option>
+                <?php foreach ($estados as $e): ?>
+                    <option value="<?= $e->id ?>" <?= $producto->estadoID == $e->id ? 'selected' : '' ?>><?= $e->nombre ?></option>
+                <?php endforeach; ?>
             </select>
         </div>
         <div class="d-grid col-4 mx-auto">

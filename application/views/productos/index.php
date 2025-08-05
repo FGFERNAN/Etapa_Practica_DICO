@@ -20,18 +20,20 @@
                 </tr>
             </thead>
             <tbody>
+                <?php foreach ($productos as $p): ?>
                 <tr>
-                    <td>Arroz</td>
-                    <td>2.500</td>
-                    <td>2</td>
-                    <td>Grano</td>
-                    <td>Diana</td>
-                    <td>Activo</td>
+                    <td><?= $p->nombre ?></td>
+                    <td><?= $p->precio ?></td>
+                    <td><?= $p->stock ?></td>
+                    <td><?= $p->categoriasID ?></td>
+                    <td><?= $p->proveedoresID ?></td>
+                    <td><?= $p->estado_nombre ?></td>
                     <td>
-                        <button class="btn btn-sm btn-secondary btn-editar" onclick="window.location.href='<?= base_url('productos/editar') ?>'"><i class="fa-solid fa-pen"></i></button>
-                        <button class="btn btn-sm btn-danger btn-eliminar"><i class="fa-solid fa-trash"></i></button>
+                        <button class="btn btn-sm btn-secondary btn-editar" onclick="window.location.href='<?= base_url('productos/editar/'.$p->id) ?>'"><i class="fa-solid fa-pen"></i></button>
+                        <a href="<?= base_url('productos/eliminar/'.$p->id) ?>" class="btn btn-sm btn-danger btn-eliminar" onclick="return confirm('¿Estas seguro de eliminar este producto?')"><i class="fa-solid fa-trash"></i></a>
                     </td>
                 </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>
