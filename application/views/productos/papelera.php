@@ -3,9 +3,7 @@
 
 <div class="container-fluid mi-container">
     <div class="d-flex align-items-center mi-header">
-        <h2 class="mi-h2">Productos</h2>
-        <button class="btn mi-btn ms-4 mb-2" onclick="location.href='<?= base_url('productos/crear'); ?>'"><i class="fa-solid fa-plus me-1"></i></button>
-        <button class="btn mi-btn-papelera ms-3 mb-2" onclick="location.href='<?= base_url('productos/papelera'); ?>'"><i class="fa-solid fa-trash-can"></i></button>
+        <h2 class="mi-h2">Papelera Productos</h2>
     </div>
     <div class="table-responsive mt-4 mi-table">
         <table class="table table-striped">
@@ -36,8 +34,8 @@
                     <td><?= $p->id_proveedores ?></td>
                     <td><?= $p->estado_nombre ?></td>
                     <td>
-                        <button class="btn btn-sm btn-secondary btn-editar" onclick="window.location.href='<?= base_url('productos/editar/'.$p->id_productos) ?>'"><i class="fa-solid fa-pen"></i></button>
-                        <a href="<?= base_url('productos/eliminar/'.$p->id_productos) ?>" class="btn btn-sm btn-danger btn-eliminar" onclick="return confirm('¿Estas seguro de eliminar este producto?')"><i class="fa-solid fa-trash"></i></a>
+                        <a href="<?= base_url('productos/activar/'.$p->id_productos) ?>" class="btn btn-sm btn-secondary btn-editar" onclick="return confirm('¿Estas seguro de activar este producto nuevamente?')"><i class="fa-solid fa-check"></i></a>
+                        <a href="<?= base_url('productos/eliminar-definitivo/'.$p->id_productos) ?>" class="btn btn-sm btn-danger btn-eliminar" onclick="return confirm('¿Estas seguro de eliminar este producto definitivamente?')"><i class="fa-solid fa-trash"></i></a>
                     </td>
                 </tr>
                 <?php endforeach; ?>

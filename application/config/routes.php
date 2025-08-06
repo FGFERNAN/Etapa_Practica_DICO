@@ -51,10 +51,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'dashboard';
 $route['productos'] = 'productos/index';
+$route['productos/papelera'] = 'productos/papelera';
 $route['productos/crear'] = 'productos/crear';
 $route['productos/guardar'] = 'productos/guardar';
 $route['productos/editar/(:num)'] = 'productos/editar/$1';
 $route['productos/actualizar/(:num)'] = 'productos/actualizar/$1';
-$route['productos/eliminar/(:num)'] = 'productos/eliminar/$1';
+$route['productos/eliminar/(:num)'] = 'productos/eliminacionLogica/$1';
+$route['productos/eliminar-definitivo/(:num)'] = 'productos/eliminacionFisica/$1';
+$route['productos/activar/(:num)'] = 'productos/activar/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

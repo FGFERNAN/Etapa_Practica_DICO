@@ -15,7 +15,7 @@ body {
 }
 
 .mi-header {
-    margin-left: 15%;
+    margin-left: 10%;
 }
 
 .mi-btn {
@@ -30,6 +30,7 @@ body {
 .mi-btn:hover {
     background-color: #5B7553;
     color: white;
+    border: 2px solid white;
 }
 
 .mi-h2 {
@@ -53,7 +54,7 @@ body {
     --bs-table-active-bg: rgba(var(--bs-emphasis-color-rgb), 0.1);
     --bs-table-hover-color: var(--bs-emphasis-color);
     --bs-table-hover-bg: rgba(var(--bs-emphasis-color-rgb), 0.075);
-    width: 65%;
+    width: 75%;
     margin-bottom: 1rem;
     vertical-align: top;
     border-color: var(--bs-table-border-color);
@@ -70,15 +71,15 @@ body {
 }
 
 .btn-secondary {
-    --bs-btn-border-color: black;
-    --bs-btn-hover-border-color: #a9c9a4;
+    --bs-btn-border-color: #9DDBAD;
+    --bs-btn-hover-border-color: #9ed8ac;
     --bs-btn-active-color: #fff;
     --bs-btn-active-bg: #95b090;
     --bs-btn-active-border-color: #95b090;
 }
 
 .btn-editar:hover {
-    background-color: #a9c9a4;
+    background-color: #9ed8ac;
     color: white;
 }
 
@@ -89,15 +90,15 @@ body {
 
 .btn-danger {
     --bs-btn-border-color: #5B7553;
-    --bs-btn-hover-border-color: rgb(116, 151, 124);
-        --bs-btn-active-color: black;
+    --bs-btn-hover-border-color: #506749;
+    --bs-btn-active-color: black;
     --bs-btn-active-bg: rgb(103, 134, 110);
     --bs-btn-active-border-color: rgb(103, 134, 110);
 }
 
 .btn-eliminar:hover {
-    background-color: rgb(116, 151, 124);
-    color: black;
+    background-color: #506749;
+    color: white;
 }
 
 .legend {
@@ -127,4 +128,14 @@ body {
     --bs-btn-active-color: #fff;
     --bs-btn-active-bg: #9DDBAD;
     --bs-btn-active-border-color: #9DDBAD;
+}
+
+.mi-btn-papelera {
+    border: 2px solid black;
+}
+
+.mi-btn-papelera:hover {
+    background-color: #5B7553;
+    color: white;
+    border: 2px solid white;
 }

@@ -2,23 +2,67 @@
 <?php $this->load->view('layout/navbar'); ?>
 
 <div class="container-fluid form-container">
-    <form action="<?= base_url('productos/guardar') ?>" method="post" class="row g-3">
+    <form action="<?= base_url('productos/guardar') ?>" method="post" class="row g-3 needs-validation" novalidate>
         <legend class="legend">Crear Producto</legend>
         <div class="col-md-6">
             <label for="nombre" class="form-label mi-label">Nombre</label>
-            <input type="text" name="nombre" class="form-control" id="nombre" required>
+            <input type="text" name="nombre" value="<?= set_value('nombre') ?>" class="form-control" id="nombre" minlength="3" maxlength="50" required>
+            <?= form_error('nombre', '<div class="text-danger">', '</div>') ?>
+            <div class="invalid-feedback">
+                Ingrese el nombre (minimo 3 caracteres).
+            </div>
         </div>
         <div class="col-md-6">
-            <label for="precio" class="form-label mi-label">Precio</label>
-            <input type="number" name="precio" step="0.01" min="0" placeholder="0.00" class="form-control" id="precio" required>
+            <label for="marca" class="form-label mi-label">Marca</label>
+            <select id="marca" name="id_marca" class="form-select" required>
+                <option value="" selected disabled>Seleccionar</option>
+                <?php foreach ($marca as $m): ?>
+                    <option value="<?= $m->id_marca ?>"><?= $m->nombre ?></option>
+                <?php endforeach; ?>
+            </select>
+            <?= form_error('id_marca', '<div class="text-danger">', '</div>') ?>
+            <div class="invalid-feedback">
+                Selecciones una marca.
+            </div>
         </div>
         <div class="col-12">
             <label for="descripcion" class="form-label mi-label">Descripción</label>
-            <textarea class="form-control" name="descripcion" id="descripcion" rows="3"></textarea>
+            <textarea class="form-control" name="descripcion" id="descripcion" rows="3" minlength="15"></textarea>
+            <div class="invalid-feedback">
+                Minimo 15 caracteres.
+            </div>
         </div>
-        <div class="col-6">
+        <div class="col-md-6">
+            <label for="precio_compra" class="form-label mi-label">Precio de Compra</label>
+            <input type="number" value="<?= set_value('precio_compra') ?>" name="precio_compra" step="0.01" min="0" placeholder="0.00" class="form-control" id="precio_compra" required>
+            <?= form_error('precio_compra', '<div class="text-danger">', '</div>') ?>
+            <div class="invalid-feedback">
+                Debe ser un precio valido mayor que 0.
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="precio_venta" class="form-label mi-label">Precio de Venta</label>
+            <input type="number" value="<?= set_value('precio_venta') ?>" name="precio_venta" step="0.01" min="0" placeholder="0.00" class="form-control" id="precio_venta" required>
+            <?= form_error('precio_venta', '<div class="text-danger">', '</div>') ?>
+            <div class="invalid-feedback">
+                Debe ser un precio valido mayor que 0.
+            </div>
+        </div>
+        <div class="col-3">
             <label for="stock" class="form-label mi-label">Stock</label>
-            <input type="number" name="stock" min="0" step="1" placeholder="0" class="form-control" id="stock">
+            <input type="number" value="<?= set_value('stock') ?>" name="stock" min="0" step="1" placeholder="0" class="form-control" id="stock" required>
+            <?= form_error('stock', '<div class="text-danger">', '</div>') ?>
+            <div class="invalid-feedback">
+                Debe ser un stock valido mayor que 0.
+            </div>
+        </div>
+        <div class="col-3">
+            <label for="lote" class="form-label mi-label">Lote</label>
+            <input type="number" value="<?= set_value('lote') ?>" name="lote" min="0" step="1" placeholder="0" class="form-control" id="lote" required>
+            <?= form_error('lote', '<div class="text-danger">', '</div>') ?>
+            <div class="invalid-feedback">
+                Ingrese el lote.
+            </div>
         </div>
         <div class="col-6">
             <label for="imagen" class="form-label mi-label">Imagen</label>
@@ -26,30 +70,40 @@
         </div>
         <div class="col-md-4">
             <label for="categoria" class="form-label mi-label">Categoría</label>
-            <select class="form-select" name="categoriasID" aria-label="Categoria" id="categoria">
+            <select class="form-select" name="id_categorias" aria-label="Categoria" id="categoria">
                 <option selected disabled>Seleccionar</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
             </select>
+            <div class="invalid-feedback">
+                Seleccione una categoria.
+            </div>
         </div>
         <div class="col-md-4">
             <label for="proveedor" class="form-label mi-label">Proveedor</label>
-            <select id="proveedor" name="proveedoresID" class="form-select">
+            <select id="proveedor" name="id_proveedores" class="form-select">
                 <option selected disabled>Seleccionar</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
             </select>
+            <div class="invalid-feedback">
+                Seleccione un proveedor.
+            </div>
         </div>
         <div class="col-md-4">
             <label for="estado" class="form-label mi-label">Estado</label>
-            <select id="estado" name="estadoID" class="form-select" required>
-                <option selected disabled>Seleccionar</option>
+            <select id="estado" name="id_estado" class="form-select" required>
+                <option selected value="" disabled>Seleccionar</option>
                 <?php foreach ($estados as $e): ?>
-                    <option value="<?= $e->id ?>"><?= $e->nombre ?></option>
+                    <option value="<?= $e->id_estado ?>"><?= $e->nombre ?></option>
                 <?php endforeach; ?>
             </select>
+            <?= form_error('id_estado', '<div class="text-danger">', '</div>') ?>
+            <div class="invalid-feedback">
+                Seleccione un estado.
+            </div>
         </div>
         <div class="d-grid col-4 mx-auto">
             <button class="btn btn-primary mt-3 mb-4 btn-guardar" type="submit">Guardar</button>
