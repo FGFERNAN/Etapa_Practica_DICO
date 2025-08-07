@@ -2,32 +2,51 @@
 <?php $this->load->view('layout/navbar'); ?>
 
 <div class="container-fluid form-container">
-    <form action="<?= base_url('productos/actualizar/' . $producto->id_productos) ?>" method="post" class="row g-3">
+    <form action="<?= base_url('productos/actualizar/' . $producto->id_productos) ?>" method="post" class="row g-3 needs-validation" novalidate>
         <legend class="legend">Editar Producto</legend>
         <div class="col-md-6">
             <label for="nombre" class="form-label mi-label">Nombre</label>
-            <input type="text" name="nombre" value="<?= $producto->nombre ?>" class="form-control" id="nombre" required>
+            <input type="text" name="nombre" value="<?= set_value('nombre', $producto->nombre) ?>" class="form-control" id="nombre" minlength="3" maxlength="50" required>
+            <?= form_error('nombre', '<div class="text-danger">', '</div>') ?>
+            <div class="invalid-feedback">
+                Ingrese el nombre (minimo 3 caracteres).
+            </div>
         </div>
         <div class="col-md-6">
             <label for="marca" class="form-label mi-label">Marca</label>
             <select id="marca" name="id_marca" class="form-select" required>
                 <option value="" disabled>Seleccionar</option>
                 <?php foreach ($marca as $m): ?>
-                    <option value="<?= $m->id_marca ?>" <?= $producto->id_marca == $m->id_marca ? 'selected' : '' ?>><?= $m->nombre ?></option>
+                    <option value="<?= set_value('id_marca', $m->id_marca)  ?>" <?= $producto->id_marca == $m->id_marca ? 'selected' : '' ?>><?= $m->nombre ?></option>
                 <?php endforeach; ?>
             </select>
+            <?= form_error('id_marca', '<div class="text-danger">', '</div>') ?>
+            <div class="invalid-feedback">
+                Selecciones una marca.
+            </div>
         </div>
         <div class="col-12">
             <label for="descripcion" class="form-label mi-label">Descripción</label>
-            <textarea class="form-control" name="descripcion" id="descripcion" rows="3"><?= $producto->descripcion ?></textarea>
+            <textarea class="form-control" name="descripcion" id="descripcion" rows="3" minlength="15"><?= set_value('descripcion', $producto->descripcion)  ?></textarea>
+            <div class="invalid-feedback">
+                Minimo 15 caracteres.
+            </div>
         </div>
         <div class="col-md-6">
             <label for="precio_venta" class="form-label mi-label">Precio de Venta</label>
-            <input type="number" name="precio_venta" value="<?= $producto->precio_venta ?>" step="0.01" min="0" placeholder="0.00" class="form-control" id="precio_venta" required>
+            <input type="number" name="precio_venta" value="<?= set_value('precio_venta', $producto->precio_venta) ?>" step="0.01" min="1" placeholder="0.00" class="form-control" id="precio_venta" required>
+            <?= form_error('precio_venta', '<div class="text-danger">', '</div>') ?>
+            <div class="invalid-feedback">
+                Debe ser un precio valido mayor que 0.
+            </div>
         </div>
         <div class="col-6">
             <label for="stock" class="form-label mi-label">Stock</label>
-            <input type="number" name="stock" value="<?= $producto->stock ?>" min="0" step="1" placeholder="0" class="form-control" id="stock" required>
+            <input type="number" name="stock" value="<?= set_value('stock', $producto->stock)  ?>" min="1" step="1" placeholder="0" class="form-control" id="stock" required>
+            <?= form_error('stock', '<div class="text-danger">', '</div>') ?>
+            <div class="invalid-feedback">
+                Debe ser un stock valido mayor que 0.
+            </div>
         </div>
         <div class="col-12">
             <label for="imagen" class="form-label mi-label">Imagen</label>
@@ -53,12 +72,16 @@
         </div>
         <div class="col-md-4">
             <label for="estado" class="form-label mi-label">Estado</label>
-            <select id="estado" name="id_estado" class="form-select">
+            <select id="estado" name="id_estado" class="form-select" required>
                 <option value="" disabled>Seleccionar</option>
                 <?php foreach ($estados as $e): ?>
-                    <option value="<?= $e->id_estado ?>" <?= $producto->id_estado == $e->id_estado ? 'selected' : '' ?>><?= $e->nombre ?></option>
+                    <option value="<?= set_value('id_estado', $e->id_estado)  ?>" <?= $producto->id_estado == $e->id_estado ? 'selected' : '' ?>><?= $e->nombre ?></option>
                 <?php endforeach; ?>
             </select>
+            <?= form_error('id_estado', '<div class="text-danger">', '</div>') ?>
+            <div class="invalid-feedback">
+                Seleccione un estado.
+            </div>
         </div>
         <div class="d-grid col-4 mx-auto">
             <button class="btn btn-primary mt-3 mb-4 btn-guardar" type="submit">Guardar</button>

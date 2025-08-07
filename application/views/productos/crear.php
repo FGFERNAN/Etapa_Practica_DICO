@@ -34,7 +34,7 @@
         </div>
         <div class="col-md-6">
             <label for="precio_compra" class="form-label mi-label">Precio de Compra</label>
-            <input type="number" value="<?= set_value('precio_compra') ?>" name="precio_compra" step="0.01" min="0" placeholder="0.00" class="form-control" id="precio_compra" required>
+            <input type="number" value="<?= set_value('precio_compra') ?>" name="precio_compra" step="0.01" min="1" placeholder="0.00" class="form-control" id="precio_compra" required>
             <?= form_error('precio_compra', '<div class="text-danger">', '</div>') ?>
             <div class="invalid-feedback">
                 Debe ser un precio valido mayor que 0.
@@ -42,7 +42,7 @@
         </div>
         <div class="col-md-6">
             <label for="precio_venta" class="form-label mi-label">Precio de Venta</label>
-            <input type="number" value="<?= set_value('precio_venta') ?>" name="precio_venta" step="0.01" min="0" placeholder="0.00" class="form-control" id="precio_venta" required>
+            <input type="number" value="<?= set_value('precio_venta') ?>" name="precio_venta" step="0.01" min="1" placeholder="0.00" class="form-control" id="precio_venta" required>
             <?= form_error('precio_venta', '<div class="text-danger">', '</div>') ?>
             <div class="invalid-feedback">
                 Debe ser un precio valido mayor que 0.
@@ -50,7 +50,7 @@
         </div>
         <div class="col-3">
             <label for="stock" class="form-label mi-label">Stock</label>
-            <input type="number" value="<?= set_value('stock') ?>" name="stock" min="0" step="1" placeholder="0" class="form-control" id="stock" required>
+            <input type="number" value="<?= set_value('stock') ?>" name="stock" min="1" step="1" placeholder="0" class="form-control" id="stock" required>
             <?= form_error('stock', '<div class="text-danger">', '</div>') ?>
             <div class="invalid-feedback">
                 Debe ser un stock valido mayor que 0.
