@@ -7,20 +7,33 @@ class Producto_model extends CI_Model
 
     public function getAll()
     {
-        $this->db->select('p.*, m.nombre AS marca_nombre, e.nombre AS estado_nombre');
+        $this->db->select('p.*, m.nombre AS marca_nombre, c.nombre AS categoria_nombre, e.nombre AS estado_nombre');
         $this->db->from('productos p');
         $this->db->where('p.id_estado !=', 2);
         $this->db->join('estado e', 'p.id_estado = e.id_estado');
         $this->db->join('marca m', 'p.id_marca = m.id_marca');
+        $this->db->join('categorias c', 'p.id_categorias = c.id_categorias');
         return $this->db->get()->result();
     }
 
-    public function getInactive() {
+    public function getInactive()
+    {
         $this->db->select('p.*, m.nombre AS marca_nombre, e.nombre AS estado_nombre');
         $this->db->from('productos p');
         $this->db->where('p.id_estado =', 2);
         $this->db->join('estado e', 'p.id_estado = e.id_estado');
         $this->db->join('marca m', 'p.id_marca = m.id_marca');
+        return $this->db->get()->result();
+    }
+
+    public function getByCategory($id_categoria) {
+        $this->db->select('p.*, m.nombre AS marca_nombre, c.nombre AS categoria_nombre, e.nombre AS estado_nombre');
+        $this->db->from('productos p');
+        $this->db->where('p.id_estado !=', 2);
+        $this->db->where('p.id_categorias !=', $id_categoria);
+        $this->db->join('estado e', 'p.id_estado = e.id_estado');
+        $this->db->join('marca m', 'p.id_marca = m.id_marca');
+        $this->db->join('categorias c', 'p.id_categorias = c.id_categorias');
         return $this->db->get()->result();
     }
 

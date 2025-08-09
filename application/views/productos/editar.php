@@ -54,12 +54,16 @@
         </div>
         <div class="col-md-4">
             <label for="categoria" class="form-label mi-label">Categoría</label>
-            <select class="form-select" name="id_categorias" aria-label="Categoria" id="categoria">
-                <option selected disabled>Seleccionar</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <select class="form-select" name="id_categorias" aria-label="Categoria" id="categoria" required>
+                <option value="" disabled>Seleccionar</option>
+                <?php foreach ($categorias as $c): ?>
+                    <option value="<?= set_value('id_categorias', $c->id_categorias)  ?>" <?= $producto->id_categorias == $c->id_categorias ? 'selected' : '' ?>><?= $c->nombre ?></option>
+                <?php endforeach; ?>
             </select>
+            <?= form_error('id_categorias', '<div class="text-danger">', '</div>') ?>
+            <div class="invalid-feedback">
+                Seleccione una categoria.
+            </div>
         </div>
         <div class="col-md-4">
             <label for="proveedor" class="form-label mi-label">Proveedor</label>

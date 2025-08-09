@@ -3,9 +3,7 @@
 
 <div class="container-fluid mi-container">
     <div class="d-flex align-items-center mi-header">
-        <h2 class="mi-h2">Categorías</h2>
-        <button class="btn mi-btn ms-4 mb-2" onclick="location.href='<?= base_url('categorias/crear'); ?>'"><i class="fa-solid fa-plus me-1"></i></button>
-        <button class="btn mi-btn-papelera ms-3 mb-2" onclick="location.href='<?= base_url('categorias/papelera'); ?>'"><i class="fa-solid fa-trash-can"></i></button>
+        <h2 class="mi-h2">Papelera Categorías</h2>
     </div>
     <div class="table-responsive mt-4 mi-table">
         <table class="table table-striped">
@@ -26,9 +24,8 @@
                         <td><?= $c->cantidad_productos ?></td>
                         <td><?= $c->estado_nombre ?></td>
                         <td>
-                            <button class="btn btn-sm btn-secondary btn-asignar" onclick="window.location.href='<?= base_url('categorias/asociar/' . $c->id_categorias) ?>'"><i class="fa-solid fa-link"></i></button>
-                            <button class="btn btn-sm btn-secondary btn-editar" onclick="window.location.href='<?= base_url('categorias/editar/' . $c->id_categorias) ?>'"><i class="fa-solid fa-pen"></i></button>
-                            <a href="<?= base_url('categorias/eliminar/' . $c->id_categorias) ?>" class="btn btn-sm btn-danger btn-eliminar" onclick="return confirm('¿Estas seguro de eliminar este producto?')"><i class="fa-solid fa-trash"></i></a>
+                            <a href="<?= base_url('categorias/activar/' . $c->id_categorias) ?>" class="btn btn-sm btn-secondary btn-editar" onclick="return confirm('¿Estas seguro de activar esta categoría nuevamente?')"><i class="fa-solid fa-check"></i></a>
+                            <a href="<?= base_url('categorias/eliminar-definitivo/' . $c->id_categorias) ?>" class="btn btn-sm btn-danger btn-eliminar" onclick="return confirm('¿Estas seguro de eliminar esta categoría definitivamente?')"><i class="fa-solid fa-trash"></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

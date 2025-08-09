@@ -32,7 +32,7 @@
                     <td><?= $p->precio_venta ?></td>
                     <td><?= $p->stock ?></td>
                     <td><?= $p->lote ?></td>
-                    <td><?= $p->id_categorias ?></td>
+                    <td><?= $p->categoria_nombre ?></td>
                     <td><?= $p->id_proveedores ?></td>
                     <td><?= $p->estado_nombre ?></td>
                     <td>

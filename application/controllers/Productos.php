@@ -9,6 +9,7 @@ class Productos extends CI_Controller
         $this->load->model('Producto_model');
         $this->load->model('Estado_model');
         $this->load->model('Marca_model');
+        $this->load->model('Categoria_model');
     }
 
 
@@ -28,6 +29,7 @@ class Productos extends CI_Controller
     {
         $data['estados'] = $this->Estado_model->getAll();
         $data['marca'] = $this->Marca_model->getAll();
+        $data['categorias'] = $this->Categoria_model->getAll();
         $this->load->view('productos/crear', $data);
     }
 
@@ -39,11 +41,13 @@ class Productos extends CI_Controller
         $this->form_validation->set_rules('precio_venta', 'Precio Venta', 'required|numeric|greater_than[0]');
         $this->form_validation->set_rules('stock', 'Stock', 'required|integer|greater_than[0]');
         $this->form_validation->set_rules('lote', 'Lote', 'required|integer|greater_than[0]');
+        $this->form_validation->set_rules('id_categorias', 'Categorias', 'required');
         $this->form_validation->set_rules('id_estado', 'Estado', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $data['estados'] = $this->Estado_model->getAll();
             $data['marca'] = $this->Marca_model->getAll();
+            $data['categorias'] = $this->Categoria_model->getAll();
             $this->load->view('productos/crear', $data);
         } else {
             $data = [
@@ -70,6 +74,7 @@ class Productos extends CI_Controller
         $data['estados'] = $this->Estado_model->getAll();
         $data['marca'] = $this->Marca_model->getAll();
         $data['producto'] = $this->Producto_model->getById($id);
+        $data['categorias'] = $this->Categoria_model->getAll();
         $this->load->view('productos/editar', $data);
     }
 
@@ -79,11 +84,13 @@ class Productos extends CI_Controller
         $this->form_validation->set_rules('id_marca', 'Marca', 'required');
         $this->form_validation->set_rules('precio_venta', 'Precio Venta', 'required|numeric|greater_than[0]');
         $this->form_validation->set_rules('stock', 'Stock', 'required|integer|greater_than[0]');
+        $this->form_validation->set_rules('id_categorias', 'Categorias', 'required');
         $this->form_validation->set_rules('id_estado', 'Estado', 'required');
         if ($this->form_validation->run() == FALSE) {
             $data['estados'] = $this->Estado_model->getAll();
             $data['marca'] = $this->Marca_model->getAll();
             $data['producto'] = $this->Producto_model->getById($id);
+            $data['categorias'] = $this->Categoria_model->getAll();
             $this->load->view('productos/editar', $data);
         } else {
             $data = [

@@ -32,19 +32,13 @@
         <?php $segmento = $this->uri->segment(1); ?>
         <ul class="nav justify-content-center nav-underline mi-navbar d-none d-md-flex">
             <li class="nav-item">
-                <a class="nav-link <?= $segmento == '' ? 'active' : '' ?>"  href="<?= base_url() ?>">Inicio</a>
+                <a class="nav-link <?= $segmento == '' ? 'active' : '' ?>" href="<?= base_url() ?>">Inicio</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= $segmento == 'productos' ? 'active' : '' ?>" href="<?= base_url('productos') ?>">Productos</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Categorias </a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    <li><a class="dropdown-item" href="#">Separated link</a></li>
-                </ul>
+            <li class="nav-item">
+                <a class="nav-link <?= $segmento == 'categorias' ? 'active' : '' ?>" href="<?= base_url('categorias') ?>">Categorías</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Compras</a>
@@ -61,7 +55,7 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-box me-3"></i></i>Productos</a>
+                        <a class="nav-link active <?= $segmento == 'productos' ? 'active' : '' ?>" href="<?= base_url('productos') ?>" aria-current="page" href="#"><i class="fa-solid fa-box me-3"></i></i>Productos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa-solid fa-bag-shopping me-3"></i>Comprar</a>
@@ -74,15 +68,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa-solid fa-truck-fast me-3"></i></i>Proveedores</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-tags me-3"></i>Categorias
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-light">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $segmento == 'categorias' ? 'active' : '' ?>" href="<?= base_url('categorias') ?>"><i class="fa-solid fa-tags me-3"></i>Categorías</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa-solid fa-users me-3"></i></i>Usuarios</a>

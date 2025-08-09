@@ -70,6 +70,18 @@ body {
     color: #040403;
 }
 
+.btn-asignar {
+    background-color: #040403;
+    color: white;
+    border-color: #040403;
+}
+
+.btn-asignar:hover {
+    background-color: grey;
+    color: white;
+    border-color: gray;
+}
+
 .btn-secondary {
     --bs-btn-border-color: #9DDBAD;
     --bs-btn-hover-border-color: #9ed8ac;
