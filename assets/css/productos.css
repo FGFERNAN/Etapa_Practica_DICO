@@ -8,7 +8,7 @@ body {
 
 .form-container {
     margin-top: 19%;
-    background-color: #5B7553;
+    background-color: #5b7553;
     width: 50%;
     border-radius: 20px;
     box-shadow: 4px 1px 16px rgba(0, 0, 0, 0.4);
@@ -16,6 +16,10 @@ body {
 
 .mi-header {
     margin-left: 10%;
+}
+
+.mi-dropdown {
+    margin-right: 10%;
 }
 
 .mi-btn {
@@ -150,4 +154,21 @@ body {
     background-color: #5B7553;
     color: white;
     border: 2px solid white;
+}
+
+.form-check-input:checked {
+    background-color: #9DDBAD;
+    border-color: #9DDBAD;
+}
+
+.mi-filter {
+    background-color: #C3E8BD;
+    border-color: #C3E8BD;
+    color: black;
+}
+
+.mi-filter:hover {
+    background-color: #C3E8BD;
+    border-color: #C3E8BD;
+    color: black;
 }

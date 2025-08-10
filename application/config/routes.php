@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'dashboard';
 $route['productos'] = 'productos/index';
+$route['productos/filtrar/(:num)'] = 'productos/filtrar/$1';
 $route['categorias'] = 'categorias/index';
 $route['productos/papelera'] = 'productos/papelera';
 $route['productos/crear'] = 'productos/crear';

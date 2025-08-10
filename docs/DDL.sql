@@ -23,6 +23,13 @@ CREATE TABLE categorias(
 		PRIMARY KEY (id_categorias)
 );
 
+ALTER TABLE categorias
+	ADD COLUMN id_estado INT(10) UNSIGNED;
+    
+ALTER TABLE categorias
+	ADD CONSTRAINT FK_categorias_estado
+		FOREIGN KEY (id_estado) REFERENCES estado(id_estado);
+
 CREATE TABLE modulos(
 	id_modulos INT(10) UNSIGNED AUTO_INCREMENT,
     nombre VARCHAR(100) UNIQUE NOT NULL,

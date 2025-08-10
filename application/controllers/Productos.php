@@ -16,6 +16,13 @@ class Productos extends CI_Controller
     public function index()
     {
         $data['productos'] = $this->Producto_model->getAll();
+        $data['categorias'] = $this->Categoria_model->getAll();
+        $this->load->view('productos/index', $data);
+    }
+
+    public function filtrar($id) {
+        $data['productos'] = $this->Producto_model->filterCategory($id);
+        $data['categorias'] = $this->Categoria_model->getAll();
         $this->load->view('productos/index', $data);
     }
 
