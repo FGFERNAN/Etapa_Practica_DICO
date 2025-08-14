@@ -25,7 +25,7 @@ class Categorias extends CI_Controller
 
     public function crear()
     {
-        $data['estados'] = $this->Estado_model->getAll();
+        $data['estados'] = $this->Estado_model->getAllStateCategory();
         $this->load->view('categorias/crear', $data);
     }
 
@@ -56,16 +56,16 @@ class Categorias extends CI_Controller
                 'is_unique' => 'La categoría ya existe.',
             )
         );
-        $this->form_validation->set_rules('id_estado', 'Estado', 'required');
+        $this->form_validation->set_rules('id_estado_categoria', 'Estado', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $data['estados'] = $this->Estado_model->getAll();
+            $data['estados'] = $this->Estado_model->getAllStateCategory();
             $this->load->view('categorias/crear', $data);
         } else {
             $data = [
                 'nombre' => $this->input->post('nombre'),
                 'descripcion' => $this->input->post('descripcion'),
-                'id_estado' => $this->input->post('id_estado')
+                'id_estado_categoria' => $this->input->post('id_estado_categoria')
             ];
 
             $this->Categoria_model->create($data);
@@ -75,7 +75,7 @@ class Categorias extends CI_Controller
 
     public function editar($id)
     {
-        $data['estados'] = $this->Estado_model->getAll();
+        $data['estados'] = $this->Estado_model->getAllStateCategory();
         $data['categoria'] = $this->Categoria_model->getById($id);
         $this->load->view('categorias/editar', $data);
     }
@@ -83,16 +83,16 @@ class Categorias extends CI_Controller
     public function actualizar($id)
     {
         $this->form_validation->set_rules('nombre', 'Nombre', 'required|trim|min_length[3]|max_length[50]|callback_nombre_categoria_unico');
-        $this->form_validation->set_rules('id_estado', 'Estado', 'required');
+        $this->form_validation->set_rules('id_estado_categoria', 'Estado', 'required');
         if ($this->form_validation->run() == FALSE) {
-            $data['estados'] = $this->Estado_model->getAll();
+            $data['estados'] = $this->Estado_model->getAllStateCategory();
             $data['categoria'] = $this->Categoria_model->getById($id);
             $this->load->view('categorias/editar', $data);
         } else {
             $data = [
                 'nombre' => $this->input->post('nombre'),
                 'descripcion' => $this->input->post('descripcion'),
-                'id_estado' => $this->input->post('id_estado')
+                'id_estado_categoria' => $this->input->post('id_estado_categoria')
             ];
 
             $this->Categoria_model->update($id, $data);
@@ -120,7 +120,7 @@ class Categorias extends CI_Controller
 
     public function eliminacionLogica($id)
     {
-        $data = ['id_estado' => 2];
+        $data = ['id_estado_categoria' => 2];
         $this->Categoria_model->update($id, $data);
         redirect('categorias');
     }
@@ -133,7 +133,7 @@ class Categorias extends CI_Controller
 
     public function activar($id)
     {
-        $data = ['id_estado' => 1];
+        $data = ['id_estado_categoria' => 1];
         $this->Categoria_model->update($id, $data);
         redirect('categorias/papelera');
     }

@@ -26,9 +26,12 @@ CREATE TABLE categorias(
 ALTER TABLE categorias
 	ADD COLUMN id_estado INT(10) UNSIGNED;
     
+ALTER TABLE categorias 
+	CHANGE COLUMN id_estado id_estado_categoria INT(10) UNSIGNED;
+    
 ALTER TABLE categorias
 	ADD CONSTRAINT FK_categorias_estado
-		FOREIGN KEY (id_estado) REFERENCES estado(id_estado);
+		FOREIGN KEY (id_estado_categoria) REFERENCES estado_categoria(id_estado_categoria);
 
 CREATE TABLE modulos(
 	id_modulos INT(10) UNSIGNED AUTO_INCREMENT,
@@ -54,6 +57,41 @@ CREATE TABLE estado(
     descripcion TEXT,
     CONSTRAINT PK_estado
 		PRIMARY KEY (id_estado)
+);
+
+RENAME TABLE estado TO estado_usuario;
+
+ALTER TABLE estado_usuario
+	CHANGE COLUMN id_estado id_estado_usuario INT(10) UNSIGNED AUTO_INCREMENT;
+    
+CREATE TABLE estado_marca(
+	id_estado_marca INT(10) UNSIGNED,
+    nombre VARCHAR(100) NOT NULL UNIQUE,
+    descripcion TEXT,
+    CONSTRAINT PK_estado_marca
+		PRIMARY KEY (id_estado_marca)
+);
+
+ALTER TABLE estado_marca 
+	CHANGE COLUMN id_estado_marca id_estado_marca INT(10) UNSIGNED AUTO_INCREMENT;
+
+CREATE TABLE estado_producto(
+	id_estado_producto INT(10) UNSIGNED,
+    nombre VARCHAR(100) NOT NULL UNIQUE,
+    descripcion TEXT,
+    CONSTRAINT PK_estado_producto
+		PRIMARY KEY (id_estado_producto)
+);
+
+ALTER TABLE estado_producto 
+	CHANGE COLUMN id_estado_producto id_estado_producto INT(10) UNSIGNED AUTO_INCREMENT;
+
+CREATE TABLE estado_categoria(
+	id_estado_categoria INT(10) UNSIGNED AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL UNIQUE,
+    descripcion TEXT,
+    CONSTRAINT PK_estado_categoria
+		PRIMARY KEY (id_estado_categoria)
 );
 
 CREATE TABLE roles(
@@ -101,9 +139,16 @@ CREATE TABLE marca(
 		PRIMARY KEY (id_marca)
 );
 
+SHOW CREATE TABLE marca;
+
+ALTER TABLE marca 
+	CHANGE COLUMN id_estado id_estado_marca INT(10) UNSIGNED;
+
+ALTER TABLE marca DROP CONSTRAINT FK_marca_estado;
+
 ALTER TABLE marca
 	ADD CONSTRAINT FK_marca_estado
-		FOREIGN KEY (id_estado) REFERENCES estado(id_estado);
+		FOREIGN KEY (id_estado_marca) REFERENCES estado_marca(id_estado_marca);
 
 CREATE TABLE productos(
 	id_productos INT(10) UNSIGNED AUTO_INCREMENT,
@@ -129,8 +174,13 @@ ALTER TABLE productos
 		FOREIGN KEY (id_proveedores) REFERENCES proveedores(id_proveedores);
         
 ALTER TABLE productos
+	CHANGE COLUMN id_estado id_estado_producto INT(10) UNSIGNED;
+    
+ALTER TABLE productos DROP CONSTRAINT FK_productos_estado;
+        
+ALTER TABLE productos
 	ADD CONSTRAINT FK_productos_estado
-		FOREIGN KEY (id_estado) REFERENCES estado(id_estado);
+		FOREIGN KEY (id_estado_producto) REFERENCES estado_producto(id_estado_producto);
         
 ALTER TABLE productos
 	ADD CONSTRAINT FK_productos_marca
@@ -159,8 +209,11 @@ ALTER TABLE usuarios
 		FOREIGN KEY (id_roles) REFERENCES roles(id_roles);
         
 ALTER TABLE usuarios
+	CHANGE COLUMN id_estado id_estado_usuario INT(10) UNSIGNED;
+        
+ALTER TABLE usuarios
 	ADD CONSTRAINT FK_usuarios_estado
-		FOREIGN KEY (id_estado) REFERENCES estado(id_estado);
+		FOREIGN KEY (id_estado_usuario) REFERENCES estado_usuario(id_estado_usuario);
         
 ALTER TABLE usuarios
 	ADD CONSTRAINT FK_usuarios_tipo_documento

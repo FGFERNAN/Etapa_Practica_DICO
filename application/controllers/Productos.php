@@ -34,7 +34,7 @@ class Productos extends CI_Controller
 
     public function crear()
     {
-        $data['estados'] = $this->Estado_model->getAll();
+        $data['estados'] = $this->Estado_model->getAllStateProduct();
         $data['marca'] = $this->Marca_model->getAll();
         $data['categorias'] = $this->Categoria_model->getAll();
         $this->load->view('productos/crear', $data);
@@ -49,10 +49,10 @@ class Productos extends CI_Controller
         $this->form_validation->set_rules('stock', 'Stock', 'required|integer|greater_than[0]');
         $this->form_validation->set_rules('lote', 'Lote', 'required|integer|greater_than[0]');
         $this->form_validation->set_rules('id_categorias', 'Categorias', 'required');
-        $this->form_validation->set_rules('id_estado', 'Estado', 'required');
+        $this->form_validation->set_rules('id_estado_producto', 'Estado', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            $data['estados'] = $this->Estado_model->getAll();
+            $data['estados'] = $this->Estado_model->getAllStateProduct();
             $data['marca'] = $this->Marca_model->getAll();
             $data['categorias'] = $this->Categoria_model->getAll();
             $this->load->view('productos/crear', $data);
@@ -68,7 +68,7 @@ class Productos extends CI_Controller
                 'imagen' => $this->input->post('imagen'),
                 'id_categorias' => $this->input->post('id_categorias'),
                 'id_proveedores' => $this->input->post('id_proveedores'),
-                'id_estado' => $this->input->post('id_estado')
+                'id_estado_producto' => $this->input->post('id_estado_producto')
             ];
 
             $this->Producto_model->create($data);
@@ -78,7 +78,7 @@ class Productos extends CI_Controller
 
     public function editar($id)
     {
-        $data['estados'] = $this->Estado_model->getAll();
+        $data['estados'] = $this->Estado_model->getAllStateProduct();
         $data['marca'] = $this->Marca_model->getAll();
         $data['producto'] = $this->Producto_model->getById($id);
         $data['categorias'] = $this->Categoria_model->getAll();
@@ -92,9 +92,9 @@ class Productos extends CI_Controller
         $this->form_validation->set_rules('precio_venta', 'Precio Venta', 'required|numeric|greater_than[0]');
         $this->form_validation->set_rules('stock', 'Stock', 'required|integer|greater_than[0]');
         $this->form_validation->set_rules('id_categorias', 'Categorias', 'required');
-        $this->form_validation->set_rules('id_estado', 'Estado', 'required');
+        $this->form_validation->set_rules('id_estado_producto', 'Estado', 'required');
         if ($this->form_validation->run() == FALSE) {
-            $data['estados'] = $this->Estado_model->getAll();
+            $data['estados'] = $this->Estado_model->getAllStateProduct();
             $data['marca'] = $this->Marca_model->getAll();
             $data['producto'] = $this->Producto_model->getById($id);
             $data['categorias'] = $this->Categoria_model->getAll();
@@ -109,7 +109,7 @@ class Productos extends CI_Controller
                 'imagen' => $this->input->post('imagen'),
                 'id_categorias' => $this->input->post('id_categorias'),
                 'id_proveedores' => $this->input->post('id_proveedores'),
-                'id_estado' => $this->input->post('id_estado')
+                'id_estado_producto' => $this->input->post('id_estado_producto')
             ];
 
             $this->Producto_model->update($id, $data);
@@ -119,14 +119,14 @@ class Productos extends CI_Controller
 
     public function activar($id)
     {
-        $data = ['id_estado' => 1];
+        $data = ['id_estado_producto' => 1];
         $this->Producto_model->update($id, $data);
         redirect('productos');
     }
 
     public function eliminacionLogica($id)
     {
-        $data = ['id_estado' => 2];
+        $data = ['id_estado_producto' => 2];
         $this->Producto_model->update($id, $data);
         redirect('productos');
     }

@@ -9,8 +9,8 @@ class Categoria_model extends CI_Model
     {
         $this->db->select('c.*, e.nombre AS estado_nombre');
         $this->db->from('categorias_con_contador c');
+        $this->db->join('estado_categoria e', 'c.estado = e.id_estado_categoria');
         $this->db->where('c.estado !=', 2);
-        $this->db->join('estado e', 'c.estado = e.id_estado');
         return $this->db->get()->result();
     }
 
@@ -18,8 +18,8 @@ class Categoria_model extends CI_Model
     {
         $this->db->select('c.*, e.nombre AS estado_nombre');
         $this->db->from('categorias_con_contador c');
+        $this->db->join('estado_categoria e', 'c.estado = e.id_estado_categoria');
         $this->db->where('c.estado =', 2);
-        $this->db->join('estado e', 'c.estado = e.id_estado');
         return $this->db->get()->result();
     }
 

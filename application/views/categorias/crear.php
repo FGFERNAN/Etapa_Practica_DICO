@@ -14,10 +14,10 @@
         </div>
         <div class="col-md-6">
             <label for="estado" class="form-label mi-label">Estado</label>
-            <select id="estado" name="id_estado" class="form-select" required>
+            <select id="estado" name="id_estado_categoria" class="form-select" required>
                 <option selected value="" disabled>Seleccionar</option>
                 <?php foreach ($estados as $e): ?>
-                    <option value="<?= $e->id_estado ?>"><?= $e->nombre ?></option>
+                    <option value="<?= $e->id_estado_categoria ?>"><?= $e->nombre ?></option>
                 <?php endforeach; ?>
             </select>
             <?= form_error('id_estado', '<div class="text-danger">', '</div>') ?>

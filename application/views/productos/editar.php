@@ -76,10 +76,10 @@
         </div>
         <div class="col-md-4">
             <label for="estado" class="form-label mi-label">Estado</label>
-            <select id="estado" name="id_estado" class="form-select" required>
+            <select id="estado" name="id_estado_producto" class="form-select" required>
                 <option value="" disabled>Seleccionar</option>
                 <?php foreach ($estados as $e): ?>
-                    <option value="<?= set_value('id_estado', $e->id_estado)  ?>" <?= $producto->id_estado == $e->id_estado ? 'selected' : '' ?>><?= $e->nombre ?></option>
+                    <option value="<?= set_value('id_estado', $e->id_estado_producto)  ?>" <?= $producto->id_estado_producto == $e->id_estado_producto ? 'selected' : '' ?>><?= $e->nombre ?></option>
                 <?php endforeach; ?>
             </select>
             <?= form_error('id_estado', '<div class="text-danger">', '</div>') ?>
