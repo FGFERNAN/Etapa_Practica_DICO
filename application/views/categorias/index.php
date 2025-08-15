@@ -28,7 +28,7 @@
                         <td>
                             <button class="btn btn-sm btn-secondary btn-asignar" onclick="window.location.href='<?= base_url('categorias/asociar/' . $c->id_categorias) ?>'"><i class="fa-solid fa-link"></i></button>
                             <button class="btn btn-sm btn-secondary btn-editar" onclick="window.location.href='<?= base_url('categorias/editar/' . $c->id_categorias) ?>'"><i class="fa-solid fa-pen"></i></button>
-                            <a href="<?= base_url('categorias/eliminar/' . $c->id_categorias) ?>" class="btn btn-sm btn-danger btn-eliminar" onclick="return confirm('¿Estas seguro de eliminar este producto?')"><i class="fa-solid fa-trash"></i></a>
+                            <a href="<?= base_url('categorias/eliminar/' . $c->id_categorias) ?>" class="btn btn-sm btn-danger btn-eliminar" onclick="return confirm('¿Estas seguro de eliminar esta categoría?')"><i class="fa-solid fa-trash"></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

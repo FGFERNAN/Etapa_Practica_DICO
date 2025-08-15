@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="table-responsive mt-4 mi-table">
-        <table class="table table-striped">
+        <table class="table table-pr table-striped">
             <thead>
                 <tr>
                     <th scope="col">Nombre</th>
@@ -45,7 +45,7 @@
                         <td><?= $p->stock ?></td>
                         <td><?= $p->lote ?></td>
                         <td><?= $p->categoria_nombre ?></td>
-                        <td><?= $p->id_proveedores ?></td>
+                        <td><?= $p->proveedor_nombre ?></td>
                         <td><?= $p->estado_nombre ?></td>
                         <td>
                             <button class="btn btn-sm btn-secondary btn-editar" onclick="window.location.href='<?= base_url('productos/editar/' . $p->id_productos) ?>'"><i class="fa-solid fa-pen"></i></button>

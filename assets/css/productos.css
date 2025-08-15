@@ -64,6 +64,13 @@ body {
     border-color: var(--bs-table-border-color);
 }
 
+.table-p {
+    width: 100%;
+}
+
+.table-pr {
+    width: 85%;
+}
 .mi-table {
     display: flex;
     justify-content: center;

@@ -67,11 +67,11 @@
         </div>
         <div class="col-md-4">
             <label for="proveedor" class="form-label mi-label">Proveedor</label>
-            <select id="proveedor" name="id_proveedores" class="form-select">
-                <option selected disabled>Seleccionar</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <select id="proveedor" name="id_proveedores" class="form-select" required>
+                <option value="" disabled>Seleccionar</option>
+                <?php foreach ($proveedores as $pr): ?>
+                    <option value="<?= set_value('id_proveedores', $pr->id_proveedores) ?>" <?= $producto->id_proveedores == $pr->id_proveedores ? 'selected' : '' ?>><?= $pr->nombre ?></option>
+                <?php endforeach; ?>
             </select>
         </div>
         <div class="col-md-4">
@@ -79,7 +79,7 @@
             <select id="estado" name="id_estado_producto" class="form-select" required>
                 <option value="" disabled>Seleccionar</option>
                 <?php foreach ($estados as $e): ?>
-                    <option value="<?= set_value('id_estado', $e->id_estado_producto)  ?>" <?= $producto->id_estado_producto == $e->id_estado_producto ? 'selected' : '' ?>><?= $e->nombre ?></option>
+                    <option value="<?= set_value('id_estado_producto', $e->id_estado_producto)  ?>" <?= $producto->id_estado_producto == $e->id_estado_producto ? 'selected' : '' ?>><?= $e->nombre ?></option>
                 <?php endforeach; ?>
             </select>
             <?= form_error('id_estado', '<div class="text-danger">', '</div>') ?>

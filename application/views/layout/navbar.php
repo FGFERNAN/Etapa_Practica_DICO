@@ -66,7 +66,7 @@
                     <hr class="mi-hr">
                     <h5 class="mi-h5">Admin</h5>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-truck-fast me-3"></i></i>Proveedores</a>
+                        <a class="nav-link <?= $segmento == 'proveedores' ? 'active' : '' ?>" href="<?= base_url('proveedores') ?>"><i class="fa-solid fa-truck-fast me-3"></i></i>Proveedores</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?= $segmento == 'categorias' ? 'active' : '' ?>" href="<?= base_url('categorias') ?>"><i class="fa-solid fa-tags me-3"></i>Categorías</a>

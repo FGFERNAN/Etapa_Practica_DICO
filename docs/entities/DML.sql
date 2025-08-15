@@ -46,6 +46,20 @@ INSERT INTO estado_usuario (nombre, descripcion) VALUES
 
 SELECT * FROM estado_usuario;
 
+INSERT INTO estado_proveedor (nombre, descripcion) VALUES 
+('Activo', 'Proveedor activo con operaciones normales'),
+('Inactivo', 'Proveedor temporalmente deshabilitado'),
+('Suspendido', 'Suspendido por incumplimientos'),
+('Bloqueado', 'Bloqueado por problemas legales/financieros'),
+('Pendiente', 'En proceso de aprobación/homologación'),
+('En Prueba', 'Período de prueba comercial'),
+('Contingencia', 'Proveedor de respaldo/emergencia'),
+('En_Liquidacion', 'En proceso de cierre comercial'),
+('Terminado', 'Relación comercial terminada'),
+('Estacional', 'Proveedor solo en ciertas temporadas');
+
+SELECT * FROM estado_proveedor;
+
 SELECT p.*, m.nombre AS marca_nombre, e.nombre AS estado_nombre
 FROM productos p
 JOIN estado e ON p.id_estado = e.id_estado
@@ -57,4 +71,6 @@ INSERT INTO marca(nombre, descripcion, id_estado_marca) VALUES ('Colgate', 'Colg
 SELECT * FROM categorias;
 
 SELECT * FROM categorias_con_contador;
+
+SELECT * FROM proveedores;
 

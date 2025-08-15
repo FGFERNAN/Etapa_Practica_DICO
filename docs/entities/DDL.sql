@@ -15,6 +15,19 @@ CREATE TABLE proveedores(
 		PRIMARY KEY (id_proveedores)
 );
 
+ALTER TABLE proveedores
+	CHANGE COLUMN fecha_alta fecha_alta DATETIME NULL DEFAULT NULL;
+    
+ALTER TABLE proveedores 
+	CHANGE COLUMN fecha_baja fecha_baja DATETIME NULL DEFAULT NULL;
+
+ALTER TABLE proveedores
+	ADD COLUMN id_estado_proveedor INT(10) UNSIGNED;
+
+ALTER TABLE proveedores
+	ADD CONSTRAINT FK_proveedor_estado
+		FOREIGN KEY (id_estado_proveedor) REFERENCES estado_proveedor(id_estado_proveedor);
+
 CREATE TABLE categorias(
 	id_categorias INT(10) UNSIGNED AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL UNIQUE,
@@ -92,6 +105,14 @@ CREATE TABLE estado_categoria(
     descripcion TEXT,
     CONSTRAINT PK_estado_categoria
 		PRIMARY KEY (id_estado_categoria)
+);
+
+CREATE TABLE estado_proveedor(
+	id_estado_proveedor INT(10) UNSIGNED AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL UNIQUE,
+    descripcion TEXT,
+    CONSTRAINT PK_estado_proveedor
+		PRIMARY KEY (id_estado_proveedor)
 );
 
 CREATE TABLE roles(

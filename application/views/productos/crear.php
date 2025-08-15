@@ -83,11 +83,11 @@
         </div>
         <div class="col-md-4">
             <label for="proveedor" class="form-label mi-label">Proveedor</label>
-            <select id="proveedor" name="id_proveedores" class="form-select">
+            <select id="proveedor" name="id_proveedores" class="form-select" required>
                 <option selected disabled>Seleccionar</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <?php foreach($proveedores as $pr): ?>
+                    <option value="<?= $pr->id_proveedores ?>"><?= $pr->nombre ?></option>
+                <?php endforeach; ?>
             </select>
             <div class="invalid-feedback">
                 Seleccione un proveedor.
