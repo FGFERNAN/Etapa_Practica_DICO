@@ -14,6 +14,28 @@ class Proveedor_model extends CI_Model
         return $this->db->get()->result();
     }
 
+    public function getAllProveedoresForProducts() {
+        $this->db->select('p.*, e.nombre AS estado_nombre');
+        $this->db->from('proveedores_con_contador p');
+        $this->db->join('estado_proveedor e', 'p.estado = e.id_estado_proveedor');
+        $this->db->where('p.estado !=', 2);
+        $this->db->where('p.estado !=', 3);
+        $this->db->where('p.estado !=', 4);
+        $this->db->where('p.estado !=', 5);
+        $this->db->where('p.estado !=', 8);
+        $this->db->where('p.estado !=', 9);
+        return $this->db->get()->result();
+    }
+
+    public function getCantidadProductos($id_proveedores)
+    {
+        $this->db->select('cantidad_productos');
+        $this->db->from('proveedores_con_contador');
+        $this->db->where('id_proveedores', $id_proveedores);
+        $query = $this->db->get();
+        return $query->row()->cantidad_productos;
+    }
+
     public function getInactive()
     {
         $this->db->select('p.*, e.nombre AS estado_nombre');

@@ -70,6 +70,13 @@ INSERT INTO marca(nombre, descripcion, id_estado_marca) VALUES ('Colgate', 'Colg
 
 SELECT * FROM categorias;
 
+# Consulta para seleccionar categorias que se mostraran en el select de crear producto
+SELECT c.*, e.nombre AS estado_nombre FROM categorias_con_contador c
+JOIN estado_categoria e ON c.estado = e.id_estado_categoria
+WHERE c.estado != 2 
+AND c.estado != 3
+AND c.estado != 4;
+
 SELECT * FROM categorias_con_contador;
 
 SELECT * FROM proveedores;

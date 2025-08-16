@@ -179,3 +179,9 @@ body {
     border-color: #C3E8BD;
     color: black;
 }
+
+.mi-alert-danger {
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 2%;
+}

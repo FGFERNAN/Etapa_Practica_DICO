@@ -37,8 +37,8 @@ class Productos extends CI_Controller
     {
         $data['estados'] = $this->Estado_model->getAllStateProduct();
         $data['marca'] = $this->Marca_model->getAll();
-        $data['categorias'] = $this->Categoria_model->getAll();
-        $data['proveedores'] = $this->Proveedor_model->getAll();
+        $data['categorias'] = $this->Categoria_model->getAllCategoriesForProducts();
+        $data['proveedores'] = $this->Proveedor_model->getAllProveedoresForProducts();
         $this->load->view('productos/crear', $data);
     }
 
@@ -57,8 +57,8 @@ class Productos extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $data['estados'] = $this->Estado_model->getAllStateProduct();
             $data['marca'] = $this->Marca_model->getAll();
-            $data['categorias'] = $this->Categoria_model->getAll();
-            $data['proveedores'] = $this->Proveedor_model->getAll();
+            $data['categorias'] = $this->Categoria_model->getAllCategoriesForProducts();
+            $data['proveedores'] = $this->Proveedor_model->getAllProveedoresForProducts();
             $this->load->view('productos/crear', $data);
         } else {
             $data = [
@@ -85,8 +85,8 @@ class Productos extends CI_Controller
         $data['estados'] = $this->Estado_model->getAllStateProduct();
         $data['marca'] = $this->Marca_model->getAll();
         $data['producto'] = $this->Producto_model->getById($id);
-        $data['categorias'] = $this->Categoria_model->getAll();
-        $data['proveedores'] = $this->Proveedor_model->getAll();
+        $data['categorias'] = $this->Categoria_model->getAllCategoriesForProducts();
+        $data['proveedores'] = $this->Proveedor_model->getAllProveedoresForProducts();
         $this->load->view('productos/editar', $data);
     }
 
@@ -103,8 +103,8 @@ class Productos extends CI_Controller
             $data['estados'] = $this->Estado_model->getAllStateProduct();
             $data['marca'] = $this->Marca_model->getAll();
             $data['producto'] = $this->Producto_model->getById($id);
-            $data['categorias'] = $this->Categoria_model->getAll();
-            $data['proveedores'] = $this->Proveedor_model->getAll();
+            $data['categorias'] = $this->Categoria_model->getAllCategoriesForProducts();
+            $data['proveedores'] = $this->Proveedor_model->getAllProveedoresForProducts();
             $this->load->view('productos/editar', $data);
         } else {
             $data = [

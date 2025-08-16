@@ -7,6 +7,12 @@
         <button class="btn mi-btn ms-4 mb-2" onclick="location.href='<?= base_url('proveedores/crear'); ?>'"><i class="fa-solid fa-plus me-1"></i></button>
         <button class="btn mi-btn-papelera ms-3 mb-2" onclick="location.href='<?= base_url('proveedores/papelera'); ?>'"><i class="fa-solid fa-trash-can"></i></button>
     </div>
+    <?php if ($this->session->flashdata('error')): ?>
+        <div class="alert alert-danger alert-dismissible fade show mi-alert-danger" role="alert">
+        <i class="fa-solid fa-triangle-exclamation me-2"></i><?= $this->session->flashdata('error') ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php endif; ?>
     <div class="table-responsive mt-4 mi-table">
         <table class="table table-p table-striped">
             <thead>

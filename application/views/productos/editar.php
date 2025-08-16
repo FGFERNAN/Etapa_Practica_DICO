@@ -55,7 +55,7 @@
         <div class="col-md-4">
             <label for="categoria" class="form-label mi-label">Categoría</label>
             <select class="form-select" name="id_categorias" aria-label="Categoria" id="categoria" required>
-                <option value="" disabled>Seleccionar</option>
+                <option selected value="" disabled>Seleccionar</option>
                 <?php foreach ($categorias as $c): ?>
                     <option value="<?= set_value('id_categorias', $c->id_categorias)  ?>" <?= $producto->id_categorias == $c->id_categorias ? 'selected' : '' ?>><?= $c->nombre ?></option>
                 <?php endforeach; ?>
@@ -68,7 +68,7 @@
         <div class="col-md-4">
             <label for="proveedor" class="form-label mi-label">Proveedor</label>
             <select id="proveedor" name="id_proveedores" class="form-select" required>
-                <option value="" disabled>Seleccionar</option>
+                <option selected value="" disabled>Seleccionar</option>
                 <?php foreach ($proveedores as $pr): ?>
                     <option value="<?= set_value('id_proveedores', $pr->id_proveedores) ?>" <?= $producto->id_proveedores == $pr->id_proveedores ? 'selected' : '' ?>><?= $pr->nombre ?></option>
                 <?php endforeach; ?>

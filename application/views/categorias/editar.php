@@ -21,6 +21,11 @@
                     <option value="<?= set_value('id_estado', $e->id_estado_categoria)  ?>" <?= $categoria->id_estado_categoria == $e->id_estado_categoria ? 'selected' : '' ?>><?= $e->nombre ?></option>
                 <?php endforeach; ?>
             </select>
+            <?php if ($this->session->flashdata('error')): ?>
+                <div class="text-danger">
+                    <?= $this->session->flashdata('error') ?>
+                </div>
+            <?php endif; ?>
             <?= form_error('id_estado', '<div class="text-danger">', '</div>') ?>
             <div class="invalid-feedback">
                 Seleccione un estado.

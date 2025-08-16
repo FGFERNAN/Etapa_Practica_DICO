@@ -53,6 +53,11 @@
                     <option value="<?= set_value('id_estado_proveedor', $e->id_estado_proveedor)  ?>" <?= $proveedor->id_estado_proveedor == $e->id_estado_proveedor ? 'selected' : '' ?>><?= $e->nombre ?></option>
                 <?php endforeach; ?>
             </select>
+            <?php if ($this->session->flashdata('error')): ?>
+                <div class="text-danger">
+                    <?= $this->session->flashdata('error') ?>
+                </div>
+            <?php endif; ?>
             <?= form_error('id_estado_proveedor', '<div class="text-danger">', '</div>') ?>
             <div class="invalid-feedback">
                 Seleccione un estado.

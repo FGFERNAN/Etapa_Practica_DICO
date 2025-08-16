@@ -169,13 +169,20 @@ class Proveedores extends CI_Controller
             $data['proveedor'] = $this->Proveedor_model->getById($id);
             $this->load->view('proveedores/editar', $data);
         } else {
+            $id_estado = $this->input->post('id_estado_proveedor');
+            $cantidad = $this->Proveedor_model->getCantidadProductos($id);
+            if($id_estado == 2 || $id_estado == 3 || $id_estado == 4 || $id_estado == 5 || $id_estado == 8 || $id_estado == 9 && $cantidad > 0) {
+                $this->session->set_flashdata('error', 'No se puede inactivar la categoría porque aún tiene productos asignados.');
+                redirect('proveedores/editar/' . $id);
+                return;
+            }
             $data = [
                 'nombre' => $this->input->post('nombre'),
                 'contacto' => $this->input->post('contacto'),
                 'telefono' => $this->input->post('telefono'),
                 'empresa' => $this->input->post('empresa'),
                 'nit' => $this->input->post('nit'),
-                'id_estado_proveedor' => $this->input->post('id_estado_proveedor')
+                'id_estado_proveedor' => $id_estado
             ];
 
             $this->Proveedor_model->update($id, $data);
@@ -202,8 +209,14 @@ class Proveedores extends CI_Controller
 
     public function eliminacionLogica($id)
     {
-        $data = ['id_estado_proveedor' => 2];
-        $this->Proveedor_model->update($id, $data);
+        $cantidad = $this->Proveedor_model->getCantidadProductos($id);
+
+        if ($cantidad > 0) {
+            $this->session->set_flashdata('error', 'No se puede eliminar el proveedor porque aún tiene productos asignados.');
+        } else {
+            $data = ['id_estado_proveedor' => 2];
+            $this->Proveedor_model->update($id, $data);
+        }
         redirect('proveedores');
     }
 

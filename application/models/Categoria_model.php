@@ -14,6 +14,26 @@ class Categoria_model extends CI_Model
         return $this->db->get()->result();
     }
 
+    public function getAllCategoriesForProducts()
+    {
+        $this->db->select('c.*, e.nombre AS estado_nombre');
+        $this->db->from('categorias_con_contador c');
+        $this->db->join('estado_categoria e', 'c.estado = e.id_estado_categoria');
+        $this->db->where('c.estado !=', 2);
+        $this->db->where('c.estado !=', 3);
+        $this->db->where('c.estado !=', 4);
+        return $this->db->get()->result();
+    }
+
+    public function getCantidadProductos($id_categoria)
+    {
+        $this->db->select('cantidad_productos');
+        $this->db->from('categorias_con_contador');
+        $this->db->where('id_categorias', $id_categoria);
+        $query = $this->db->get();
+        return $query->row()->cantidad_productos;
+    }
+
     public function getInactive()
     {
         $this->db->select('c.*, e.nombre AS estado_nombre');

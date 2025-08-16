@@ -89,10 +89,19 @@ class Categorias extends CI_Controller
             $data['categoria'] = $this->Categoria_model->getById($id);
             $this->load->view('categorias/editar', $data);
         } else {
+            $id_estado = $this->input->post('id_estado_categoria');
+            $cantidad = $this->Categoria_model->getCantidadProductos($id);
+
+            if ($id_estado == 2 || $id_estado == 4 && $cantidad > 0) {
+                $this->session->set_flashdata('error', 'No se puede inactivar la categoría porque aún tiene productos asignados.');
+                redirect('categorias/editar/' . $id);
+                return;
+            }
+
             $data = [
                 'nombre' => $this->input->post('nombre'),
                 'descripcion' => $this->input->post('descripcion'),
-                'id_estado_categoria' => $this->input->post('id_estado_categoria')
+                'id_estado_categoria' => $id_estado
             ];
 
             $this->Categoria_model->update($id, $data);
@@ -120,8 +129,14 @@ class Categorias extends CI_Controller
 
     public function eliminacionLogica($id)
     {
-        $data = ['id_estado_categoria' => 2];
-        $this->Categoria_model->update($id, $data);
+        $cantidad = $this->Categoria_model->getCantidadProductos($id);
+
+        if ($cantidad > 0) {
+            $this->session->set_flashdata('error', 'No se puede eliminar la categoría porque aún tiene productos asignados.');
+        } else {
+            $data = ['id_estado_categoria' => 2];
+            $this->Categoria_model->update($id, $data);
+        }
         redirect('categorias');
     }
 
