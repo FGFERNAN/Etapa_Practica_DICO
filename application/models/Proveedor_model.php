@@ -14,6 +14,14 @@ class Proveedor_model extends CI_Model
         return $this->db->get()->result();
     }
 
+    public function getAllProveedorContingencia() {
+        $this->db->select('p.*, e.nombre AS estado_nombre');
+        $this->db->from('proveedores_con_contador p');
+        $this->db->join('estado_proveedor e', 'p.estado = e.id_estado_proveedor');
+        $this->db->where('p.estado =', 7);
+        return $this->db->get()->result();
+    }
+
     public function getAllProveedoresForProducts() {
         $this->db->select('p.*, e.nombre AS estado_nombre');
         $this->db->from('proveedores_con_contador p');
@@ -22,6 +30,7 @@ class Proveedor_model extends CI_Model
         $this->db->where('p.estado !=', 3);
         $this->db->where('p.estado !=', 4);
         $this->db->where('p.estado !=', 5);
+        $this->db->where('p.estado !=', 7);
         $this->db->where('p.estado !=', 8);
         $this->db->where('p.estado !=', 9);
         return $this->db->get()->result();
@@ -59,6 +68,12 @@ class Proveedor_model extends CI_Model
     {
         $this->db->where_in('id_productos', $productos_ids);
         return $this->db->update('productos', ['id_proveedores' => $id_proveedor]);
+    }
+
+    public function asignar_proveedor_c($productos_ids, $id_proveedor_c)
+    {
+        $this->db->where_in('id_productos', $productos_ids);
+        return $this->db->update('productos', ['id_proveedores_contingencia' => $id_proveedor_c]);
     }
 
     public function update($id, $data)

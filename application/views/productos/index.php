@@ -30,7 +30,8 @@
                     <th scope="col">Stock</th>
                     <th scope="col">Lote</th>
                     <th scope="col">Categoría</th>
-                    <th scope="col">Proveedor</th>
+                    <th scope="col">Proveedor P.</th>
+                    <th scope="col">Proveedor C.</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Acciones</th>
                 </tr>
@@ -46,6 +47,7 @@
                         <td><?= $p->lote ?></td>
                         <td><?= $p->categoria_nombre ?></td>
                         <td><?= $p->proveedor_nombre ?></td>
+                        <td><?= $p->proveedor_nombre_c ?></td>
                         <td><?= $p->estado_nombre ?></td>
                         <td>
                             <button class="btn btn-sm btn-secondary btn-editar" onclick="window.location.href='<?= base_url('productos/editar/' . $p->id_productos) ?>'"><i class="fa-solid fa-pen"></i></button>

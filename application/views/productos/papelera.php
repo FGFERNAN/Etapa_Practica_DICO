@@ -16,7 +16,8 @@
                     <th scope="col">Stock</th>
                     <th scope="col">Lote</th>
                     <th scope="col">Categoría</th>
-                    <th scope="col">Proveedor</th>
+                    <th scope="col">Proveedor P.</th>
+                    <th scope="col">Proveedor C.</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Acciones</th>
                 </tr>
@@ -32,6 +33,7 @@
                     <td><?= $p->lote ?></td>
                     <td><?= $p->categoria_nombre ?></td>
                     <td><?= $p->proveedor_nombre ?></td>
+                    <td><?= $p->proveedor_nombre_c ?></td>
                     <td><?= $p->estado_nombre ?></td>
                     <td>
                         <a href="<?= base_url('productos/activar/'.$p->id_productos) ?>" class="btn btn-sm btn-secondary btn-editar" onclick="return confirm('¿Estas seguro de activar este producto nuevamente?')"><i class="fa-solid fa-check"></i></a>

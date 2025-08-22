@@ -39,6 +39,7 @@ class Productos extends CI_Controller
         $data['marca'] = $this->Marca_model->getAll();
         $data['categorias'] = $this->Categoria_model->getAllCategoriesForProducts();
         $data['proveedores'] = $this->Proveedor_model->getAllProveedoresForProducts();
+        $data['proveedores_c'] = $this->Proveedor_model->getAllProveedorContingencia();
         $this->load->view('productos/crear', $data);
     }
 
@@ -59,6 +60,7 @@ class Productos extends CI_Controller
             $data['marca'] = $this->Marca_model->getAll();
             $data['categorias'] = $this->Categoria_model->getAllCategoriesForProducts();
             $data['proveedores'] = $this->Proveedor_model->getAllProveedoresForProducts();
+            $data['proveedores_c'] = $this->Proveedor_model->getAllProveedorContingencia();
             $this->load->view('productos/crear', $data);
         } else {
             $data = [
@@ -72,6 +74,7 @@ class Productos extends CI_Controller
                 'imagen' => $this->input->post('imagen'),
                 'id_categorias' => $this->input->post('id_categorias'),
                 'id_proveedores' => $this->input->post('id_proveedores'),
+                'id_proveedores_contingencia' => $this->input->post('id_proveedores_contingencia'),
                 'id_estado_producto' => $this->input->post('id_estado_producto')
             ];
 
@@ -87,6 +90,7 @@ class Productos extends CI_Controller
         $data['producto'] = $this->Producto_model->getById($id);
         $data['categorias'] = $this->Categoria_model->getAllCategoriesForProducts();
         $data['proveedores'] = $this->Proveedor_model->getAllProveedoresForProducts();
+        $data['proveedores_c'] = $this->Proveedor_model->getAllProveedorContingencia();
         $this->load->view('productos/editar', $data);
     }
 
@@ -105,6 +109,7 @@ class Productos extends CI_Controller
             $data['producto'] = $this->Producto_model->getById($id);
             $data['categorias'] = $this->Categoria_model->getAllCategoriesForProducts();
             $data['proveedores'] = $this->Proveedor_model->getAllProveedoresForProducts();
+            $data['proveedores_c'] = $this->Proveedor_model->getAllProveedorContingencia();
             $this->load->view('productos/editar', $data);
         } else {
             $data = [
@@ -116,6 +121,7 @@ class Productos extends CI_Controller
                 'imagen' => $this->input->post('imagen'),
                 'id_categorias' => $this->input->post('id_categorias'),
                 'id_proveedores' => $this->input->post('id_proveedores'),
+                'id_proveedores_contingencia' => $this->input->post('id_proveedores_contingencia'),
                 'id_estado_producto' => $this->input->post('id_estado_producto')
             ];
 

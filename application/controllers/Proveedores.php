@@ -171,7 +171,7 @@ class Proveedores extends CI_Controller
         } else {
             $id_estado = $this->input->post('id_estado_proveedor');
             $cantidad = $this->Proveedor_model->getCantidadProductos($id);
-            if($id_estado == 2 || $id_estado == 3 || $id_estado == 4 || $id_estado == 5 || $id_estado == 8 || $id_estado == 9 && $cantidad > 0) {
+            if ($id_estado == 2 || $id_estado == 3 || $id_estado == 4 || $id_estado == 5 || $id_estado == 8 || $id_estado == 9 && $cantidad > 0) {
                 $this->session->set_flashdata('error', 'No se puede inactivar la categoría porque aún tiene productos asignados.');
                 redirect('proveedores/editar/' . $id);
                 return;
@@ -194,6 +194,7 @@ class Proveedores extends CI_Controller
     {
         $data['proveedor'] = $this->Proveedor_model->getById($id);
         $data['productos'] = $this->Producto_model->getByProveedor($id);
+        $data['productos_c'] = $this->Producto_model->getByProveedorContingencia($id);
         $this->load->view('proveedores/asociar', $data);
     }
 
@@ -207,22 +208,32 @@ class Proveedores extends CI_Controller
         redirect('proveedores');
     }
 
+    public function asignar_contingencia($id_proveedor)
+    {
+        $productos_ids = $this->input->post('productos_ids');
+
+        if (!empty($productos_ids)) {
+            $this->Proveedor_model->asignar_proveedor_c($productos_ids, $id_proveedor);
+        }
+        redirect('proveedores');
+    }
+
     public function eliminacionLogica($id)
+    {
+        $data = ['id_estado_proveedor' => 2];
+        $this->Proveedor_model->update($id, $data);
+        redirect('proveedores');
+    }
+
+    public function eliminacionFisica($id)
     {
         $cantidad = $this->Proveedor_model->getCantidadProductos($id);
 
         if ($cantidad > 0) {
             $this->session->set_flashdata('error', 'No se puede eliminar el proveedor porque aún tiene productos asignados.');
         } else {
-            $data = ['id_estado_proveedor' => 2];
-            $this->Proveedor_model->update($id, $data);
+            $this->Proveedor_model->delete($id);
         }
-        redirect('proveedores');
-    }
-
-    public function eliminacionFisica($id)
-    {
-        $this->Proveedor_model->delete($id);
         redirect('proveedores/papelera');
     }
 

@@ -20,6 +20,9 @@ ALTER TABLE proveedores
     
 ALTER TABLE proveedores 
 	CHANGE COLUMN fecha_baja fecha_baja DATETIME NULL DEFAULT NULL;
+    
+ALTER TABLE proveedores
+	CHANGE COLUMN fecha_ingreso fecha_ingreso DATETIME NOT NULL;
 
 ALTER TABLE proveedores
 	ADD COLUMN id_estado_proveedor INT(10) UNSIGNED;
@@ -187,12 +190,19 @@ CREATE TABLE productos(
 );
 
 ALTER TABLE productos
+	ADD COLUMN id_proveedores_contingencia INT(10) UNSIGNED;
+
+ALTER TABLE productos
 	ADD CONSTRAINT FK_productos_categorias
 		FOREIGN KEY (id_categorias) REFERENCES categorias(id_categorias);
         
 ALTER TABLE productos
 	ADD CONSTRAINT FK_productos_proveedores
 		FOREIGN KEY (id_proveedores) REFERENCES proveedores(id_proveedores);
+        
+ALTER TABLE productos
+	ADD CONSTRAINT FK_productos_proveedores_contigencia
+		FOREIGN KEY(id_proveedores_contingencia) REFERENCES proveedores(id_proveedores);
         
 ALTER TABLE productos
 	CHANGE COLUMN id_estado id_estado_producto INT(10) UNSIGNED;

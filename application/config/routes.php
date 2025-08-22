@@ -81,6 +81,7 @@ $route['proveedores/eliminar/(:num)'] = 'proveedores/eliminacionLogica/$1';
 $route['proveedores/eliminar-definitivo/(:num)'] = 'proveedores/eliminacionFisica/$1';
 $route['proveedores/activar/(:num)'] = 'proveedores/activar/$1';
 $route['proveedores/asignar/(:num)'] = 'proveedores/asignar/$1';
+$route['proveedores/asignar_c/(:num)'] = 'proveedores/asignar_contingencia/$1';
 $route['proveedores/asociar/(:num)'] = 'proveedores/asociar/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

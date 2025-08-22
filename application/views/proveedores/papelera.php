@@ -5,6 +5,12 @@
     <div class="d-flex align-items-center mi-header">
         <h2 class="mi-h2">Papelera Proveedores</h2>
     </div>
+    <?php if ($this->session->flashdata('error')): ?>
+        <div class="alert alert-danger alert-dismissible fade show mi-alert-danger" role="alert">
+            <i class="fa-solid fa-triangle-exclamation me-2"></i><?= $this->session->flashdata('error') ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
     <div class="table-responsive mt-4 mi-table">
         <table class="table table-p table-striped">
             <thead>

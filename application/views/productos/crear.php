@@ -64,11 +64,7 @@
                 Ingrese el lote.
             </div>
         </div>
-        <div class="col-6">
-            <label for="imagen" class="form-label mi-label">Imagen</label>
-            <input class="form-control" name="imagen" type="file" id="imagen">
-        </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <label for="categoria" class="form-label mi-label">Categoría</label>
             <select class="form-select" name="id_categorias" aria-label="Categoria" id="categoria" required>
                 <option selected value="" disabled>Seleccionar</option>
@@ -81,11 +77,27 @@
                 Seleccione una categoria.
             </div>
         </div>
+        <div class="col-12">
+            <label for="imagen" class="form-label mi-label">Imagen</label>
+            <input class="form-control" name="imagen" type="file" id="imagen">
+        </div>
         <div class="col-md-4">
-            <label for="proveedor" class="form-label mi-label">Proveedor</label>
+            <label for="proveedor" class="form-label mi-label">Proveedor Principal</label>
             <select id="proveedor" name="id_proveedores" class="form-select" required>
                 <option selected disabled>Seleccionar</option>
                 <?php foreach($proveedores as $pr): ?>
+                    <option value="<?= $pr->id_proveedores ?>"><?= $pr->nombre ?></option>
+                <?php endforeach; ?>
+            </select>
+            <div class="invalid-feedback">
+                Seleccione un proveedor.
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="proveedor_c" class="form-label mi-label">Proveedor Contingencia</label>
+            <select id="proveedor_c" name="id_proveedores_contingencia" class="form-select">
+                <option selected disabled>Seleccionar</option>
+                <?php foreach($proveedores_c as $pr): ?>
                     <option value="<?= $pr->id_proveedores ?>"><?= $pr->nombre ?></option>
                 <?php endforeach; ?>
             </select>
