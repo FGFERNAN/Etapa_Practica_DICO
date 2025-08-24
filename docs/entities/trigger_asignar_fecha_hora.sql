@@ -1,0 +1,10 @@
+DELIMITER $$
+
+CREATE TRIGGER asignar_fecha_hora
+BEFORE INSERT ON compras
+FOR EACH ROW
+BEGIN
+    SET NEW.fecha_hora = NOW();
+END$$
+
+DELIMITER ;

@@ -41,7 +41,7 @@
                 <a class="nav-link <?= $segmento == 'categorias' ? 'active' : '' ?>" href="<?= base_url('categorias') ?>">Categorías</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Compras</a>
+                <a class="nav-link <?= $segmento == 'compras' ? 'active' : '' ?>" href="<?= base_url('compras') ?>">Compras</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Ventas</a>
@@ -58,7 +58,7 @@
                         <a class="nav-link active <?= $segmento == 'productos' ? 'active' : '' ?>" href="<?= base_url('productos') ?>" aria-current="page" href="#"><i class="fa-solid fa-box me-3"></i></i>Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-bag-shopping me-3"></i>Comprar</a>
+                        <a class="nav-link <?= $segmento == 'compras' ? 'active' : '' ?>" href="<?= base_url('compras') ?>"><i class="fa-solid fa-bag-shopping me-3"></i>Comprar</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa-solid fa-chart-line me-3"></i>Ventas</a>

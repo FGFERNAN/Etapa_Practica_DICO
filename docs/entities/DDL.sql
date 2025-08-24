@@ -262,6 +262,12 @@ CREATE TABLE compras(
 );
 
 ALTER TABLE compras
+	DROP COLUMN zona_horaria;
+
+ALTER TABLE compras
+	CHANGE COLUMN fecha_hora fecha_hora DATETIME NOT NULL;
+
+ALTER TABLE compras
 	ADD CONSTRAINT FK_compras_usuarios
 		FOREIGN KEY (id_usuarios) REFERENCES usuarios(id_usuarios);
         

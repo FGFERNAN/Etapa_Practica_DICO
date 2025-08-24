@@ -31,7 +31,8 @@ class Producto_model extends CI_Model
         return $this->db->get()->result();
     }
 
-    public function getByCategory($id_categoria) {
+    public function getByCategory($id_categoria)
+    {
         $this->db->select('p.*, m.nombre AS marca_nombre, c.nombre AS categoria_nombre, e.nombre AS estado_nombre');
         $this->db->from('productos p');
         $this->db->join('estado_producto e', 'p.id_estado_producto = e.id_estado_producto');
@@ -42,7 +43,8 @@ class Producto_model extends CI_Model
         return $this->db->get()->result();
     }
 
-    public function getByProveedor($id_proveedor) {
+    public function getByProveedor($id_proveedor)
+    {
         $this->db->select('p.*, m.nombre AS marca_nombre, c.nombre AS categoria_nombre, pr.nombre AS proveedor_nombre, prc.nombre AS proveedor_c, e.nombre AS estado_nombre');
         $this->db->from('productos p');
         $this->db->join('estado_producto e', 'p.id_estado_producto = e.id_estado_producto');
@@ -55,7 +57,8 @@ class Producto_model extends CI_Model
         return $this->db->get()->result();
     }
 
-    public function getByProveedorContingencia($id_proveedor) {
+    public function getByProveedorContingencia($id_proveedor)
+    {
         $this->db->select('p.*, m.nombre AS marca_nombre, c.nombre AS categoria_nombre, pr.nombre AS proveedor_nombre, prc.nombre AS proveedor_c, e.nombre AS estado_nombre');
         $this->db->from('productos p');
         $this->db->join('estado_producto e', 'p.id_estado_producto = e.id_estado_producto');
@@ -68,15 +71,31 @@ class Producto_model extends CI_Model
         return $this->db->get()->result();
     }
 
-    public function filterCategory($id_categoria) {
-        $this->db->select('p.*, m.nombre AS marca_nombre, c.nombre AS categoria_nombre, pr.nombre AS proveedor_nombre, e.nombre AS estado_nombre');
+    public function filterCategory($id_categoria)
+    {
+        $this->db->select('p.*, m.nombre AS marca_nombre, c.nombre AS categoria_nombre, pr.nombre AS proveedor_nombre, prc.nombre AS proveedor_nombre_c, e.nombre AS estado_nombre');
         $this->db->from('productos p');
         $this->db->join('estado_producto e', 'p.id_estado_producto = e.id_estado_producto');
         $this->db->join('marca m', 'p.id_marca = m.id_marca');
         $this->db->join('categorias c', 'p.id_categorias = c.id_categorias');
         $this->db->join('proveedores pr', 'p.id_proveedores = pr.id_proveedores');
+        $this->db->join('proveedores prc', 'p.id_proveedores_contingencia = prc.id_proveedores', 'left');
         $this->db->where('p.id_estado_producto !=', 2);
         $this->db->where('p.id_categorias =', $id_categoria);
+        return $this->db->get()->result();
+    }
+
+    public function filterProveedor($id_proveedor)
+    {
+        $this->db->select('p.*, m.nombre AS marca_nombre, c.nombre AS categoria_nombre, pr.nombre AS proveedor_nombre, prc.nombre AS proveedor_nombre_c, e.nombre AS estado_nombre');
+        $this->db->from('productos p');
+        $this->db->join('estado_producto e', 'p.id_estado_producto = e.id_estado_producto');
+        $this->db->join('marca m', 'p.id_marca = m.id_marca');
+        $this->db->join('categorias c', 'p.id_categorias = c.id_categorias');
+        $this->db->join('proveedores pr', 'p.id_proveedores = pr.id_proveedores');
+        $this->db->join('proveedores prc', 'p.id_proveedores_contingencia = prc.id_proveedores', 'left');
+        $this->db->where('p.id_estado_producto !=', 2);
+        $this->db->where('p.id_proveedores =', $id_proveedor);
         return $this->db->get()->result();
     }
 
@@ -88,6 +107,13 @@ class Producto_model extends CI_Model
     public function create($data)
     {
         return $this->db->insert($this->table, $data);
+    }
+
+    public function actualizar_stock($producto_id, $cantidad)
+    {
+        $this->db->set('stock', 'stock + ' . $cantidad, FALSE);
+        $this->db->where('id_productos', $producto_id);
+        return $this->db->update('productos');
     }
 
     public function update($id, $data)
