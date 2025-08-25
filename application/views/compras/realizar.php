@@ -6,14 +6,14 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3><i class="fas fa-shopping-cart"></i> Registro de Compra</h3>
+                    <h3 class="mi-h3"><i class="fas fa-shopping-cart"></i> Registro de Compra</h3>
                 </div>
                 <div class="card-body">
                     <form action="<?= base_url('compras/guardar') ?>" method="post" class="needs-validation" novalidate>
                         <div class="row mb-4">
                             <div class="col-md-12">
-                                <label for="proveedor" class="form-label mi-label">Proveedor</label>
-                                <select id="proveedor" name="id_proveedores" class="form-select" required>
+                                <label for="proveedor" class="form-label label-compras">Proveedor</label>
+                                <select id="proveedor" name="id_proveedores" class="form-select-custom" required>
                                     <option value="" disabled <?= empty($proveedor_id) ? 'selected' : '' ?>>Seleccionar</option>
                                     <?php foreach ($proveedores as $pr): ?>
                                         <option value="<?= $pr->id_proveedores ?>" <?= ($proveedor_id == $pr->id_proveedores) ? 'selected' : '' ?>><?= $pr->nombre ?></option>
@@ -25,35 +25,36 @@
                             </div>
                         </div>
                         <hr>
-                        <h4 class="mb-3">Carrito</h4>
+                        <h4 class="mb-3 mi-h4">Carrito</h4>
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-p">
+                            <table class="table table-striped-columns table-bordered table-p">
                                 <thead>
                                     <tr>
-                                        <th width="35%">Producto</th>
+                                        <th width="33%">Producto</th>
                                         <th width="15%">Cantidad</th>
                                         <th width="20%">Precio Unitario</th>
                                         <th width="20%">Subtotal</th>
-                                        <th width="10%">Acción</th>
+                                        <th width="12%">Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody id="productosBody" class="table-group-divider">
                                     <tr class="fila-producto">
                                         <td>
                                             <input type="hidden" name="ids_productos[]" class="producto-id">
-                                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modalProductos"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                            <button type="button" class="btn btn-sm btn-buscar" data-bs-toggle="modal" data-bs-target="#modalProductos"><i class="fa-solid fa-magnifying-glass"></i></button>
                                         </td>
                                         <td>
-                                            <input type="number" class="form-control cantidad" name="cantidad[]" min="1" step="1" placeholder="0" required>
+                                            <input type="number" class="form-control-custom cantidad" name="cantidad[]" min="1" step="1" placeholder="0" required>
                                         </td>
                                         <td>
-                                            <input type="number" class="form-control precio" name="precio_unitario[]" min="0" step="0.01" placeholder="0.00" readonly>
+                                            <input type="number" class="form-control-custom precio" name="precio_unitario[]" min="0" step="0.01" placeholder="0.00" readonly>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control subtotal" readonly placeholder="0.00">
+                                            <input type="text" class="form-control-custom subtotal" readonly placeholder="0.00">
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-danger btn-sm eliminar-fila" disabled>
+                                            <button type="button" class="btn btn-sm btn-secondary btn-asignar aumentar-cantidad" onclick="aumentarCantidad()"><i class="fa-solid fa-plus"></i></button>
+                                            <button type="button" class="btn btn-sm btn-danger btn-eliminar eliminar-fila" disabled>
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </td>
@@ -63,7 +64,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-12">
-                                <button type="button" id="agregarProducto" class="btn btn-primary">Agregar Producto</button>
+                                <button type="button" id="agregarProducto" class="btn btn-danger btn-eliminar"><i class="fa-solid fa-cart-plus"></i> Agregar Producto</button>
                             </div>
                         </div>
 
@@ -71,7 +72,7 @@
                             <div class="col-md-8"></div>
                             <div class="col-md-4">
                                 <div class="card">
-                                    <div class="card-body">
+                                    <div class="card-body mi-card-body">
                                         <div class="row">
                                             <div class="col-6"><strong>SUBTOTAL:</strong></div>
                                             <div class="col-6 text-right">
@@ -100,10 +101,10 @@
 
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="<?php echo base_url('compras'); ?>" class="btn btn-secondary">
+                                <a href="<?php echo base_url('compras'); ?>" class="btn btn-secondary btn-asignar">
                                     <i class="fas fa-times"></i> Cancelar
                                 </a>
-                                <button type="submit" class="btn btn-primary ml-2">
+                                <button type="submit" class="btn btn-secondary btn-guardar-c ml-2">
                                     <i class="fas fa-save"></i> Guardar Compra
                                 </button>
                             </div>
@@ -114,7 +115,7 @@
                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Lista de Productos</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -122,8 +123,12 @@
                                             <i class="fas fa-exclamation-triangle"></i>
                                             Por favor, seleccione un proveedor primero.
                                         </div>
+                                        <div id="mensaje-producto" class="alert alert-danger" style="display: none;">
+                                            <i class="fa-solid fa-circle-xmark"></i>
+                                            Por favor, seleccione un producto primero.
+                                        </div>
                                         <div id="table-modal" class="table-responsive mt-4 mi-table">
-                                            <table class="table table-striped">
+                                            <table class="table table-p table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col"></th>
@@ -148,8 +153,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" id="btnSeleccionar">Seleccionar</button>
+                                        <button type="button" class="btn btn-danger btn-eliminar" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary btn-editar" id="btnSeleccionar">Seleccionar</button>
                                     </div>
                                 </div>
                             </div>
@@ -231,7 +236,7 @@
             // Llenar el precio automáticamente (quitar el símbolo $ si existe)
             const precioLimpio = productoSeleccionado.precio.replace('$', '').replace(',', '');
             filaActual.querySelector('.precio').value = precioLimpio;
-            
+
 
             // OCULTAR el producto del modal para que no se pueda volver a seleccionar
             fila.style.display = 'none';
@@ -244,10 +249,12 @@
             filaActual = null;
             fila = null;
 
-
+            const mensajeProducto = document.getElementById('mensaje-producto');
+            mensajeProducto.style.display = 'none';
             alert('Producto agregado al carrito');
         } else {
-            alert('Por favor selecciona un producto');
+            const mensajeProducto = document.getElementById('mensaje-producto');
+            mensajeProducto.style.display = 'block';
         }
     });
 
@@ -257,19 +264,20 @@
         <tr class="fila-producto">
             <td>
                 <input type="hidden" name="ids_productos[]" class="producto-id">
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#modalProductos"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button type="button" class="btn btn-sm btn-buscar" data-bs-toggle="modal" data-bs-target="#modalProductos"><i class="fa-solid fa-magnifying-glass"></i></button>
             </td>
             <td>
-                <input type="number" class="form-control cantidad" name="cantidad[]" min="1" step="1" placeholder="0" required  >
+                <input type="number" class="form-control-custom cantidad" name="cantidad[]" min="1" step="1" placeholder="0" required  >
             </td>
             <td>
-                <input type="number" class="form-control precio" name="precio_unitario[]" min="0" step="0.01" placeholder="0.00" readonly>
+                <input type="number" class="form-control-custom precio" name="precio_unitario[]" min="0" step="0.01" placeholder="0.00" readonly>
             </td>
             <td>
-                <input type="text" class="form-control subtotal" readonly placeholder="0.00">
+                <input type="text" class="form-control-custom subtotal" readonly placeholder="0.00">
             </td>
             <td>
-                <button type="button" class="btn btn-danger btn-sm eliminar-fila">
+                <button type="button" class="btn btn-sm btn-secondary btn-asignar aumentar-cantidad" onclick="aumentarCantidad()"><i class="fa-solid fa-plus"></i></button>
+                <button type="button" class="btn btn-sm btn-danger btn-eliminar eliminar-fila">
                     <i class="fas fa-trash"></i>
                 </button>
             </td>
@@ -285,8 +293,10 @@
         const filas = document.querySelectorAll('#modalProductos tbody tr');
         filas.forEach(fila => {
             const radio = fila.querySelector('input[type="radio"]');
+            const mensajeProducto = document.getElementById('mensaje-producto');
             if (radio && radio.value === productoId) {
                 fila.style.display = ''; // Mostrar la fila de nuevo
+                mensajeProducto.style.display = 'none';
             }
         });
     }
@@ -330,22 +340,43 @@
     });
 
     function calcularTotal() {
-    let subtotal = 0;
-    
-    document.querySelectorAll('.fila-producto').forEach(fila => {
-        const cantidad = parseFloat(fila.querySelector('.cantidad').value) || 0;
-        const precio = parseFloat(fila.querySelector('.precio').value) || 0;
-        subtotal += cantidad * precio;
+        let subtotal = 0;
+
+        document.querySelectorAll('.fila-producto').forEach(fila => {
+            const cantidad = parseFloat(fila.querySelector('.cantidad').value) || 0;
+            const precio = parseFloat(fila.querySelector('.precio').value) || 0;
+            subtotal += cantidad * precio;
+        });
+
+        const iva = subtotal * 0.19; // 19% IVA
+        const total = subtotal + iva;
+
+        document.getElementById('subtotalGeneral').textContent = '$' + subtotal.toLocaleString('es-CO', {
+            minimumFractionDigits: 2
+        });
+        document.getElementById('ivaGeneral').textContent = '$' + iva.toLocaleString('es-CO', {
+            minimumFractionDigits: 2
+        });
+        document.getElementById('totalGeneral').textContent = '$' + total.toLocaleString('es-CO', {
+            minimumFractionDigits: 2
+        });
+        document.getElementById('totalInput').value = total;
+    }
+
+    // Aumentar cantidad
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('aumentar-cantidad') || e.target.parentElement.classList.contains('aumentar-cantidad')) {
+            const fila = e.target.closest('tr');
+            const cantidadInput = fila.querySelector('.cantidad');
+            const productoId = fila.querySelector('.producto-id').value;
+            cantidadInput.value = (parseInt(fila.querySelector('.cantidad').value) || 0) + 1;
+            const eventoInput = new Event('input', {
+                bubbles: true
+            });
+            cantidadInput.dispatchEvent(eventoInput);
+            calcularTotal();
+        }
     });
-    
-    const iva = subtotal * 0.19; // 19% IVA
-    const total = subtotal + iva;
-    
-    document.getElementById('subtotalGeneral').textContent = '$' + subtotal.toLocaleString('es-CO', {minimumFractionDigits: 2});
-    document.getElementById('ivaGeneral').textContent = '$' + iva.toLocaleString('es-CO', {minimumFractionDigits: 2});
-    document.getElementById('totalGeneral').textContent = '$' + total.toLocaleString('es-CO', {minimumFractionDigits: 2});
-    document.getElementById('totalInput').value = total;
-}
 </script>
 
 

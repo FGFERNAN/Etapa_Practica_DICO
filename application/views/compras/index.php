@@ -19,7 +19,7 @@
         </div> -->
     </div>
     <div class="table-responsive mt-4 mi-table">
-        <table class="table table-pr table-striped">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">ID Compra</th>
@@ -39,7 +39,7 @@
                         <td><?= $c->proveedor_nombre ?></td>
                         <td><?= $c->usuario_nombre ?></td>
                         <td>
-                            <button class="btn btn-sm btn-secondary btn-editar" onclick="window.location.href='<?= base_url('compras/detalle/' . $c->id_compras) ?>'"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn btn-sm btn-secondary btn-editar" onclick="window.location.href='<?= base_url('compras/detalle/' . $c->id_compras) ?>'"><i class="fa-solid fa-eye"></i></button>
                         </td>
                     </tr>
                 <?php endforeach; ?>

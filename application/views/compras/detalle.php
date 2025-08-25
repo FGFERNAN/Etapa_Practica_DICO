@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="table-responsive mt-4 mi-table">
-        <table class="table table-pr table-striped">
+        <table class="table table-dc table-striped">
             <thead>
                 <tr>
                     <th scope="col">Cantidad</th>
