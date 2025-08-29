@@ -7,16 +7,16 @@
             <h2 class="mi-h2">Historial de Compras</h2>
             <button class="btn btn-success ms-4 mb-2" onclick="location.href='<?= base_url('compras/realizar'); ?>'"><i class="fa-solid fa-store"></i></button>
         </div>
-        <!-- <div class="dropdown mi-dropdown">
+        <div class="dropdown mi-dropdown">
             <button class="btn btn-primary mi-filter dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa-solid fa-filter"></i> Filtrar
             </button>
             <ul class="dropdown-menu dropdown-menu-light">
-                <?php foreach($categorias as $c): ?>
-                <li><a class="dropdown-item" href="<?= base_url('compras/filtrar/'. $c->id_categorias) ?>"><?= $c->nombre ?></a></li>
+                <?php foreach($proveedores as $pr): ?>
+                <li><a class="dropdown-item" href="<?= base_url('compras/filtrar/'. $pr->id_proveedores) ?>"><?= $pr->nombre ?></a></li>
                 <?php endforeach ?>
             </ul>
-        </div> -->
+        </div>
     </div>
     <div class="table-responsive mt-4 mi-table">
         <table class="table table-striped">

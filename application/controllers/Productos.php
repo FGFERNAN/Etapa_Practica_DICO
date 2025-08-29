@@ -49,8 +49,6 @@ class Productos extends CI_Controller
         $this->form_validation->set_rules('id_marca', 'Marca', 'required');
         $this->form_validation->set_rules('precio_compra', 'Precio Compra', 'required|numeric|greater_than[0]');
         $this->form_validation->set_rules('precio_venta', 'Precio Venta', 'required|numeric|greater_than[0]');
-        $this->form_validation->set_rules('stock', 'Stock', 'required|integer|greater_than[0]');
-        $this->form_validation->set_rules('lote', 'Lote', 'required|integer|greater_than[0]');
         $this->form_validation->set_rules('id_categorias', 'Categorias', 'required');
         $this->form_validation->set_rules('id_proveedores', 'Proveedores', 'required');
         $this->form_validation->set_rules('id_estado_producto', 'Estado', 'required');
@@ -70,7 +68,6 @@ class Productos extends CI_Controller
                 'precio_compra' => $this->input->post('precio_compra'),
                 'precio_venta' => $this->input->post('precio_venta'),
                 'stock' => $this->input->post('stock'),
-                'lote' => $this->input->post('lote'),
                 'imagen' => $this->input->post('imagen'),
                 'id_categorias' => $this->input->post('id_categorias'),
                 'id_proveedores' => $this->input->post('id_proveedores'),
@@ -99,7 +96,6 @@ class Productos extends CI_Controller
         $this->form_validation->set_rules('nombre', 'Nombre', 'required|trim|min_length[3]|max_length[50]');
         $this->form_validation->set_rules('id_marca', 'Marca', 'required');
         $this->form_validation->set_rules('precio_venta', 'Precio Venta', 'required|numeric|greater_than[0]');
-        $this->form_validation->set_rules('stock', 'Stock', 'required|integer|greater_than[0]');
         $this->form_validation->set_rules('id_categorias', 'Categorias', 'required');
         $this->form_validation->set_rules('id_proveedores', 'Proveedores', 'required');
         $this->form_validation->set_rules('id_estado_producto', 'Estado', 'required');
@@ -117,7 +113,6 @@ class Productos extends CI_Controller
                 'id_marca' => $this->input->post('id_marca'),
                 'descripcion' => $this->input->post('descripcion'),
                 'precio_venta' => $this->input->post('precio_venta'),
-                'stock' => $this->input->post('stock'),
                 'imagen' => $this->input->post('imagen'),
                 'id_categorias' => $this->input->post('id_categorias'),
                 'id_proveedores' => $this->input->post('id_proveedores'),

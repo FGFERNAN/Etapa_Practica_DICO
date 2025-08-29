@@ -190,6 +190,9 @@ CREATE TABLE productos(
 );
 
 ALTER TABLE productos
+	CHANGE COLUMN stock stock INT(10);
+
+ALTER TABLE productos
 	ADD COLUMN id_proveedores_contingencia INT(10) UNSIGNED;
 
 ALTER TABLE productos
@@ -206,6 +209,9 @@ ALTER TABLE productos
         
 ALTER TABLE productos
 	CHANGE COLUMN id_estado id_estado_producto INT(10) UNSIGNED;
+    
+ALTER TABLE productos
+	DROP COLUMN lote;
     
 ALTER TABLE productos DROP CONSTRAINT FK_productos_estado;
         
@@ -298,6 +304,10 @@ CREATE TABLE detalle_compra(
     CONSTRAINT PK_detalle_compra
 		PRIMARY KEY (id_detalle_compra)
 );
+
+ALTER TABLE detalle_compra 
+	ADD COLUMN lote VARCHAR(50),
+    ADD COLUMN fecha_vencimiento DATE;
 
 ALTER TABLE detalle_compra
 	ADD CONSTRAINT FK_detalle_compra_compras

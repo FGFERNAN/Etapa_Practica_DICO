@@ -67,7 +67,8 @@ JOIN marca m ON p.id_marca = m.id_marca;
 
 INSERT INTO marca(nombre, descripcion, id_estado_marca) VALUES ('Diana', 'La marca Diana, principalmente conocida en Colombia y El Salvador, es un grupo industrial diversificado con enfoque en consumo masivo y agroindustria.', 1);
 INSERT INTO marca(nombre, descripcion, id_estado_marca) VALUES ('Colgate', 'Colgate es una marca globalmente conocida, principalmente por sus productos de cuidado bucal como pastas dentales, cepillos de dientes, enjuagues bucales e hilo dental.', 1);
-
+INSERT INTO marca(nombre, descripcion, id_estado_marca) VALUES ('Colanta', 'Colanta es una cooperativa colombiana fabricante de productos alimenticios que incluye lácteos, ​ refrescos, embutidos, y cereales. Esta empresa exporta a Canadá, Curazao, Estados Unidos, Guatemala, San Martín y Venezuela.​', 1);
+INSERT INTO marca(nombre, descripcion, id_estado_marca) VALUES ('Zenú', 'Fue fundada en la década de 1950 en Colombia y se dedica a la producción y comercialización de productos cárnicos, especialmente embutidos y carnes frías', 1);
 SELECT * FROM categorias;
 
 # Consulta para seleccionar categorias que se mostraran en el select de crear producto
@@ -80,4 +81,5 @@ AND c.estado != 4;
 SELECT * FROM categorias_con_contador;
 
 SELECT * FROM proveedores;
+
 

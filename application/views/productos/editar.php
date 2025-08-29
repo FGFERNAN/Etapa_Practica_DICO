@@ -42,7 +42,7 @@
         </div>
         <div class="col-6">
             <label for="stock" class="form-label mi-label">Stock</label>
-            <input type="number" name="stock" value="<?= set_value('stock', $producto->stock)  ?>" min="1" step="1" placeholder="0" class="form-control" id="stock" required>
+            <input type="number" name="stock" value="<?= set_value('stock', $producto->stock)  ?>" min="1" step="1" placeholder="0" class="form-control" id="stock" readonly>
             <?= form_error('stock', '<div class="text-danger">', '</div>') ?>
             <div class="invalid-feedback">
                 Debe ser un stock valido mayor que 0.

@@ -16,6 +16,15 @@ class Compra_model extends CI_Model
         return $this->db->get()->result();
     }
 
+    public function filterProveedor($id_proveedor) {
+        $this->db->select('c.*, u.nombre AS usuario_nombre, pr.nombre AS proveedor_nombre');
+        $this->db->from('compras c');
+        $this->db->join('usuarios u', 'c.id_usuarios = u.id_usuarios', 'left');
+        $this->db->join('proveedores pr', 'c.id_proveedores = pr.id_proveedores');
+        $this->db->where('c.id_proveedores =', $id_proveedor);
+        return $this->db->get()->result();
+    }
+
     public function getDetalleCompra($id_compra)
     {
         $this->db->select('dc.* , p.nombre AS producto_nombre');

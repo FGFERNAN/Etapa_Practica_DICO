@@ -87,7 +87,7 @@ class Proveedores extends CI_Controller
         $query = $this->db->get('proveedores');
 
         if ($query->num_rows() > 0) {
-            $this->form_validation->set_message('telefono_proveedor_unico', 'El NIT "' . $nit . '" ya existe.');
+            $this->form_validation->set_message('nit_proveedor_unico', 'El NIT "' . $nit . '" ya existe.');
             return FALSE;
         } else {
             return TRUE;

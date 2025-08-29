@@ -87,5 +87,6 @@ $route['compras'] = 'compras/index';
 $route['compras/realizar'] = 'compras/realizar';
 $route['compras/guardar'] = 'compras/guardar';
 $route['compras/detalle/(:num)'] = 'compras/detalle/$1';
+$route['compras/filtrar/(:num)'] = 'compras/filtrar/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -4,6 +4,7 @@
 <div class="container-fluid form-container">
     <form action="<?= base_url('productos/guardar') ?>" method="post" class="row g-3 needs-validation" novalidate>
         <legend class="legend">Crear Producto</legend>
+        <input type="hidden" name="stock" value="0">
         <div class="col-md-6">
             <label for="nombre" class="form-label mi-label">Nombre</label>
             <input type="text" name="nombre" value="<?= set_value('nombre') ?>" class="form-control" id="nombre" minlength="3" maxlength="50" required>
@@ -48,22 +49,6 @@
                 Debe ser un precio valido mayor que 0.
             </div>
         </div>
-        <div class="col-3">
-            <label for="stock" class="form-label mi-label">Stock</label>
-            <input type="number" value="<?= set_value('stock') ?>" name="stock" min="1" step="1" placeholder="0" class="form-control" id="stock" required>
-            <?= form_error('stock', '<div class="text-danger">', '</div>') ?>
-            <div class="invalid-feedback">
-                Debe ser un stock valido mayor que 0.
-            </div>
-        </div>
-        <div class="col-3">
-            <label for="lote" class="form-label mi-label">Lote</label>
-            <input type="number" value="<?= set_value('lote') ?>" name="lote" min="0" step="1" placeholder="0" class="form-control" id="lote" required>
-            <?= form_error('lote', '<div class="text-danger">', '</div>') ?>
-            <div class="invalid-feedback">
-                Ingrese el lote.
-            </div>
-        </div>
         <div class="col-md-6">
             <label for="categoria" class="form-label mi-label">Categoría</label>
             <select class="form-select" name="id_categorias" aria-label="Categoria" id="categoria" required>
@@ -77,7 +62,7 @@
                 Seleccione una categoria.
             </div>
         </div>
-        <div class="col-12">
+        <div class="col-6">
             <label for="imagen" class="form-label mi-label">Imagen</label>
             <input class="form-control" name="imagen" type="file" id="imagen">
         </div>

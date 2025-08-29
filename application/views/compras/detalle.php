@@ -15,6 +15,8 @@
                     <th scope="col">Precio Unitario</th>
                     <th scope="col">ID Compra</th>
                     <th scope="col">Producto</th>
+                    <th scope="col">Lote</th>
+                    <th scope="col">Fecha Vencimiento</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +26,8 @@
                         <td><?= $d->precio_unitario ?></td>
                         <td><?= $d->id_compras ?></td>
                         <td><?= $d->nombre_producto . ' - ' . $d->marca_producto ?></td>
+                        <td><?= $d->lote ?></td>
+                        <td><?= $d->fecha_vencimiento ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

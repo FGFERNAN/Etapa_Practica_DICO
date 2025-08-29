@@ -67,7 +67,7 @@ class Producto_model extends CI_Model
         $this->db->join('proveedores pr', 'p.id_proveedores = pr.id_proveedores');
         $this->db->join('proveedores prc', 'p.id_proveedores_contingencia = prc.id_proveedores', 'left');
         $this->db->where('p.id_estado_producto !=', 2);
-        $this->db->where('p.id_proveedores_contingencia !=', $id_proveedor);
+        $this->db->where("(p.id_proveedores_contingencia = '$id_proveedor' OR p.id_proveedores_contingencia IS NULL)");
         return $this->db->get()->result();
     }
 
@@ -95,7 +95,7 @@ class Producto_model extends CI_Model
         $this->db->join('proveedores pr', 'p.id_proveedores = pr.id_proveedores');
         $this->db->join('proveedores prc', 'p.id_proveedores_contingencia = prc.id_proveedores', 'left');
         $this->db->where('p.id_estado_producto !=', 2);
-        $this->db->where('p.id_proveedores =', $id_proveedor);
+        $this->db->where("(p.id_proveedores = '$id_proveedor' OR p.id_proveedores_contingencia = '$id_proveedor')");
         return $this->db->get()->result();
     }
 

@@ -14,7 +14,6 @@
                     <th scope="col">Precio Compra</th>
                     <th scope="col">Precio Venta</th>
                     <th scope="col">Stock</th>
-                    <th scope="col">Lote</th>
                     <th scope="col">Categoría</th>
                     <th scope="col">Proveedor P.</th>
                     <th scope="col">Proveedor C.</th>
@@ -30,7 +29,6 @@
                     <td><?= $p->precio_compra ?></td>
                     <td><?= $p->precio_venta ?></td>
                     <td><?= $p->stock ?></td>
-                    <td><?= $p->lote ?></td>
                     <td><?= $p->categoria_nombre ?></td>
                     <td><?= $p->proveedor_nombre ?></td>
                     <td><?= $p->proveedor_nombre_c ?></td>
