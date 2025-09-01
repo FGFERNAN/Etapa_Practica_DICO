@@ -44,7 +44,7 @@
                 <a class="nav-link <?= $segmento == 'compras' ? 'active' : '' ?>" href="<?= base_url('compras') ?>">Compras</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Ventas</a>
+                <a class="nav-link <?= $segmento == 'ventas' ? 'active' : '' ?>" href="<?= base_url('ventas') ?>">Ventas</a>
             </li>
         </ul>
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
@@ -61,7 +61,7 @@
                         <a class="nav-link <?= $segmento == 'compras' ? 'active' : '' ?>" href="<?= base_url('compras') ?>"><i class="fa-solid fa-bag-shopping me-3"></i>Comprar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-chart-line me-3"></i>Ventas</a>
+                        <a class="nav-link <?= $segmento == 'ventas' ? 'active' : '' ?>" href="<?= base_url('ventas') ?>"><i class="fa-solid fa-chart-line me-3"></i>Ventas</a>
                     </li>
                     <hr class="mi-hr">
                     <h5 class="mi-h5">Admin</h5>

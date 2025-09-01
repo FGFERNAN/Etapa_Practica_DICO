@@ -99,6 +99,18 @@ class Producto_model extends CI_Model
         return $this->db->get()->result();
     }
 
+    public function filterStock() {
+        $this->db->select('p.*, m.nombre AS marca_nombre, c.nombre AS categoria_nombre, pr.nombre AS proveedor_nombre, prc.nombre AS proveedor_nombre_c, e.nombre AS estado_nombre');
+        $this->db->from('productos p');
+        $this->db->join('estado_producto e', 'p.id_estado_producto = e.id_estado_producto');
+        $this->db->join('marca m', 'p.id_marca = m.id_marca');
+        $this->db->join('categorias c', 'p.id_categorias = c.id_categorias');
+        $this->db->join('proveedores pr', 'p.id_proveedores = pr.id_proveedores');
+        $this->db->join('proveedores prc', 'p.id_proveedores_contingencia = prc.id_proveedores', 'left');
+        $this->db->where("(p.id_estado_producto != '2' AND p.stock > '0')");
+        return $this->db->get()->result();
+    }
+
     public function getById($id)
     {
         return $this->db->get_where($this->table, ['id_productos' => $id])->row();
@@ -109,9 +121,16 @@ class Producto_model extends CI_Model
         return $this->db->insert($this->table, $data);
     }
 
-    public function actualizar_stock($producto_id, $cantidad)
+    public function aumentar_stock($producto_id, $cantidad)
     {
         $this->db->set('stock', 'stock + ' . $cantidad, FALSE);
+        $this->db->where('id_productos', $producto_id);
+        return $this->db->update('productos');
+    }
+
+    public function disminuir_stock($producto_id, $cantidad)
+    {
+        $this->db->set('stock', 'stock - ' . $cantidad, FALSE);
         $this->db->where('id_productos', $producto_id);
         return $this->db->update('productos');
     }

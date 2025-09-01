@@ -13,12 +13,24 @@ class Compras extends CI_Controller
 
     public function index()
     {
-        $data['compras'] = $this->Compra_model->getAllCompras();
+        // 1. Recoger las fechas desde la URL (método GET)
+        $fecha_inicio = $this->input->get('fecha_inicio');
+        $fecha_fin = $this->input->get('fecha_fin');
+
+        // 2. Crear un array de filtros para pasarlo al modelo
+        $filtros = [
+            'fecha_inicio' => $fecha_inicio,
+            'fecha_fin' => $fecha_fin
+        ];
+
+        // 3. Pedir los datos al modelo, pasándole los filtros
+        $data['compras'] = $this->Compra_model->getComprasConFiltros($filtros);
         $data['proveedores'] = $this->Proveedor_model->getAll();
         $this->load->view('compras/index', $data);
     }
 
-    public function filtrar($id_proveedor) {
+    public function filtrar($id_proveedor)
+    {
         $data['compras'] = $this->Compra_model->filterProveedor($id_proveedor);
         $data['proveedores'] = $this->Proveedor_model->getAll();
         $this->load->view('compras/index', $data);
@@ -99,7 +111,7 @@ class Compras extends CI_Controller
                         $this->Compra_model->createDetalleCompra($detalle_data);
 
                         // Actualizar stock del producto
-                        $this->Producto_model->actualizar_stock($productos_ids[$i], $cantidades[$i]);
+                        $this->Producto_model->aumentar_stock($productos_ids[$i], $cantidades[$i]);
                     }
                 }
             }

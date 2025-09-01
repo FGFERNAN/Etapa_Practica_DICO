@@ -321,7 +321,7 @@
 
                 const mensajeProducto = document.getElementById('mensaje-producto');
                 mensajeProducto.style.display = 'none';
-                alert('Producto agregado al carrito');
+                
             } else {
                 const mensajeProducto = document.getElementById('mensaje-producto');
                 mensajeProducto.style.display = 'block';
@@ -344,7 +344,7 @@
                 </td>
                 <td>
                     <input type="text"class="form-control-custom lote-input" name="lote[]" required>
-                    <div class="text-danger"><?= form_error('lote[0]') ?></div>
+                    <div class="text-danger"></div>
                 </td>
                 <td>
                     <input type="date"  class="form-control-custom fecha-vencimiento-input" name="fecha_vencimiento[]" required>
@@ -462,6 +462,7 @@
             // Una vez que la página está lista, llamamos a tu función.
             // Ella se encargará de leer los subtotales que PHP ya imprimió y calcular el total general.
             calcularTotal();
+            actualizarBotonesEliminar();
         });
     </script>
     <?php $this->load->view('layout/footer'); ?>

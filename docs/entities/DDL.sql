@@ -292,6 +292,15 @@ CREATE TABLE ventas(
 );
 
 ALTER TABLE ventas
+	DROP COLUMN zona_horaria;
+    
+ALTER TABLE ventas
+	CHANGE COLUMN fecha_hora fecha_hora DATETIME NOT NULL;
+
+ALTER TABLE ventas 
+	CHANGE COLUMN id_cliente cliente VARCHAR(100);
+
+ALTER TABLE ventas
 	ADD CONSTRAINT FK_ventas_usuarios
 		FOREIGN KEY (id_usuarios) REFERENCES usuarios(id_usuarios);
         
@@ -304,6 +313,9 @@ CREATE TABLE detalle_compra(
     CONSTRAINT PK_detalle_compra
 		PRIMARY KEY (id_detalle_compra)
 );
+
+ALTER TABLE detalle_compra
+	CHANGE COLUMN lote lote VARCHAR(50) UNIQUE NOT NULL;
 
 ALTER TABLE detalle_compra 
 	ADD COLUMN lote VARCHAR(50),

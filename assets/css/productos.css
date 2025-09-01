@@ -20,6 +20,11 @@ body {
     width: 80%;
 }
 
+.form-container-ventas {
+    margin-top: 19%;
+    width: 70%;
+}
+
 .mi-header {
     margin-left: 10%;
 }
@@ -351,4 +356,9 @@ hr {
     width: 100%;
     color: white;
     background-color: #040403;
+}
+
+.text-danger-servidor {
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-danger-rgb),var(--bs-text-opacity))!important;
 }

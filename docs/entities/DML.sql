@@ -82,4 +82,5 @@ SELECT * FROM categorias_con_contador;
 
 SELECT * FROM proveedores;
 
+SELECT * FROM productos WHERE id_proveedores_contingencia IS NULL;
 

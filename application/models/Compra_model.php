@@ -16,13 +16,37 @@ class Compra_model extends CI_Model
         return $this->db->get()->result();
     }
 
-    public function filterProveedor($id_proveedor) {
+    public function filterProveedor($id_proveedor)
+    {
         $this->db->select('c.*, u.nombre AS usuario_nombre, pr.nombre AS proveedor_nombre');
         $this->db->from('compras c');
         $this->db->join('usuarios u', 'c.id_usuarios = u.id_usuarios', 'left');
         $this->db->join('proveedores pr', 'c.id_proveedores = pr.id_proveedores');
         $this->db->where('c.id_proveedores =', $id_proveedor);
         return $this->db->get()->result();
+    }
+
+    public function getComprasConFiltros($filtros)
+    {
+        $this->db->select('c.*, u.nombre AS usuario_nombre, pr.nombre as proveedor_nombre');
+        $this->db->from('compras c');
+        $this->db->join('usuarios u', 'c.id_usuarios = u.id_usuarios', 'left');
+        $this->db->join('proveedores pr', 'c.id_proveedores = pr.id_proveedores');
+
+        // Aplicar filtro de fecha de inicio SI EXISTE
+        if (!empty($filtros['fecha_inicio'])) {
+            // Asumiendo que tu columna de fecha en la tabla 'compras' se llama 'fecha'
+            $this->db->where('c.fecha_hora >=', $filtros['fecha_inicio']);
+        }
+
+        // Aplicar filtro de fecha de fin SI EXISTE
+        if (!empty($filtros['fecha_fin'])) {
+            $this->db->where('c.fecha_hora <=', $filtros['fecha_fin']);
+        }
+
+        $this->db->order_by('c.id_compras', 'DESC'); // Ordenar por la más reciente
+        $query = $this->db->get();
+        return $query->result();
     }
 
     public function getDetalleCompra($id_compra)
@@ -55,7 +79,8 @@ class Compra_model extends CI_Model
         return $this->db->insert($this->table_detalle_compra, $data);
     }
 
-    public function verDatelleCompra($id_compra) {
+    public function verDatelleCompra($id_compra)
+    {
         $this->db->select('dc.*, p.nombre AS nombre_producto, m.nombre AS marca_producto');
         $this->db->from('detalle_compra dc');
         $this->db->join('productos p', 'dc.id_productos = p.id_productos');

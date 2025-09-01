@@ -1,0 +1,424 @@
+    <?php $this->load->view('layout/header'); ?>
+    <?php $this->load->view('layout/navbar'); ?>
+
+    <div class="container-fluid form-container-ventas">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="mi-h3"><i class="fas fa-shopping-cart"></i> Facturar Venta</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="<?= base_url('ventas/guardar') ?>" method="post" class="needs-validation" novalidate>
+                            <div class="row mb-4">
+                                <div class="col-md-12">
+                                    <label for="cliente" class="form-label label-compras">Cliente</label>
+                                    <input type="text" class="form-control-custom" id="cliente" name="cliente" placeholder="Nombre del Cliente" value="<?= set_value('cliente') ?>" required>
+                                    <div class="invalid-feedback">
+                                        Ingrese el nombre del cliente.
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <h4 class="mb-3 mi-h4">Carrito</h4>
+                            <div class="table-responsive">
+                                <table class="table table-striped-columns table-bordered table-p">
+                                    <thead>
+                                        <tr>
+                                            <th width="30%">Producto</th>
+                                            <th width="15%">Cantidad</th>
+                                            <th width="20%">Precio Unitario</th>
+                                            <th width="25%">Subtotal</th>
+                                            <th width="10%">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="productosBody" class="table-group-divider">
+                                        <?php
+                                        // Verificamos si hay datos POST, lo que significa que el formulario fue enviado y probablemente falló la validación.
+                                        $cantidades = $this->input->post('cantidad');
+                                        if (!empty($cantidades)) :
+                                            // Si hay datos, recorremos los lotes para reconstruir cada fila
+                                            foreach ($cantidades as $i => $cantidad) :
+                                                // Obtenemos los demás datos de la misma fila usando el índice $i
+                                                $id_producto = set_value("ids_productos[$i]");
+                                                // Convertimos a número para poder calcular
+                                                $cantidad = (float) set_value("cantidad[$i]", 0);
+                                                $precio = (float) set_value("precio_unitario[$i]", 0);
+                                                $nombre_producto = set_value("nombres_productos[$i]");
+                                                $marca_producto = set_value("marcas_productos[$i]");
+                                                // Calculamos el subtotal
+                                                $subtotal = $cantidad * $precio;
+                                        ?>
+                                                <tr class="fila-producto">
+                                                    <td>
+                                                        <input type="hidden" name="ids_productos[]" class="producto-id" value="<?= $id_producto ?>">
+                                                        <input type="hidden" name="nombres_productos[]" value="<?= $nombre_producto ?>">
+                                                        <input type="hidden" name="marcas_productos[]" value="<?= $marca_producto ?>">
+                                                        <div><strong><?= $nombre_producto ?></strong></div>
+                                                        <small class="text-muted"><?= $marca_producto ?></small>
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="form-control-custom cantidad" name="cantidad[]" value="<?= set_value("cantidad[$i]") ?>" min="1" step="1" placeholder="0" required>
+                                                        <div class="text-danger-servidor"><?= form_error("cantidad[$i]") ?></div>
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="form-control-custom precio" name="precio_unitario[]" value="<?= $precio ?>" min="0" step="0.01" placeholder="0.00" required>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control-custom subtotal" readonly value="<?= number_format($subtotal, 2, ',', '') ?>" placeholder="0.00">
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-sm btn-secondary btn-asignar aumentar-cantidad"><i class="fa-solid fa-plus"></i></button>
+                                                        <button type="button" class="btn btn-sm btn-danger btn-eliminar eliminar-fila" disabled>
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            <?php
+                                            endforeach;
+                                        else :
+                                            // Si no hay datos POST (primera carga), mostramos la fila inicial como la tenías
+                                            ?>
+                                            <tr class="fila-producto">
+                                                <td>
+                                                    <input type="hidden" name="ids_productos[]" class="producto-id">
+                                                    <button type="button" class="btn btn-sm btn-buscar" data-bs-toggle="modal" data-bs-target="#modalProductos"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                                </td>
+                                                <td>
+                                                    <input type="number" class="form-control-custom cantidad" name="cantidad[]" min="1" step="1" placeholder="0" required>
+                                                    <div class="text-danger"></div>
+                                                </td>
+                                                <td>
+                                                    <input type="number" class="form-control-custom precio" name="precio_unitario[]" min="0" step="0.01" placeholder="0.00" required>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control-custom subtotal" readonly placeholder="0.00">
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-secondary btn-asignar aumentar-cantidad"><i class="fa-solid fa-plus"></i></button>
+                                                    <button type="button" class="btn btn-sm btn-danger btn-eliminar eliminar-fila" disabled>
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <button type="button" id="agregarProducto" class="btn btn-danger btn-eliminar"><i class="fa-solid fa-cart-plus"></i> Agregar Producto</button>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8"></div>
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-body mi-card-body">
+                                            <div class="row">
+                                                <div class="col-6"><strong>SUBTOTAL:</strong></div>
+                                                <div class="col-6 text-right">
+                                                    <strong id="subtotalGeneral">$0.00</strong>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6"><strong>IVA:</strong></div>
+                                                <div class="col-6 text-right">
+                                                    <strong id="ivaGeneral">$0.00</strong>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6"><strong>TOTAL:</strong></div>
+                                                <div class="col-6 text-right">
+                                                    <strong id="totalGeneral">$0.00</strong>
+                                                    <input type="hidden" name="total" id="totalInput">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-12 text-right">
+                                    <a href="<?php echo base_url('ventas'); ?>" class="btn btn-secondary btn-asignar">
+                                        <i class="fas fa-times"></i> Cancelar
+                                    </a>
+                                    <button type="submit" class="btn btn-secondary btn-guardar-c ml-2">
+                                        <i class="fas fa-save"></i> Guardar Compra
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="modalProductos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Lista de Productos</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div id="mensaje-producto" class="alert alert-danger" style="display: none;">
+                                                <i class="fa-solid fa-circle-xmark"></i>
+                                                Por favor, seleccione un producto primero.
+                                            </div>
+                                            <div id="table-modal" class="table-responsive mt-4 mi-table">
+                                                <table class="table table-p table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col"></th>
+                                                            <th scope="col">Nombre</th>
+                                                            <th scope="col">Marca</th>
+                                                            <th scope="col">Stock</th>
+                                                            <th scope="col">Precio</th>
+                                                            <th scope="col">Categoría</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php foreach ($productos as $p): ?>
+                                                            <tr>
+                                                                <td><input class="form-check-input" type="radio" name="id_productos" value="<?= $p->id_productos ?>"></td>
+                                                                <td><?= $p->nombre ?></td>
+                                                                <td><?= $p->marca_nombre ?></td>
+                                                                <td><?= $p->stock ?></td>
+                                                                <td><?= $p->precio_venta ?></td>
+                                                                <td id="categoria_nombre"><?= $p->categoria_nombre ?></td>
+                                                            </tr>
+                                                        <?php endforeach; ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger btn-eliminar" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary btn-editar" id="btnSeleccionar">Seleccionar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Variable para almacenar el producto seleccionado
+        let productoSeleccionado = null;
+        let filaActual = null; // Para saber en qué fila se está seleccionando el producto
+        let fila = null; // Para recordar qué fila ocultar
+
+        // Detectar cuando se selecciona un radio button en el modal
+        document.addEventListener('click', function(e) {
+            if (e.target.type === 'radio' && e.target.name === 'id_productos') {
+                // Obtener la fila del producto seleccionado
+                fila = e.target.closest('tr');
+
+                // Guardar los datos del producto
+                productoSeleccionado = {
+                    id: e.target.value,
+                    nombre: fila.cells[1].textContent, // Columna Nombre
+                    marca: fila.cells[2].textContent, // Columna Marca  
+                    stock: fila.cells[3].textContent, // Columna Stock
+                    precio: fila.cells[4].textContent, // Columna Precio
+                    categoria: fila.cells[5].textContent // Columna Categoría
+                };
+                console.log(productoSeleccionado)
+            }
+        });
+
+        // Cuando se abre el modal
+        document.getElementById('modalProductos').addEventListener('show.bs.modal', function(event) {
+            const button = event.relatedTarget;
+            filaActual = button.closest('.fila-producto');
+
+            const tablaModal = document.getElementById('table-modal');
+            tablaModal.style.display = 'block';
+        });
+
+
+        // Función para cuando se hace clic en "Seleccionar"
+        document.getElementById('btnSeleccionar').addEventListener('click', function() {
+            if (productoSeleccionado && filaActual) {
+
+                // Llenar el input hidden con el ID del producto
+                filaActual.querySelector('.producto-id').value = productoSeleccionado.id;
+
+                // Mostrar información del producto seleccionado
+                const celdaProducto = filaActual.querySelector('td:first-child');
+                celdaProducto.innerHTML = `
+                <input type="hidden" name="ids_productos[]" class="producto-id" value="${productoSeleccionado.id}">
+                <input type="hidden" name="nombres_productos[]" value="${productoSeleccionado.nombre}">
+                <input type="hidden" name="marcas_productos[]" value="${productoSeleccionado.marca}">
+                <input type="hidden" name="stock[]" value="${productoSeleccionado.stock}">
+                <div><strong>${productoSeleccionado.nombre}</strong></div>
+                <small class="text-muted">${productoSeleccionado.marca}</small>
+            `;
+
+                // Llenar el precio automáticamente (quitar el símbolo $ si existe)
+                const precioLimpio = productoSeleccionado.precio.replace('$', '').replace(',', '');
+                filaActual.querySelector('.precio').value = precioLimpio;
+
+
+                // OCULTAR el producto del modal para que no se pueda volver a seleccionar
+                fila.style.display = 'none';
+
+                // Cerrar el modal
+                bootstrap.Modal.getInstance(document.getElementById('modalProductos')).hide();
+
+                // Limpiar selección para próxima vez
+                productoSeleccionado = null;
+                filaActual = null;
+                fila = null;
+
+                const mensajeProducto = document.getElementById('mensaje-producto');
+                mensajeProducto.style.display = 'none';
+
+            } else {
+                const mensajeProducto = document.getElementById('mensaje-producto');
+                mensajeProducto.style.display = 'block';
+            }
+        });
+
+        // Agregar nueva fila de producto
+        document.getElementById('agregarProducto').addEventListener('click', function() {
+            const nuevaFila = `
+            <tr class="fila-producto">
+                <td>
+                    <input type="hidden" name="ids_productos[]" class="producto-id">
+                    <button type="button" class="btn btn-sm btn-buscar" data-bs-toggle="modal" data-bs-target="#modalProductos"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </td>
+                <td>
+                    <input type="number" class="form-control-custom cantidad" name="cantidad[]" min="1" step="1" placeholder="0" required>
+                    <div class="text-danger"></div>
+                    <div class="text-danger-servidor"></div>
+                </td>
+                <td>
+                    <input type="number" class="form-control-custom precio" name="precio_unitario[]" min="0" step="0.01" placeholder="0.00" readonly>
+                </td>
+                <td>
+                    <input type="text" class="form-control-custom subtotal" readonly placeholder="0.00">
+                </td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-secondary btn-asignar aumentar-cantidad" onclick="aumentarCantidad()"><i class="fa-solid fa-plus"></i></button>
+                    <button type="button" class="btn btn-sm btn-danger btn-eliminar eliminar-fila">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        `;
+            document.getElementById('productosBody').insertAdjacentHTML('beforeend', nuevaFila);
+            actualizarBotonesEliminar();
+        });
+
+        // BONUS: Función para mostrar el producto de nuevo si lo eliminan del carrito
+        function mostrarProductoEnModal(productoId) {
+            // Buscar la fila oculta por el ID del producto
+            const filas = document.querySelectorAll('#modalProductos tbody tr');
+            filas.forEach(fila => {
+                const radio = fila.querySelector('input[type="radio"]');
+                const mensajeProducto = document.getElementById('mensaje-producto');
+                if (radio && radio.value === productoId) {
+                    fila.style.display = ''; // Mostrar la fila de nuevo
+                    mensajeProducto.style.display = 'none';
+                }
+            });
+        }
+
+        // Eliminar fila
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('eliminar-fila') || e.target.parentElement.classList.contains('eliminar-fila')) {
+                const fila = e.target.closest('tr');
+                const productoId = fila.querySelector('.producto-id').value;
+                fila.remove();
+                // Mostrar el producto de nuevo en el modal
+                if (productoId) {
+                    mostrarProductoEnModal(productoId);
+                }
+                actualizarBotonesEliminar();
+                calcularTotal();
+            }
+        });
+
+        function actualizarBotonesEliminar() {
+            const filas = document.querySelectorAll('.fila-producto');
+            filas.forEach((fila, index) => {
+                const boton = fila.querySelector('.eliminar-fila');
+                boton.disabled = filas.length === 1;
+            });
+        }
+
+        // Calcular subtotales y total
+        document.addEventListener('input', function(e) {
+            if (e.target.classList.contains('cantidad') || e.target.classList.contains('precio')) {
+                const fila = e.target.closest('tr');
+                const stock = parseInt(fila.querySelector('input[name="stock[]"]').value) || 0;
+                const cantidad = parseFloat(fila.querySelector('.cantidad').value) || 0;
+                const precio = parseFloat(fila.querySelector('.precio').value) || 0;
+                const mensaje = fila.querySelector('.text-danger');
+                const subtotal = cantidad * precio;
+                if (cantidad > stock) {
+                    fila.querySelector('.cantidad').value = stock;
+                    mensaje.textContent = 'La cantidad supera el stock disponible (' + stock + ').';
+                }
+
+                fila.querySelector('.subtotal').value = subtotal.toLocaleString('es-CO', {
+                    minimumFractionDigits: 2
+                });
+                calcularTotal();
+            }
+        });
+
+        function calcularTotal() {
+            let subtotal = 0;
+
+            document.querySelectorAll('.fila-producto').forEach(fila => {
+                const cantidad = parseFloat(fila.querySelector('.cantidad').value) || 0;
+                const precio = parseFloat(fila.querySelector('.precio').value) || 0;
+                subtotal += cantidad * precio;
+            });
+
+            const iva = subtotal * 0.19; // 19% IVA
+            const total = subtotal + iva;
+
+            document.getElementById('subtotalGeneral').textContent = '$' + subtotal.toLocaleString('es-CO', {
+                minimumFractionDigits: 2
+            });
+            document.getElementById('ivaGeneral').textContent = '$' + iva.toLocaleString('es-CO', {
+                minimumFractionDigits: 2
+            });
+            document.getElementById('totalGeneral').textContent = '$' + total.toLocaleString('es-CO', {
+                minimumFractionDigits: 2
+            });
+            document.getElementById('totalInput').value = total;
+        }
+
+        // Aumentar cantidad
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('aumentar-cantidad') || e.target.parentElement.classList.contains('aumentar-cantidad')) {
+                const fila = e.target.closest('tr');
+                const cantidadInput = fila.querySelector('.cantidad');
+                const productoId = fila.querySelector('.producto-id').value;
+                cantidadInput.value = (parseInt(fila.querySelector('.cantidad').value) || 0) + 1;
+                const eventoInput = new Event('input', {
+                    bubbles: true
+                });
+                cantidadInput.dispatchEvent(eventoInput);
+                calcularTotal();
+            }
+        });
+    </script>
+    <script>
+        // Le decimos al navegador que espere a que todo el HTML esté cargado.
+        document.addEventListener('DOMContentLoaded', function() {
+            // Una vez que la página está lista, llamamos a tu función.
+            // Ella se encargará de leer los subtotales que PHP ya imprimió y calcular el total general.
+            calcularTotal();
+            actualizarBotonesEliminar();
+        });
+    </script>
+    <?php $this->load->view('layout/footer'); ?>
