@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
+use Dompdf\Dompdf;
 class Ventas extends CI_Controller
 {
     public function __construct()
@@ -104,5 +104,44 @@ class Ventas extends CI_Controller
             }
             redirect('ventas');
         }
+    }
+
+    public function generar_factura_pdf($id_venta)
+    {
+        // 1. Cargar la librería Dompdf
+        require_once APPPATH . 'third_party/dompdf/autoload.inc.php';
+        
+        // 2. Obtener los datos de la venta y sus detalles desde el modelo
+        //    (Necesitarás crear estos métodos en tu Venta_model)
+        $data['venta'] = $this->Venta_model->getById($id_venta);
+        $data['detalles'] = $this->Venta_model->verDatelleVenta($id_venta);
+
+        // Si no se encuentra la venta, redirigir o mostrar error
+        if (!$data['venta'] || !$data['detalles']) {
+            show_404();
+            return;
+        }
+
+        // 3. Cargar la vista de la factura en una variable
+        //    El tercer parámetro `TRUE` hace que la vista se devuelva como una cadena de texto
+        $html = $this->load->view('ventas/factura_pdf', $data, TRUE);
+
+        // 4. Instanciar Dompdf
+        $dompdf = new Dompdf();
+        
+        // 5. Cargar el HTML en Dompdf
+        $dompdf->loadHtml($html);
+        
+        // 6. Configurar el tamaño del papel y la orientación
+        $dompdf->setPaper('A4', 'portrait');
+        
+        // 7. Renderizar el HTML a PDF
+        $dompdf->render();
+        
+        // 8. Enviar el PDF al navegador
+        //    El primer parámetro es el nombre del archivo.
+        //    El segundo, con "Attachment" => false, hace que se muestre en el navegador.
+        //    Si lo pones en `true`, forzará la descarga directa.
+        $dompdf->stream("factura_venta_" . $id_venta . ".pdf", array("Attachment" => false));
     }
 }

@@ -43,11 +43,15 @@
                                         <?php
                                         // Verificamos si hay datos POST, lo que significa que el formulario fue enviado y probablemente falló la validación.
                                         $lotes_enviados = $this->input->post('lote');
+                                        $ids_en_carrito = [];
                                         if (!empty($lotes_enviados)) :
                                             // Si hay datos, recorremos los lotes para reconstruir cada fila
                                             foreach ($lotes_enviados as $i => $lote) :
                                                 // Obtenemos los demás datos de la misma fila usando el índice $i
                                                 $id_producto = set_value("ids_productos[$i]");
+                                                if(!empty($id_producto)) {
+                                                    $ids_en_carrito[] = $id_producto;
+                                                }
                                                 // Convertimos a número para poder calcular
                                                 $cantidad = (float) set_value("cantidad[$i]", 0);
                                                 $precio = (float) set_value("precio_unitario[$i]", 0);
@@ -203,7 +207,11 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php foreach ($productos as $p): ?>
-                                                            <tr>
+                                                            <?php
+                                                            // Si el producto ya está en el carrito, lo saltamos
+                                                            $esta_en_carrito = in_array($p->id_productos, $ids_en_carrito); 
+                                                            ?>
+                                                            <tr <?= $esta_en_carrito ? 'style="display: none;"' : '' ?>>
                                                                 <td><input class="form-check-input" type="radio" name="id_productos" value="<?= $p->id_productos ?>"></td>
                                                                 <td><?= $p->nombre ?></td>
                                                                 <td><?= $p->marca_nombre ?></td>

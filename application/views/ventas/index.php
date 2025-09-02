@@ -74,6 +74,7 @@
                                 <td><?= $v->cliente ?></td>
                                 <td>
                                     <button class="btn btn-sm btn-secondary btn-editar" onclick="window.location.href='<?= base_url('ventas/detalle/' . $v->id_ventas) ?>'"><i class="fa-solid fa-eye"></i></button>
+                                    <a href="<?= base_url('ventas/generar_factura_pdf/' . $v->id_ventas) ?>" class="btn btn-sm btn-secondary btn-asignar" target="_blank"><i class="fa-solid fa-download"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

@@ -290,6 +290,9 @@ CREATE TABLE ventas(
     CONSTRAINT PK_ventas
 		PRIMARY KEY (id_ventas)
 );
+	
+ALTER TABLE ventas
+	CHANGE COLUMN cliente cliente VARCHAR(100) NOT NULL;
 
 ALTER TABLE ventas
 	DROP COLUMN zona_horaria;
@@ -316,6 +319,9 @@ CREATE TABLE detalle_compra(
 
 ALTER TABLE detalle_compra
 	CHANGE COLUMN lote lote VARCHAR(50) UNIQUE NOT NULL;
+    
+ALTER TABLE detalle_compra
+	DROP INDEX lote;
 
 ALTER TABLE detalle_compra 
 	ADD COLUMN lote VARCHAR(50),

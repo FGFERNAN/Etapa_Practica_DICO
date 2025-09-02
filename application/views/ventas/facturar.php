@@ -34,19 +34,18 @@
                                     </thead>
                                     <tbody id="productosBody" class="table-group-divider">
                                         <?php
-                                        // Verificamos si hay datos POST, lo que significa que el formulario fue enviado y probablemente falló la validación.
+                                        $ids_en_carrito = [];
                                         $cantidades = $this->input->post('cantidad');
                                         if (!empty($cantidades)) :
-                                            // Si hay datos, recorremos los lotes para reconstruir cada fila
                                             foreach ($cantidades as $i => $cantidad) :
-                                                // Obtenemos los demás datos de la misma fila usando el índice $i
                                                 $id_producto = set_value("ids_productos[$i]");
-                                                // Convertimos a número para poder calcular
+                                                if(!empty($id_producto)) {
+                                                    $ids_en_carrito[] = $id_producto;
+                                                } 
                                                 $cantidad = (float) set_value("cantidad[$i]", 0);
                                                 $precio = (float) set_value("precio_unitario[$i]", 0);
                                                 $nombre_producto = set_value("nombres_productos[$i]");
                                                 $marca_producto = set_value("marcas_productos[$i]");
-                                                // Calculamos el subtotal
                                                 $subtotal = $cantidad * $precio;
                                         ?>
                                                 <tr class="fila-producto">
@@ -180,7 +179,11 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php foreach ($productos as $p): ?>
-                                                            <tr>
+                                                            <?php
+                                                            // Si el producto ya está en el carrito, lo saltamos
+                                                            $esta_en_carrito = in_array($p->id_productos, $ids_en_carrito); 
+                                                            ?> 
+                                                            <tr <?= $esta_en_carrito ? 'style="display: none;"' : '' ?>>
                                                                 <td><input class="form-check-input" type="radio" name="id_productos" value="<?= $p->id_productos ?>"></td>
                                                                 <td><?= $p->nombre ?></td>
                                                                 <td><?= $p->marca_nombre ?></td>
