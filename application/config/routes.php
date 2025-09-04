@@ -91,5 +91,6 @@ $route['ventas'] = 'ventas/index';
 $route['ventas/facturar'] = 'ventas/facturar';
 $route['ventas/guardar'] = 'ventas/guardar';
 $route['ventas/detalle/(:num)'] = 'ventas/detalle/$1';
+$route['inventario'] = 'inventario/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

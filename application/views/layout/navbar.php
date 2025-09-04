@@ -63,6 +63,9 @@
                     <li class="nav-item">
                         <a class="nav-link <?= $segmento == 'ventas' ? 'active' : '' ?>" href="<?= base_url('ventas') ?>"><i class="fa-solid fa-chart-line me-3"></i>Ventas</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $segmento == 'inventario' ? 'active' : '' ?>" href="<?= base_url('inventario') ?>"><i class="fa-solid fa-boxes-stacked me-3"></i>Inventario</a>
+                    </li>
                     <hr class="mi-hr">
                     <h5 class="mi-h5">Admin</h5>
                     <li class="nav-item">
