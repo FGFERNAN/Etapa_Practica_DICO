@@ -190,6 +190,9 @@ CREATE TABLE productos(
 );
 
 ALTER TABLE productos
+	ADD COLUMN act_stock DATETIME DEFAULT NULL;
+
+ALTER TABLE productos
 	CHANGE COLUMN stock stock INT(10);
 
 ALTER TABLE productos

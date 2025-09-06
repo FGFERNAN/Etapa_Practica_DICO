@@ -39,9 +39,9 @@
                                         if (!empty($cantidades)) :
                                             foreach ($cantidades as $i => $cantidad) :
                                                 $id_producto = set_value("ids_productos[$i]");
-                                                if(!empty($id_producto)) {
+                                                if (!empty($id_producto)) {
                                                     $ids_en_carrito[] = $id_producto;
-                                                } 
+                                                }
                                                 $cantidad = (float) set_value("cantidad[$i]", 0);
                                                 $precio = (float) set_value("precio_unitario[$i]", 0);
                                                 $nombre_producto = set_value("nombres_productos[$i]");
@@ -181,8 +181,8 @@
                                                         <?php foreach ($productos as $p): ?>
                                                             <?php
                                                             // Si el producto ya está en el carrito, lo saltamos
-                                                            $esta_en_carrito = in_array($p->id_productos, $ids_en_carrito); 
-                                                            ?> 
+                                                            $esta_en_carrito = in_array($p->id_productos, $ids_en_carrito);
+                                                            ?>
                                                             <tr <?= $esta_en_carrito ? 'style="display: none;"' : '' ?>>
                                                                 <td><input class="form-check-input" type="radio" name="id_productos" value="<?= $p->id_productos ?>"></td>
                                                                 <td><?= $p->nombre ?></td>
