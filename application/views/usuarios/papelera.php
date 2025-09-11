@@ -8,9 +8,7 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-11">
                     <div class="d-flex align-items-center">
-                        <h2 class="mi-h2">Usuarios</h2>
-                        <button class="btn mi-btn ms-4 mb-2" onclick="location.href='<?= base_url('usuarios/crear'); ?>'"><i class="fa-solid fa-plus me-1"></i></button>
-                        <button class="btn mi-btn-papelera ms-3 mb-2" onclick="location.href='<?= base_url('usuarios/papelera'); ?>'"><i class="fa-solid fa-trash-can"></i></button>
+                        <h2 class="mi-h2">Papelera Usuarios</h2>
                     </div>
                 </div>
             </div>
@@ -51,8 +49,8 @@
                                 <td><?= $u->estado_nombre ?></td>
                                 <td><?= $u->tipo_documento_nombre ?></td>
                                 <td>
-                                    <button class="btn btn-sm btn-secondary btn-editar" onclick="window.location.href='<?= base_url('usuarios/editar/' . $u->id_usuarios) ?>'"><i class="fa-solid fa-pen"></i></button>
-                                    <a href="<?= base_url('usuarios/eliminar/' . $u->id_usuarios) ?>" class="btn btn-sm btn-danger btn-eliminar" onclick="return confirm('¿Estas seguro de eliminar este usuario?')"><i class="fa-solid fa-trash"></i></a>
+                                    <a href="<?= base_url('usuarios/activar/'.$u->id_usuarios) ?>" class="btn btn-sm btn-secondary btn-editar" onclick="return confirm('¿Estas seguro de activar este usuarios nuevamente?')"><i class="fa-solid fa-check"></i></a>
+                                    <a href="<?= base_url('usuarios/eliminar-definitivo/' . $u->id_usuarios) ?>" class="btn btn-sm btn-danger btn-eliminar" onclick="return confirm('¿Estas seguro de eliminar este usuario definitivamente?')"><i class="fa-solid fa-trash"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

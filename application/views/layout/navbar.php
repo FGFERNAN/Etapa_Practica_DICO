@@ -24,7 +24,7 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión</a></li>
+                    <li><a class="dropdown-item text-danger" href="<?= base_url('logout') ?>"><i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión</a></li>
                 </ul>
             </div>
         </div>
@@ -75,7 +75,7 @@
                         <a class="nav-link <?= $segmento == 'categorias' ? 'active' : '' ?>" href="<?= base_url('categorias') ?>"><i class="fa-solid fa-tags me-3"></i>Categorías</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-users me-3"></i></i>Usuarios</a>
+                        <a class="nav-link <?= $segmento == 'usuarios' ? 'active' : '' ?>" href="<?= base_url('usuarios') ?>"><i class="fa-solid fa-users me-3"></i></i>Usuarios</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa-solid fa-chart-pie me-3"></i>Reportes</a>

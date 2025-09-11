@@ -84,3 +84,13 @@ SELECT * FROM proveedores;
 
 SELECT * FROM productos WHERE id_proveedores_contingencia IS NULL;
 
+SELECT * FROM usuarios;
+SELECT * FROM estado_usuario;	
+
+INSERT INTO roles(nombre, descripcion) VALUES ('Administrador', 'Rol que puede ejecutar cualquier acción en el sistema'),
+('Supervisor', 'Supervisar operaciones, generar reportes, gestionar stock crítico'),
+('Vendedor', 'Procesar ventas, consultar precios y stock'),
+('Bodega/Almacen', 'Control de inventario, recepción de mercancía, gestión de proveedores y categorias');
+
+INSERT INTO tipo_documento(nombre) VALUES ('Cédula de Ciudadanía'), ('Tarjeta de Identidad'), ('Cédula de Extranjería'),
+('Registro Civil de Nacimiento');

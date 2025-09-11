@@ -49,7 +49,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'dashboard';
+$route['default_controller'] = 'auth';
+$route['dashboard'] = 'dashboard/index';
 $route['productos'] = 'productos/index';
 $route['productos/filtrar/(:num)'] = 'productos/filtrar/$1';
 $route['categorias'] = 'categorias/index';
@@ -92,5 +93,17 @@ $route['ventas/facturar'] = 'ventas/facturar';
 $route['ventas/guardar'] = 'ventas/guardar';
 $route['ventas/detalle/(:num)'] = 'ventas/detalle/$1';
 $route['inventario'] = 'inventario/index';
+$route['usuarios'] = 'usuarios/index';
+$route['usuarios/papelera'] = 'usuarios/papelera';
+$route['usuarios/crear'] = 'usuarios/crear';
+$route['usuarios/guardar'] = 'usuarios/guardar';
+$route['usuarios/editar/(:num)'] = 'usuarios/editar/$1';
+$route['usuarios/actualizar/(:num)'] = 'usuarios/actualizar/$1';
+$route['usuarios/eliminar/(:num)'] = 'usuarios/eliminacion_logica/$1';
+$route['usuarios/eliminar-definitivo/(:num)'] = 'usuarios/eliminacion_fisica/$1';
+$route['usuarios/activar/(:num)'] = 'usuarios/activar/$1';
+$route['login'] = 'auth/index';
+$route['auth/verificar'] = 'auth/login';
+$route['logout'] = 'auth/logout';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
