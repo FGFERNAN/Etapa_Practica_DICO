@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 use Dompdf\Dompdf;
-class Ventas extends CI_Controller
+class Ventas extends MY_Controller
 {
     public function __construct()
     {

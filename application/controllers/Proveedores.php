@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Proveedores extends CI_Controller
+class Proveedores extends MY_Controller
 {
 
     public function __construct()

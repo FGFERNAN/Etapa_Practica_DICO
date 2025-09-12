@@ -46,11 +46,11 @@ class Auth extends CI_Controller {
                     redirect('dashboard');
                 } else {
                     $this->session->set_flashdata('error', 'Contraseña incorrecta.');
-                    redirect('auth/index');
+                    $this->load->view('auth/index');
                 }
             } else {
-                $this->session->set_flashdata('error', 'El email no está registrado.');
-                redirect('auth/index');
+                $this->session->set_flashdata('info', 'El email no está registrado.');
+                $this->load->view('auth/index');
             }
         }
     }

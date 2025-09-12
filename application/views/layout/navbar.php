@@ -13,7 +13,7 @@
                     <li>
                         <div class="dropdown-header">
                             <strong>Usuario Actual</strong>
-                            <p class="text-muted mb-0">admin@sgsp.com</p>
+                            <p class="text-muted mb-0"><?= $this->session->userdata('email') ?></p>
                         </div>
                     </li>
                     <li>
@@ -32,7 +32,7 @@
         <?php $segmento = $this->uri->segment(1); ?>
         <ul class="nav justify-content-center nav-underline mi-navbar d-none d-md-flex">
             <li class="nav-item">
-                <a class="nav-link <?= $segmento == '' ? 'active' : '' ?>" href="<?= base_url() ?>">Inicio</a>
+                <a class="nav-link <?= $segmento == 'dashboard' ? 'active' : '' ?>" href="<?= base_url('dashboard') ?>">Inicio</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= $segmento == 'productos' ? 'active' : '' ?>" href="<?= base_url('productos') ?>">Productos</a>

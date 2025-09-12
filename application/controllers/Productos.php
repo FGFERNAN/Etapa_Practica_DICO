@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Productos extends CI_Controller
+class Productos extends MY_Controller
 {
     public function __construct()
     {

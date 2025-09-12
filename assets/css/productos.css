@@ -239,6 +239,7 @@ body {
 
 .card-body {
     background-color: #9DDBAD;
+    border-radius: 0px 0px 10px 10px;
 }
 
 .label-compras {
@@ -354,6 +355,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .card {
     box-shadow: 4px 5px 16px rgba(0, 0, 0, 0.4);
+    border: 0;
+    --bs-card-bg: #9DDBAD;
+}
+
+.card-login {
+    box-shadow: 10px 10px 12px rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
@@ -372,3 +379,42 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     align-items: center;
     min-height: 100vh;
 }
+
+.input-group-text {
+    color: white;
+    background-color: #040403;
+    border-color: #040403;
+}
+
+.form-control-login {
+    border-color: #040403;
+}
+
+.mi-p {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.btn-iniciar-sesion {
+    background-color: #5B7553;
+    color: white;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.btn-iniciar-sesion:hover {
+    background-color: #506749;
+    color: white;
+}
+
+.text-403{
+    font-family: 'Arial Black', sans-serif;
+    color: #e25b5b;
+    font-size: 5rem;
+    text-shadow: 2px 3px 4px rgba(0, 0, 0, 0.4);
+}
+
+.title-403 {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
