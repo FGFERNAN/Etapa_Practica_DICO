@@ -102,6 +102,12 @@
     --bs-dropdown-link-active-bg: #5B7553;
 }
 
+.imagen-navbar {
+    width: 3.5rem;
+    height: 3.5rem;
+
+}
+
 .dropdown-menu-light {
     --bs-dropdown-color: #dee2e6;
     --bs-dropdown-bg: #C3E8BD;

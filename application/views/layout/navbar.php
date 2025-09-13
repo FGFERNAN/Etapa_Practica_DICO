@@ -6,7 +6,14 @@
             </button>
             <div class="profile-pic-container dropdown">
                 <div class="profile-pic">
-                    <img src="<?= base_url('assets/img/user.jpg') ?>" alt="Foto de perfil">
+                    <?php
+                    $imagen_url = base_url('assets/img/user.jpg');
+
+                    if(!empty($this->session->userdata('imagen'))) {
+                        $imagen_url = base_url('uploads/perfiles/' . $this->session->userdata('imagen'));
+                    }
+                    ?>
+                    <img src="<?= $imagen_url ?>" class="img-fluid rounded-circle imagen-navbar" alt="Foto de perfil">
                 </div>
                 <a class="mi-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"></a>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-light">
@@ -19,7 +26,7 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Mi Perfil</a></li>
+                    <li><a class="dropdown-item" href="<?= base_url('perfil/' . $this->session->userdata('id_usuarios')) ?>"><i class="fas fa-user me-2"></i>Mi Perfil</a></li>
                     <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Configuración</a></li>
                     <li>
                         <hr class="dropdown-divider">

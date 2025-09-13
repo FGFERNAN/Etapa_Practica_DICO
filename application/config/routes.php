@@ -105,5 +105,7 @@ $route['usuarios/activar/(:num)'] = 'usuarios/activar/$1';
 $route['login'] = 'auth/index';
 $route['auth/verificar'] = 'auth/login';
 $route['logout'] = 'auth/logout';
+$route['perfil/(:num)'] = 'perfil/editar_perfil/$1';
+$route['perfil/editar-perfil/(:num)'] = 'perfil/actualizar_perfil/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
