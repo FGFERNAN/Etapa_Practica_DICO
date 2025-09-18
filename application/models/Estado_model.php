@@ -11,6 +11,8 @@ class Estado_model extends CI_Model
 
     public function getAllStateUser()
     {
+        $this->db->where('id_estado_usuario =', 1);
+        $this->db->or_where('id_estado_usuario =', 2);
         return $this->db->get($this->table_usuarios)->result();
     }
 

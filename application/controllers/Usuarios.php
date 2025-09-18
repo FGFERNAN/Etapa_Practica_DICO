@@ -16,10 +16,10 @@ class Usuarios extends MY_Controller
         $this->load->view('usuarios/index', $data);
     }
 
-    public function papelera()
+    public function archivo()
     {
         $data['usuarios'] = $this->Usuario_model->get_inactive();
-        $this->load->view('usuarios/papelera', $data);
+        $this->load->view('usuarios/archivo', $data);
     }
 
     public function crear()
@@ -45,7 +45,7 @@ class Usuarios extends MY_Controller
         $this->form_validation->set_rules(
             'telefono',
             'Telefono',
-            'trim|exact_length[10]|numeric|is_unique[usuarios.telefono]',
+            'required|trim|exact_length[10]|numeric|is_unique[usuarios.telefono]',
             array(
                 'is_unique' => 'El telefono ya existe.'
             )
@@ -143,7 +143,7 @@ class Usuarios extends MY_Controller
         $this->form_validation->set_rules(
             'telefono',
             'Telefono',
-            'trim|exact_length[10]|numeric|callback_telefono_usuario_unico'
+            'required|trim|exact_length[10]|numeric|callback_telefono_usuario_unico'
         );
         $this->form_validation->set_rules('id_roles', 'Roles', 'required');
         $this->form_validation->set_rules('id_estado_usuario', 'Estado', 'required');
@@ -176,10 +176,12 @@ class Usuarios extends MY_Controller
         redirect('usuarios');
     }
 
+    /*
     public function eliminacion_fisica($id) {
         $this->Usuario_model->delete($id);
         redirect('usuarios/papelera');
     }
+    */
 
     public function activar($id)
     {

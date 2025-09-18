@@ -18,10 +18,10 @@ class Proveedores extends MY_Controller
         $this->load->view('proveedores/index', $data);
     }
 
-    public function papelera()
+    public function archivo()
     {
         $data['proveedores'] = $this->Proveedor_model->getInactive();
-        $this->load->view('proveedores/papelera', $data);
+        $this->load->view('proveedores/archivo', $data);
     }
 
     public function crear()
@@ -115,7 +115,7 @@ class Proveedores extends MY_Controller
         $this->form_validation->set_rules(
             'telefono',
             'Telefono',
-            'integer|exact_length[10]|is_unique[proveedores.telefono]',
+            'required|integer|exact_length[10]|is_unique[proveedores.telefono]',
             array(
                 'is_unique' => 'El telefono ya existe.'
             )
@@ -160,7 +160,7 @@ class Proveedores extends MY_Controller
     {
         $this->form_validation->set_rules('nombre', 'Nombre', 'required|trim|min_length[3]|max_length[50]|callback_nombre_proveedor_unico');
         $this->form_validation->set_rules('contacto', 'Contacto', 'required|valid_email|callback_contacto_proveedor_unico');
-        $this->form_validation->set_rules('telefono', 'Telefono', 'integer|exact_length[10]|callback_telefono_proveedor_unico');
+        $this->form_validation->set_rules('telefono', 'Telefono', 'required|integer|exact_length[10]|callback_telefono_proveedor_unico');
         $this->form_validation->set_rules('empresa', 'Empresa', 'required|min_length[3]|max_length[50]');
         $this->form_validation->set_rules('nit', 'NIT', 'required|integer|exact_length[9]|callback_nit_proveedor_unico');
         $this->form_validation->set_rules('id_estado_proveedor', 'Estado', 'required');
@@ -225,6 +225,7 @@ class Proveedores extends MY_Controller
         redirect('proveedores');
     }
 
+    /*
     public function eliminacionFisica($id)
     {
         $cantidad = $this->Proveedor_model->getCantidadProductos($id);
@@ -236,11 +237,12 @@ class Proveedores extends MY_Controller
         }
         redirect('proveedores/papelera');
     }
+    */
 
     public function activar($id)
     {
         $data = ['id_estado_proveedor' => 1];
         $this->Proveedor_model->update($id, $data);
-        redirect('proveedores/papelera');
+        redirect('proveedores');
     }
 }

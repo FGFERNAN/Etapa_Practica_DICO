@@ -5,15 +5,15 @@
     <form action="<?= base_url('categorias/guardar') ?>" method="post" class="row g-3 needs-validation" novalidate>
         <legend class="legend">Crear Categoría</legend>
         <div class="col-md-6">
-            <label for="nombre" class="form-label mi-label">Nombre</label>
-            <input type="text" name="nombre" value="<?= set_value('nombre') ?>" class="form-control" id="nombre" minlength="3" maxlength="50" required>
+            <label for="nombre" class="form-label mi-label">Nombre <span style="color: red;">*</span></label>
+            <input type="text" name="nombre" value="<?= set_value('nombre') ?>" class="form-control" id="nombre" minlength="3" maxlength="50" placeholder="Bebidas" required>
             <?= form_error('nombre', '<div class="text-danger">', '</div>') ?>
             <div class="invalid-feedback">
                 Ingrese el nombre (minimo 3 caracteres).
             </div>
         </div>
         <div class="col-md-6">
-            <label for="estado" class="form-label mi-label">Estado</label>
+            <label for="estado" class="form-label mi-label">Estado <span style="color: red;">*</span></label>
             <select id="estado" name="id_estado_categoria" class="form-select" required>
                 <option selected value="" disabled>Seleccionar</option>
                 <?php foreach ($estados as $e): ?>
@@ -26,8 +26,8 @@
             </div>
         </div>
         <div class="col-12">
-            <label for="descripcion" class="form-label mi-label">Descripción</label>
-            <textarea class="form-control" name="descripcion" id="descripcion" rows="3" minlength="15"></textarea>
+            <label for="descripcion" class="form-label mi-label">Descripción <span style="color: gray;">(opcional)</span></label>
+            <textarea class="form-control" name="descripcion" id="descripcion" rows="3" minlength="15" placeholder="Categoría de bebidas."></textarea>
             <div class="invalid-feedback">
                 Minimo 15 caracteres.
             </div>

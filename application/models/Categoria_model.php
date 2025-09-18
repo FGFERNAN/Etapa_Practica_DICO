@@ -65,9 +65,11 @@ class Categoria_model extends CI_Model
         return $this->db->update($this->table, $data);
     }
 
+    /*
     public function delete($id)
     {
         $this->db->where('id_categorias', $id);
         return $this->db->delete($this->table);
     }
+    */
 }

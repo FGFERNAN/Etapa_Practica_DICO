@@ -10,7 +10,6 @@
                     <div class="d-flex align-items-center">
                         <h2 class="mi-h2">Usuarios</h2>
                         <button class="btn mi-btn ms-4 mb-2" onclick="location.href='<?= base_url('usuarios/crear'); ?>'"><i class="fa-solid fa-plus me-1"></i></button>
-                        <button class="btn mi-btn-papelera ms-3 mb-2" onclick="location.href='<?= base_url('usuarios/papelera'); ?>'"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
                 </div>
             </div>
@@ -22,6 +21,9 @@
                             <input id="buscar_usuario" class="form-control-custom me-2" type="search" placeholder="🔍 Buscar" aria-label="Search" />
                         </form>
                     </div>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn mi-btn-papelera ms-4" onclick="location.href='<?= base_url('usuarios/archivo'); ?>'"><i class="fa-solid fa-file-circle-xmark"></i></button>
                 </div>
             </div>
             <div class="table-responsive mt-4 mi-table">

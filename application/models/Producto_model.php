@@ -141,9 +141,11 @@ class Producto_model extends CI_Model
         return $this->db->update($this->table, $data);
     }
 
+    /*
     public function delete($id)
     {
         $this->db->where('id_productos', $id);
         return $this->db->delete($this->table);
     }
+    */
 }

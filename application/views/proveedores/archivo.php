@@ -3,7 +3,7 @@
 
 <div class="container-fluid mi-container">
     <div class="d-flex align-items-center mi-header">
-        <h2 class="mi-h2">Papelera Proveedores</h2>
+        <h2 class="mi-h2">Proveedores Inactivos</h2>
     </div>
     <?php if ($this->session->flashdata('error')): ?>
         <div class="alert alert-danger alert-dismissible fade show mi-alert-danger" role="alert">
@@ -23,6 +23,7 @@
                     <th scope="col">Fecha Ingreso</th>
                     <th scope="col">Fecha Baja</th>
                     <th scope="col">Estado</th>
+                    <th width="5%" scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,9 +37,8 @@
                         <td><?= $p->fecha_ingreso ?></td>
                         <td><?= $p->fecha_baja ?></td>
                         <td><?= $p->estado_nombre ?></td>
-                        <td>
+                        <td class="d-flex justify-content-center">
                             <a href="<?= base_url('proveedores/activar/' . $p->id_proveedores) ?>" class="btn btn-sm btn-secondary btn-editar" onclick="return confirm('¿Estas seguro de activar este proveedor nuevamente?')"><i class="fa-solid fa-check"></i></a>
-                            <a href="<?= base_url('proveedores/eliminar-definitivo/' . $p->id_proveedores) ?>" class="btn btn-sm btn-danger btn-eliminar" onclick="return confirm('¿Estas seguro de eliminar este proveedor definitivamente?')"><i class="fa-solid fa-trash"></i></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

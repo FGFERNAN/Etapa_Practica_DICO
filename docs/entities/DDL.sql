@@ -15,6 +15,9 @@ CREATE TABLE proveedores(
 		PRIMARY KEY (id_proveedores)
 );
 
+ALTER TABLE proveedores 
+	CHANGE COLUMN telefono telefono VARCHAR(20) NOT NULL UNIQUE;
+
 ALTER TABLE proveedores
 	CHANGE COLUMN fecha_alta fecha_alta DATETIME NULL DEFAULT NULL;
     
@@ -57,6 +60,8 @@ CREATE TABLE modulos(
 		PRIMARY KEY (id_modulos)
 );
 
+DROP TABLE IF EXISTS modulos;
+
 CREATE TABLE acciones(
 	id_acciones INT(10) UNSIGNED AUTO_INCREMENT,
     nombre VARCHAR(100),
@@ -66,6 +71,8 @@ CREATE TABLE acciones(
 
 ALTER TABLE acciones 
 	CHANGE COLUMN nombre nombre VARCHAR(100) NOT NULL UNIQUE;
+    
+DROP TABLE IF EXISTS acciones;
 
 CREATE TABLE estado(
 	id_estado INT(10) UNSIGNED AUTO_INCREMENT,
@@ -153,6 +160,8 @@ ALTER TABLE permisos
 ALTER TABLE permisos
 	ADD CONSTRAINT FK_permisos_acciones
 		FOREIGN KEY (id_acciones) REFERENCES acciones(id_acciones);
+        
+DROP TABLE IF EXISTS permisos;
         
 CREATE TABLE marca(
 	id_marca INT(10) UNSIGNED AUTO_INCREMENT,

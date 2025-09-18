@@ -82,9 +82,11 @@ class Proveedor_model extends CI_Model
         return $this->db->update($this->table, $data);
     }
 
+    /*
     public function delete($id)
     {
         $this->db->where('id_proveedores', $id);
         return $this->db->delete($this->table);
     }
+    */
 }

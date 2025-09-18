@@ -6,7 +6,7 @@
         <input type="hidden" name="id_categorias" value="<?= $categoria->id_categorias ?>">
         <legend class="legend">Editar Categoría</legend>
         <div class="col-md-6">
-            <label for="nombre" class="form-label mi-label">Nombre</label>
+            <label for="nombre" class="form-label mi-label">Nombre <span style="color: red;">*</span></label>
             <input type="text" name="nombre" value="<?= set_value('nombre', $categoria->nombre) ?>" class="form-control" id="nombre" minlength="3" maxlength="50" required>
             <?= form_error('nombre', '<div class="text-danger">', '</div>') ?>
             <div class="invalid-feedback">
@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <label for="estado" class="form-label mi-label">Estado</label>
+            <label for="estado" class="form-label mi-label">Estado <span style="color: red;">*</span></label>
             <select id="estado" name="id_estado_categoria" class="form-select" required>
                 <option value="" disabled>Seleccionar</option>
                 <?php foreach ($estados as $e): ?>
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="col-12">
-            <label for="descripcion" class="form-label mi-label">Descripción</label>
+            <label for="descripcion" class="form-label mi-label">Descripción <span style="color: gray;">(opcional)</span></label>
             <textarea class="form-control" name="descripcion" id="descripcion" rows="3" minlength="15"><?= set_value('descripcion', $categoria->descripcion)  ?></textarea>
             <div class="invalid-feedback">
                 Minimo 15 caracteres.

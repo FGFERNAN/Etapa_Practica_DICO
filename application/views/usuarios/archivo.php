@@ -8,7 +8,7 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-11">
                     <div class="d-flex align-items-center">
-                        <h2 class="mi-h2">Papelera Usuarios</h2>
+                        <h2 class="mi-h2">Usuarios Inactivos</h2>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                             <th scope="col">Rol</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Tipo Documento</th>
-                            <th scope="col">Acciones</th>
+                            <th width="5%" scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,9 +48,8 @@
                                 <td><?= $u->rol_nombre ?></td>
                                 <td><?= $u->estado_nombre ?></td>
                                 <td><?= $u->tipo_documento_nombre ?></td>
-                                <td>
+                                <td class="d-flex justify-content-center">
                                     <a href="<?= base_url('usuarios/activar/'.$u->id_usuarios) ?>" class="btn btn-sm btn-secondary btn-editar" onclick="return confirm('¿Estas seguro de activar este usuarios nuevamente?')"><i class="fa-solid fa-check"></i></a>
-                                    <a href="<?= base_url('usuarios/eliminar-definitivo/' . $u->id_usuarios) ?>" class="btn btn-sm btn-danger btn-eliminar" onclick="return confirm('¿Estas seguro de eliminar este usuario definitivamente?')"><i class="fa-solid fa-trash"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

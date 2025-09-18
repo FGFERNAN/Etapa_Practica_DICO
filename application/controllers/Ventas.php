@@ -43,7 +43,7 @@ class Ventas extends MY_Controller
 
     public function guardar()
     {
-        $this->form_validation->set_rules('cliente', 'Cliente', 'required|alpha');
+        $this->form_validation->set_rules('cliente', 'Cliente', 'required|alpha_numeric_spaces');
 
         $productos_ids = $this->input->post('ids_productos');
         $cantidades = $this->input->post('cantidad');

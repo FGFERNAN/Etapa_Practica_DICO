@@ -5,7 +5,7 @@
     <form action="<?= base_url('productos/actualizar/' . $producto->id_productos) ?>" method="post" class="row g-3 needs-validation" novalidate>
         <legend class="legend">Editar Producto</legend>
         <div class="col-md-6">
-            <label for="nombre" class="form-label mi-label">Nombre</label>
+            <label for="nombre" class="form-label mi-label">Nombre <span style="color: red;">*</span></label>
             <input type="text" name="nombre" value="<?= set_value('nombre', $producto->nombre) ?>" class="form-control" id="nombre" minlength="3" maxlength="50" required>
             <?= form_error('nombre', '<div class="text-danger">', '</div>') ?>
             <div class="invalid-feedback">
@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <label for="marca" class="form-label mi-label">Marca</label>
+            <label for="marca" class="form-label mi-label">Marca <span style="color: red;">*</span></label>
             <select id="marca" name="id_marca" class="form-select" required>
                 <option value="" disabled>Seleccionar</option>
                 <?php foreach ($marca as $m): ?>
@@ -26,14 +26,14 @@
             </div>
         </div>
         <div class="col-12">
-            <label for="descripcion" class="form-label mi-label">Descripción</label>
+            <label for="descripcion" class="form-label mi-label">Descripción <span style="color: gray;">(opcional)</span></label>
             <textarea class="form-control" name="descripcion" id="descripcion" rows="3" minlength="15"><?= set_value('descripcion', $producto->descripcion)  ?></textarea>
             <div class="invalid-feedback">
                 Minimo 15 caracteres.
             </div>
         </div>
         <div class="col-md-6">
-            <label for="precio_venta" class="form-label mi-label">Precio de Venta</label>
+            <label for="precio_venta" class="form-label mi-label">Precio de Venta <span style="color: red;">*</span></label>
             <input type="number" name="precio_venta" value="<?= set_value('precio_venta', $producto->precio_venta) ?>" step="0.01" min="1" placeholder="0.00" class="form-control" id="precio_venta" required>
             <?= form_error('precio_venta', '<div class="text-danger">', '</div>') ?>
             <div class="invalid-feedback">
@@ -49,11 +49,11 @@
             </div>
         </div>
         <div class="col-6">
-            <label for="imagen" class="form-label mi-label">Imagen</label>
+            <label for="imagen" class="form-label mi-label">Imagen <span style="color: gray;">(opcional)</span></label>
             <input class="form-control" name="imagen" value="<?= $producto->imagen ?>" type="file" id="imagen">
         </div>
         <div class="col-md-6">
-            <label for="categoria" class="form-label mi-label">Categoría</label>
+            <label for="categoria" class="form-label mi-label">Categoría <span style="color: red;">*</span></label>
             <select class="form-select" name="id_categorias" aria-label="Categoria" id="categoria" required>
                 <option selected value="" disabled>Seleccionar</option>
                 <?php foreach ($categorias as $c): ?>
@@ -66,7 +66,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <label for="proveedor" class="form-label mi-label">Proveedor Principal</label>
+            <label for="proveedor" class="form-label mi-label">Proveedor Principal <span style="color: red;">*</span></label>
             <select id="proveedor" name="id_proveedores" class="form-select" required>
                 <option selected value="" disabled>Seleccionar</option>
                 <?php foreach ($proveedores as $pr): ?>
@@ -84,7 +84,7 @@
             </select>
         </div>
         <div class="col-md-4">
-            <label for="estado" class="form-label mi-label">Estado</label>
+            <label for="estado" class="form-label mi-label">Estado <span style="color: red;">*</span></label>
             <select id="estado" name="id_estado_producto" class="form-select" required>
                 <option value="" disabled>Seleccionar</option>
                 <?php foreach ($estados as $e): ?>

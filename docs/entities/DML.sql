@@ -18,7 +18,7 @@ INSERT INTO estado_categoria (nombre, descripcion) VALUES
 
 SELECT * FROM estado_categoria;
 
-INSERT INTO estado_producto (nombre, descripcion) VALUES ('Bajo Stock', 'Producto con bajo stock')
+INSERT INTO estado_producto (nombre, descripcion) VALUES ('Bajo Stock', 'Producto con bajo stock'),
 ('Activo', 'Producto disponible para venta normal'),
 ('Inactivo', 'Producto temporalmente deshabilitado'),
 ('Agotado', 'Sin stock disponible'),

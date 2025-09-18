@@ -12,7 +12,7 @@
                         <form action="<?= base_url('ventas/guardar') ?>" method="post" class="needs-validation" novalidate>
                             <div class="row mb-4">
                                 <div class="col-md-12">
-                                    <label for="cliente" class="form-label label-compras">Cliente</label>
+                                    <label for="cliente" class="form-label label-compras">Cliente <span style="color: red;">*</span></label>
                                     <input type="text" class="form-control-custom" id="cliente" name="cliente" placeholder="Nombre del Cliente" value="<?= set_value('cliente') ?>" required>
                                     <div class="invalid-feedback">
                                         Ingrese el nombre del cliente.

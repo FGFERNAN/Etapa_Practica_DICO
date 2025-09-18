@@ -17,10 +17,10 @@ class Categorias extends MY_Controller
         $this->load->view('categorias/index', $data);
     }
 
-    public function papelera()
+    public function archivo()
     {
         $data['categorias'] = $this->Categoria_model->getInactive();
-        $this->load->view('categorias/papelera', $data);
+        $this->load->view('categorias/archivo', $data);
     }
 
     public function crear()
@@ -140,16 +140,18 @@ class Categorias extends MY_Controller
         redirect('categorias');
     }
 
+    /*
     public function eliminacionFisica($id)
     {
         $this->Categoria_model->delete($id);
         redirect('categorias/papelera');
     }
+    */
 
     public function activar($id)
     {
         $data = ['id_estado_categoria' => 1];
         $this->Categoria_model->update($id, $data);
-        redirect('categorias/papelera');
+        redirect('categorias');
     }
 }

@@ -27,10 +27,10 @@ class Productos extends MY_Controller
         $this->load->view('productos/index', $data);
     }
 
-    public function papelera()
+    public function archivo()
     {
         $data['productos'] = $this->Producto_model->getInactive();
-        $this->load->view('productos/papelera', $data);
+        $this->load->view('productos/archivo', $data);
     }
 
     public function crear()
@@ -139,9 +139,11 @@ class Productos extends MY_Controller
         redirect('productos');
     }
 
+    /*
     public function eliminacionFisica($id)
     {
         $this->Producto_model->delete($id);
         redirect('productos/papelera');
     }
+    */
 }

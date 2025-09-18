@@ -75,9 +75,11 @@ class Usuario_model extends CI_Model
         return $this->db->update($this->table_users, $data);
     }
 
+    /*
     public function delete($id)
     {
         $this->db->where('id_usuarios', $id);
         return $this->db->delete($this->table_users);
     }
+    */
 }
