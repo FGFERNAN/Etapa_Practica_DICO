@@ -28,7 +28,7 @@ class Compra_model extends CI_Model
 
     public function getComprasConFiltros($filtros)
     {
-        $this->db->select('c.*, u.nombre AS usuario_nombre, pr.nombre as proveedor_nombre');
+        $this->db->select('c.*, CONCAT(u.nombre, " ", u.apellidos) AS usuario_nombre, pr.nombre as proveedor_nombre');
         $this->db->from('compras c');
         $this->db->join('usuarios u', 'c.id_usuarios = u.id_usuarios', 'left');
         $this->db->join('proveedores pr', 'c.id_proveedores = pr.id_proveedores');

@@ -64,7 +64,7 @@ class Usuarios extends MY_Controller
         $this->form_validation->set_rules(
             'id_usuarios',
             'N° Documento',
-            'required|exact_length[10]|numeric|is_unique[usuarios.id_usuarios]',
+            'required|min_length[8]|max_length[10]|numeric|is_unique[usuarios.id_usuarios]',
             array(
                 'is_unique' => 'El numero de documento ya existe.'
             )

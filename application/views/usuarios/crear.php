@@ -85,10 +85,10 @@
         </div>
         <div class="col-6">
             <label for="id" class="form-label mi-label">N° Documento <span style="color: red;">*</span></label>
-            <input type="tel" value="<?= set_value('id_usuarios') ?>" name="id_usuarios" pattern="[0-9]{10}" placeholder="1030533364" class="form-control" minlength="10" maxlength="10" title="Ingrese 10 dígitos sin espacios" id="id" required>
+            <input type="tel" value="<?= set_value('id_usuarios') ?>" name="id_usuarios" pattern="[0-9]{8,10}" placeholder="1030533364" class="form-control" minlength="8" maxlength="10" id="id" required>
             <?= form_error('id_usuarios', '<div class="text-danger">', '</div>') ?>
             <div class="invalid-feedback">
-                Ingrese el numero de documento(10 digitos).
+                Ingrese el numero de documento(Minimo 8 digitos).
             </div>
         </div>
         <div class="d-grid col-4 mx-auto">

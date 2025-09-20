@@ -85,7 +85,7 @@
                         <a class="nav-link <?= $segmento == 'usuarios' ? 'active' : '' ?>" href="<?= base_url('usuarios') ?>"><i class="fa-solid fa-users me-3"></i></i>Usuarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-chart-pie me-3"></i>Reportes</a>
+                        <a class="nav-link <?= $segmento == 'reportes' ? 'active' : '' ?>" href="<?= base_url('reportes') ?>"><i class="fa-solid fa-chart-pie me-3"></i>Reportes</a>
                     </li>
                 </ul>
             </div>

@@ -82,6 +82,7 @@ class Compras extends MY_Controller
             $compra_data = [
                 'id_proveedores' => $this->input->post('id_proveedores'),
                 'total' => $this->input->post('total'),
+                'id_usuarios' => $this->session->userdata('id_usuarios')
             ];
 
             // Insertar compra principal

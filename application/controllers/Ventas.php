@@ -73,6 +73,7 @@ class Ventas extends MY_Controller
             $venta_data = [
                 'cliente' => $this->input->post('cliente'),
                 'total' => $this->input->post('total'),
+                'id_usuarios' => $this->session->userdata('id_usuarios')
             ];
 
             // Insertar compra principal

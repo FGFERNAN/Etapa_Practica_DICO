@@ -94,3 +94,5 @@ INSERT INTO roles(nombre, descripcion) VALUES ('Administrador', 'Rol que puede e
 
 INSERT INTO tipo_documento(nombre) VALUES ('Cédula de Ciudadanía'), ('Tarjeta de Identidad'), ('Cédula de Extranjería'),
 ('Registro Civil de Nacimiento');
+
+SELECT DISTINCT tipo_operacion FROM historial_operaciones;

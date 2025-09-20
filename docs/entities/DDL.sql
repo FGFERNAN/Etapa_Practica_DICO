@@ -199,6 +199,13 @@ CREATE TABLE productos(
 );
 
 ALTER TABLE productos
+	ADD COLUMN id_usuarios INT(10) UNSIGNED;
+    
+ALTER TABLE productos
+	ADD CONSTRAINT FK_productos_usuarios
+		FOREIGN KEY (id_usuarios) REFERENCES usuarios(id_usuarios);
+
+ALTER TABLE productos
 	ADD COLUMN act_stock DATETIME DEFAULT NULL;
 
 ALTER TABLE productos
@@ -375,6 +382,9 @@ CREATE TABLE historial_operaciones(
     CONSTRAINT PK_historial_operaciones
 		PRIMARY KEY (id_historial_operaciones)
 );
+
+ALTER TABLE historial_operaciones
+	CHANGE COLUMN fecha_hora fecha_hora DATETIME NULL DEFAULT NULL;
 
 ALTER TABLE historial_operaciones
 	ADD CONSTRAINT FK_historial_operaciones_usuarios

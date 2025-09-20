@@ -21,7 +21,8 @@ class Productos extends MY_Controller
         $this->load->view('productos/index', $data);
     }
 
-    public function filtrar($id) {
+    public function filtrar($id)
+    {
         $data['productos'] = $this->Producto_model->filterCategory($id);
         $data['categorias'] = $this->Categoria_model->getAll();
         $this->load->view('productos/index', $data);
@@ -72,7 +73,8 @@ class Productos extends MY_Controller
                 'id_categorias' => $this->input->post('id_categorias'),
                 'id_proveedores' => $this->input->post('id_proveedores'),
                 'id_proveedores_contingencia' => $this->input->post('id_proveedores_contingencia'),
-                'id_estado_producto' => $this->input->post('id_estado_producto')
+                'id_estado_producto' => $this->input->post('id_estado_producto'),
+                'id_usuarios' => $this->session->userdata('id_usuarios')
             ];
 
             $this->Producto_model->create($data);
@@ -117,7 +119,8 @@ class Productos extends MY_Controller
                 'id_categorias' => $this->input->post('id_categorias'),
                 'id_proveedores' => $this->input->post('id_proveedores'),
                 'id_proveedores_contingencia' => $this->input->post('id_proveedores_contingencia'),
-                'id_estado_producto' => $this->input->post('id_estado_producto')
+                'id_estado_producto' => $this->input->post('id_estado_producto'),
+                'id_usuarios' => $this->session->userdata('id_usuarios')
             ];
 
             $this->Producto_model->update($id, $data);
@@ -127,7 +130,10 @@ class Productos extends MY_Controller
 
     public function activar($id)
     {
-        $data = ['id_estado_producto' => 1];
+        $data = [
+            'id_estado_producto' => 1,
+            'id_usuarios' => $this->session->userdata('id_usuarios')
+        ];
         $this->Producto_model->update($id, $data);
         redirect('productos');
     }

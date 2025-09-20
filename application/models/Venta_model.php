@@ -17,7 +17,7 @@ class Venta_model extends CI_Model
 
     public function getVentasConFiltros($filtros)
     {
-        $this->db->select('v.*, u.nombre AS usuario_nombre');
+        $this->db->select('v.*, CONCAT(u.nombre, " ", u.apellidos) AS usuario_nombre');
         $this->db->from('ventas v');
         $this->db->join('usuarios u', 'v.id_usuarios = u.id_usuarios', 'left');
 
