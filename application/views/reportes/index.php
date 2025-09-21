@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6"></div>
+                <div class="col-md-5"></div>
                 <div class="col-md-2">
                     <div class="container-fluid ms-3">
                         <form class="d-flex" role="search">
@@ -69,6 +69,9 @@
                         </ul>
                     </div>
                 </div>
+                <div class="col-md-1">
+                    <a href="<?= base_url('reportes/exportar_pdf?' . http_build_query($_GET)) ?>" class="btn btn-secondary btn-asignar ms-5" target="_blank"><i class="fa-solid fa-download"></i></a>
+                </div>
             </div>
             <div class="table-responsive mt-4 mi-table">
                 <table id="tabla_operaciones" class="table table-pr table-striped">
@@ -91,6 +94,12 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+            </div>
+            <!-- ¡AQUÍ SE MUESTRA LA PAGINACIÓN! -->
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <?php echo $links; ?>
+                </div>
             </div>
         </div>
     </div>

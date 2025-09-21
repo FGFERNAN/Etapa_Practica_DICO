@@ -407,7 +407,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: white;
 }
 
-.text-403{
+.text-403 {
     font-family: 'Arial Black', sans-serif;
     color: #e25b5b;
     font-size: 5rem;
@@ -415,7 +415,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .title-403 {
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .pic-perfil {
@@ -444,4 +444,26 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 50%;
     padding: 10px;
     cursor: pointer;
+}
+
+.page-link {
+    padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
+    color: #040403;
+    background-color: #9DDBAD;
+    border: var(--bs-pagination-border-width) solid #040403;
+}
+
+.active>.page-link, .page-link.active {
+    color: var(--bs-pagination-active-color);
+    background-color: #5B7553;
+    border-color: #040403;
+}
+
+.pagination {
+    --bs-pagination-hover-color: white;
+    --bs-pagination-hover-bg: #8EB897;
+    --bs-pagination-focus-color: white;
+    --bs-pagination-focus-bg: #040403;
+    --bs-pagination-active-color: #fff;
+
 }
