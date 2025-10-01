@@ -53,7 +53,9 @@
                         <div class="d-grid">
                             <button type="submit" class="btn btn-danger btn-iniciar-sesion"><i class="fas fa-sign-in-alt me-2"></i>Iniciar Sesión</button>
                         </div>
-
+                        <div class="text-center mt-2">
+                            <a class="link-olvidar-contraseña" href="<?= base_url('recuperar-contrasena') ?>">¿Olvidaste tu contraseña?</a>
+                        </div>
                     </form>
                 </div>
             </div>

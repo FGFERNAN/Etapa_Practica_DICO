@@ -21,10 +21,10 @@ class MY_Controller extends CI_Controller
         // 3. Definir las reglas de acceso
         //    Aquí definimos qué roles pueden acceder a qué controladores.
         $permisos = [
-            'Administrador' => ['categorias', 'compras', 'dashboard', 'inventario', 'productos', 'proveedores', 'reportes', 'usuarios', 'ventas', 'perfil'],
-            'Supervisor'    => ['inventario', 'ventas', 'compras', 'dashboard', 'reportes', 'perfil'],
-            'Vendedor'      => ['ventas', 'dashboard', 'perfil'],
-            'Bodega/Almacen' => ['inventario', 'compras', 'dashboard', 'perfil']
+            'Administrador' => ['categorias', 'compras', 'inventario', 'productos', 'proveedores', 'reportes', 'usuarios', 'ventas', 'perfil'],
+            'Supervisor'    => ['inventario', 'ventas', 'compras', 'reportes', 'perfil'],
+            'Vendedor'      => ['ventas', 'inventario', 'perfil'],
+            'Bodega/Almacen' => ['inventario', 'compras', 'perfil']
         ];
 
         // 4. Comprobar si el rol del usuario tiene permiso para el controlador actual

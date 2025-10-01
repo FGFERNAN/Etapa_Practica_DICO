@@ -467,3 +467,21 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     --bs-pagination-active-color: #fff;
 
 }
+
+.link-olvidar-contraseña {
+    color: #040403;
+    text-decoration: none;
+}
+
+.link-olvidar-contraseña:hover {
+    text-decoration: underline;
+    color: #040403;
+}
+
+.link-inicio-sesion {
+    color: #040403;
+}
+
+.link-inicio-sesion:hover {
+    font-weight: 500;
+}

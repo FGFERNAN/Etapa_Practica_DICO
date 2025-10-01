@@ -50,7 +50,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'auth';
-$route['dashboard'] = 'dashboard/index';
 $route['productos'] = 'productos/index';
 $route['productos/filtrar/(:num)'] = 'productos/filtrar/$1';
 $route['categorias'] = 'categorias/index';
@@ -105,6 +104,8 @@ $route['usuarios/activar/(:num)'] = 'usuarios/activar/$1';
 $route['login'] = 'auth/index';
 $route['auth/verificar'] = 'auth/login';
 $route['logout'] = 'auth/logout';
+$route['recuperar-contrasena'] = 'auth/recuperar_contrasena';
+$route['nueva-contrasena/(:any)'] = 'auth/reset_password/$1';
 $route['perfil/(:num)'] = 'perfil/editar_perfil/$1';
 $route['perfil/editar-perfil/(:num)'] = 'perfil/actualizar_perfil/$1';
 $route['reportes'] = 'reportes/index';

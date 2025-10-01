@@ -39,7 +39,7 @@
         <?php $segmento = $this->uri->segment(1); ?>
         <ul class="nav justify-content-center nav-underline mi-navbar d-none d-md-flex">
             <li class="nav-item">
-                <a class="nav-link <?= $segmento == 'dashboard' ? 'active' : '' ?>" href="<?= base_url('dashboard') ?>">Inicio</a>
+                <a class="nav-link <?= $segmento == 'inventario' ? 'active' : '' ?>" href="<?= base_url('inventario') ?>">Inventario</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?= $segmento == 'productos' ? 'active' : '' ?>" href="<?= base_url('productos') ?>">Productos</a>

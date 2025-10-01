@@ -261,6 +261,10 @@ CREATE TABLE usuarios(
 );
 
 ALTER TABLE usuarios
+	ADD COLUMN reset_token VARCHAR(64) NULL DEFAULT NULL AFTER contrasena,
+    ADD COLUMN reset_token_expires_at DATETIME NULL DEFAULT NULL AFTER reset_token;
+
+ALTER TABLE usuarios
 	ADD CONSTRAINT FK_usuarios_roles
 		FOREIGN KEY (id_roles) REFERENCES roles(id_roles);
         

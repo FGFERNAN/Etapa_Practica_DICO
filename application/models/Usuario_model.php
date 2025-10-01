@@ -32,6 +32,30 @@ class Usuario_model extends CI_Model
         }
     }
 
+    public function set_reset_token($user_id, $token, $expires_at) {
+        $data = [
+            'reset_token' => $token,
+            'reset_token_expires_at' => $expires_at
+        ];
+        $this->db->where('id_usuarios', $user_id);
+        return $this->db->update($this->table_users, $data);
+    }
+
+    public function get_user_by_token($token) {
+        $this->db->where('reset_token', $token);
+        return $this->db->get($this->table_users)->row();
+    }
+
+    public function update_password($user_id, $new_password) {
+        $data = [
+            'contrasena' => $new_password,
+            'reset_token' => null,
+            'reset_token_expires_at' => null
+        ];
+        $this->db->where('id_usuarios', $user_id);
+        return $this->db->update($this->table_users, $data);
+    }
+
     public function get_inactive()
     {
         $this->db->select('u.*, r.nombre AS rol_nombre, e.nombre AS estado_nombre, t.nombre AS tipo_documento_nombre');

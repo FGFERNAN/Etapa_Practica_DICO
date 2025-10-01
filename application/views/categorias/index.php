@@ -26,7 +26,7 @@
                 </div>
             <?php endif; ?>
             <div class="table-responsive mt-4 mi-table">
-                <table class="table table-striped">
+                <table class="table table-pr table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Nombre</th>

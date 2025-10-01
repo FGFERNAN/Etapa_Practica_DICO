@@ -264,7 +264,7 @@
                     categoria: fila.cells[4].textContent // Columna Categoría
                 };
 
-                if (productoSeleccionado.categoria === 'Lácteos' || productoSeleccionado.categoria === 'Carnes' || productoSeleccionado.categoria === 'Despensa' || productoSeleccionado.categoria === 'Bebidas' || productoSeleccionado.categoria === 'Congelados') {
+                if (productoSeleccionado.categoria === 'Lácteos y Huevos' || productoSeleccionado.categoria === 'Carnes, Aves y Pescados' || productoSeleccionado.categoria === 'Despensa' || productoSeleccionado.categoria === 'Bebidas' || productoSeleccionado.categoria === 'Congelados' || productoSeleccionado.categoria === 'Embutidos y Fiambres' || productoSeleccionado.categoria === 'Salsas y Aderezos' || productoSeleccionado.categoria === 'Snacks y Dulces') {
                     filaActual.querySelector('.lote-input').required = true;
                     filaActual.querySelector('.fecha-vencimiento-input').required = true;
                 } else {
