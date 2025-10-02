@@ -39,8 +39,7 @@
                                 </button>
                             </div>
                             <div class="invalid-feedback d-block">
-                                <?php form_error('passconf');
-                                echo 'Las contraseñas no coinciden'; ?>
+                                <?= form_error('passconf'); ?>
                             </div>
                         </div>
                         <div class="d-grid">

@@ -199,6 +199,9 @@ CREATE TABLE productos(
 );
 
 ALTER TABLE productos
+	DROP COLUMN imagen;
+
+ALTER TABLE productos
 	ADD COLUMN id_usuarios INT(10) UNSIGNED;
     
 ALTER TABLE productos

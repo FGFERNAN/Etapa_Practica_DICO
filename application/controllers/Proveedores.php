@@ -120,7 +120,7 @@ class Proveedores extends MY_Controller
                 'is_unique' => 'El telefono ya existe.'
             )
         );
-        $this->form_validation->set_rules('empresa', 'Empresa', 'required|min_length[3]|max_length[50]');
+        $this->form_validation->set_rules('empresa', 'Empresa', 'required|min_length[3]|max_length[100]');
         $this->form_validation->set_rules(
             'nit',
             'NIT',
@@ -161,7 +161,7 @@ class Proveedores extends MY_Controller
         $this->form_validation->set_rules('nombre', 'Nombre', 'required|trim|min_length[3]|max_length[50]|callback_nombre_proveedor_unico');
         $this->form_validation->set_rules('contacto', 'Contacto', 'required|valid_email|callback_contacto_proveedor_unico');
         $this->form_validation->set_rules('telefono', 'Telefono', 'required|integer|exact_length[10]|callback_telefono_proveedor_unico');
-        $this->form_validation->set_rules('empresa', 'Empresa', 'required|min_length[3]|max_length[50]');
+        $this->form_validation->set_rules('empresa', 'Empresa', 'required|min_length[3]|max_length[100]');
         $this->form_validation->set_rules('nit', 'NIT', 'required|integer|exact_length[9]|callback_nit_proveedor_unico');
         $this->form_validation->set_rules('id_estado_proveedor', 'Estado', 'required');
         if ($this->form_validation->run() == FALSE) {

@@ -30,7 +30,7 @@
         </div>
         <div class="col-md-6">
             <label for="empresa" class="form-label mi-label">Empresa <span style="color: red;">*</span></label>
-            <input type="text" name="empresa" value="<?= set_value('empresa') ?>" class="form-control" id="empresa" minlength="3" maxlength="50" placeholder="Grupo Nutresa" required>
+            <input type="text" name="empresa" value="<?= set_value('empresa') ?>" class="form-control" id="empresa" minlength="3" maxlength="100" placeholder="Grupo Nutresa" required>
             <?= form_error('empresa', '<div class="text-danger">', '</div>') ?>
             <div class="invalid-feedback">
                 Ingrese el nombre de la empresa (minimo 3 caracteres).

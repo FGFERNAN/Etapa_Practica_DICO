@@ -126,7 +126,11 @@ class Auth extends CI_Controller
                 'regex_match' => 'La contraseña debe tener al entre 6 y 8 caracteres, al menos una mayúscula, una minúscula y un número.'
             )
         );
-        $this->form_validation->set_rules('passconf', 'Confirmar Contraseña', 'required|matches[contrasena]');
+        $this->form_validation->set_rules('passconf', 'Confirmar Contraseña', 'required|matches[contrasena]',
+            array(
+                'matches' => 'Las contraseñas no coinciden.'
+            )
+        );
 
         if ($this->form_validation->run() == FALSE) {
             // Si la validación falla, volvemos a mostrar el formulario

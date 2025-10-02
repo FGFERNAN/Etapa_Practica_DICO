@@ -62,11 +62,20 @@
                 Seleccione una categoria.
             </div>
         </div>
-        <div class="col-6">
-            <label for="imagen" class="form-label mi-label">Imagen <span style="color: gray;">(opcional)</span></label>
-            <input class="form-control" name="imagen" type="file" id="imagen">
+        <div class="col-md-6">
+            <label for="estado" class="form-label mi-label">Estado <span style="color: red;">*</span></label>
+            <select id="estado" name="id_estado_producto" class="form-select" required>
+                <option selected value="" disabled>Seleccionar</option>
+                <?php foreach ($estados as $e): ?>
+                    <option value="<?= $e->id_estado_producto ?>"><?= $e->nombre ?></option>
+                <?php endforeach; ?>
+            </select>
+            <?= form_error('id_estado', '<div class="text-danger">', '</div>') ?>
+            <div class="invalid-feedback">
+                Seleccione un estado.
+            </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <label for="proveedor" class="form-label mi-label">Proveedor Principal <span style="color: red;">*</span></label>
             <select id="proveedor" name="id_proveedores" class="form-select" required>
                 <option selected disabled>Seleccionar</option>
@@ -78,7 +87,7 @@
                 Seleccione un proveedor.
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <label for="proveedor_c" class="form-label mi-label">Proveedor Contingencia</label>
             <select id="proveedor_c" name="id_proveedores_contingencia" class="form-select">
                 <option selected disabled>Seleccionar</option>
@@ -88,19 +97,6 @@
             </select>
             <div class="invalid-feedback">
                 Seleccione un proveedor.
-            </div>
-        </div>
-        <div class="col-md-4">
-            <label for="estado" class="form-label mi-label">Estado <span style="color: red;">*</span></label>
-            <select id="estado" name="id_estado_producto" class="form-select" required>
-                <option selected value="" disabled>Seleccionar</option>
-                <?php foreach ($estados as $e): ?>
-                    <option value="<?= $e->id_estado_producto ?>"><?= $e->nombre ?></option>
-                <?php endforeach; ?>
-            </select>
-            <?= form_error('id_estado', '<div class="text-danger">', '</div>') ?>
-            <div class="invalid-feedback">
-                Seleccione un estado.
             </div>
         </div>
         <div class="d-grid col-4 mx-auto">

@@ -108,6 +108,7 @@ $route['recuperar-contrasena'] = 'auth/recuperar_contrasena';
 $route['nueva-contrasena/(:any)'] = 'auth/reset_password/$1';
 $route['perfil/(:num)'] = 'perfil/editar_perfil/$1';
 $route['perfil/editar-perfil/(:num)'] = 'perfil/actualizar_perfil/$1';
+$route['perfil/cambiar-contrasena'] = 'perfil/cambiar_contrasena';
 $route['reportes'] = 'reportes/index';
 $route['reportes/filtrar/(:num)'] = 'reportes/filtrar/$1';
 $route['404_override'] = '';

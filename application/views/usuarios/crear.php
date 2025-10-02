@@ -38,7 +38,7 @@
         </div>
         <div class="col-6">
             <label for="password" class="form-label mi-label">Contraseña <span style="color: red;">*</span></label>
-            <input type="password" value="<?= set_value('contrasena') ?>" name="contrasena" placeholder="Ab1234" pattern="^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,8})\S$" class="form-control" id="password" minlength="6" maxlength="8" required>
+            <input type="password" value="<?= set_value('contrasena') ?>" name="contrasena" placeholder="Ab12345" pattern="^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,8})\S$" class="form-control" id="password" minlength="6" maxlength="8" required>
             <?= form_error('contrasena', '<div class="text-danger">', '</div>') ?>
             <div class="invalid-feedback">
                 Ingrese la contraseña, la contraseña debe tener al entre 6 y 8 caracteres, al menos una mayúscula, una minúscula y un número.

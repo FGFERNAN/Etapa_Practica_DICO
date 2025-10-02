@@ -77,6 +77,12 @@
                     </tbody>
                 </table>
             </div>
+            <!-- ¡AQUÍ SE MUESTRA LA PAGINACIÓN! -->
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <?php echo $links; ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -89,7 +95,7 @@
         inputBuscar.addEventListener('input', function() {
             const valorBusqueda = this.value.toLowerCase();
 
-            filasTabla.forEach(function(fila) { 
+            filasTabla.forEach(function(fila) {
                 const textoFila = fila.textContent.toLowerCase();
 
                 if (textoFila.includes(valorBusqueda)) {

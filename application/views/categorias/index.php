@@ -31,7 +31,7 @@
                         <tr>
                             <th scope="col">Nombre</th>
                             <th scope="col">Descripción</th>
-                            <th scope="col">Cantidad Productos</th>
+                            <th width="10%" scope="col">Cantidad Productos</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Acciones</th>
                         </tr>

@@ -98,7 +98,7 @@
             <!-- ¡AQUÍ SE MUESTRA LA PAGINACIÓN! -->
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <?php echo $links; ?>
+                    <?php echo $links; ?> 
                 </div>
             </div>
         </div>

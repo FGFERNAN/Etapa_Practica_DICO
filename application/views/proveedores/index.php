@@ -27,10 +27,11 @@
                             <th scope="col">Contacto</th>
                             <th scope="col">Empresa</th>
                             <th scope="col">NIT</th>
-                            <th scope="col">Cantidad Productos</th>
+                            <th width="8%" scope="col">Cantidad Productos</th>
                             <th scope="col">Fecha Ingreso</th>
                             <th scope="col">Fecha Alta</th>
                             <th scope="col">Estado</th>
+                            <th width="9%" scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>

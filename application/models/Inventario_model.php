@@ -12,6 +12,25 @@ class Inventario_model extends CI_Model
         $this->db->join('categorias c', 'p.id_categorias = c.id_categorias');
         return $this->db->get()->result();
     }
+
+    public function get_all_pagination($limit, $offset)
+    {
+        $this->db->select('p.*, m.nombre AS marca_nombre, c.nombre AS categoria_nombre, e.nombre AS estado_nombre');
+        $this->db->from('productos p');
+        $this->db->join('estado_producto e', 'p.id_estado_producto = e.id_estado_producto');
+        $this->db->join('marca m', 'p.id_marca = m.id_marca');
+        $this->db->join('categorias c', 'p.id_categorias = c.id_categorias');
+        $this->db->order_by('p.id_productos', 'DESC'); // Ordenar por la más reciente
+        $this->db->limit($limit, $offset);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function contar_operaciones()
+    {
+        $this->db->from('productos');
+        return $this->db->count_all_results(); 
+    }
 }
 
 ?>

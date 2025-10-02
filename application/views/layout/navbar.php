@@ -27,7 +27,7 @@
                         <hr class="dropdown-divider">
                     </li>
                     <li><a class="dropdown-item" href="<?= base_url('perfil/' . $this->session->userdata('id_usuarios')) ?>"><i class="fas fa-user me-2"></i>Mi Perfil</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Configuración</a></li>
+                    <li><a class="dropdown-item" href="<?= base_url('perfil/cambiar-contrasena') ?>"><i class="fa-solid fa-lock me-2"></i></i>Contraseña</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
